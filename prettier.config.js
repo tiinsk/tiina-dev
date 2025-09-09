@@ -3,7 +3,12 @@
  * @type {import("prettier").Config}
  */
 const config = {
-  printWidth: 120,
+  tabWidth: 2,
+  arrowParens: "avoid",
+  trailingComma: "es5",
+  semi: true,
+  singleQuote: true,
+  bracketSpacing: true
 };
 
 export default config;
