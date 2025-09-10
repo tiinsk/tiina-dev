@@ -1,9 +1,16 @@
-import { Counter } from "./Counter.js";
+import React from 'react';
+import styled from 'styled-components';
+
+import { Counter } from './Counter.js';
+
+const Title = styled.h1`
+  color: #bf4f74;
+`;
 
 export default function Page() {
   return (
     <>
-      <h1>My Vike app</h1>
+      <Title>My Vike app</Title>
       This page is:
       <ul>
         <li>Rendered to HTML.</li>
