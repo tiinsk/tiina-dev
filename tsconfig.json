@@ -16,12 +16,20 @@
       "ESNext"
     ],
     "types": [
+      "node",
       "vite/client",
       "vike-react",
       "vite-plugin-vercel/types"
     ],
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "react",
+    "plugins": [
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "./schema.graphql",
+        "tadaOutputLocation": "./datocms/graphql-env.d.ts"
+      }
+    ]
   },
   "exclude": [
     "dist"
