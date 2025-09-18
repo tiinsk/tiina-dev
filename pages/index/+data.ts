@@ -1,3 +1,5 @@
+import { PageContextServer } from 'vike/types';
+
 import { graphql } from '../../datocms/graphql';
 import { ContactFragment } from '../../datocms/fragments';
 import { executeQuery } from '../../datocms/executeQuery';
@@ -11,9 +13,9 @@ const query = graphql(`
 `, [ContactFragment]);
 
 
-export const data = async () => {
+export const data = async (pageContext: PageContextServer) => {
   return executeQuery(query, {
-    variables: { locale: 'en' },
+    variables: { locale: pageContext.locale },
   });
 };
 
