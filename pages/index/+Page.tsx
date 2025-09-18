@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import { Counter } from './Counter.js';
 import { useData } from 'vike-react/useData';
+
 import { Data } from './+data';
 import { locales } from '../../locales';
 import { Link } from '../../components/Link';
@@ -25,13 +24,6 @@ export default function Page() {
             </Link>
           </li>
         ))}
-      </ul>
-      This page is:
-      <ul>
-        <li>Rendered to HTML.</li>
-        <li>
-          Interactive. <Counter />
-        </li>
       </ul>
       {data.contacts?.title}
       <ul>

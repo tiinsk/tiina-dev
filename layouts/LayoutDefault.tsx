@@ -26,11 +26,8 @@ export default function LayoutDefault({
         <Link locale={pageContext.locale} href="/">
           Welcome
         </Link>
-        <Link locale={pageContext.locale} href="/todo">
-          Todo
-        </Link>
-        <Link locale={pageContext.locale} href="/star-wars">
-          Data Fetching
+        <Link locale={pageContext.locale} href="/console">
+          Console
         </Link>
       </Sidebar>
       <Content>{children}</Content>

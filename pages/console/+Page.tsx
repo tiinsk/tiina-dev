@@ -1,13 +1,13 @@
 import type { Data } from "./+data";
 import { useData } from "vike-react/useData";
-import { TodoList } from "./TodoList.js";
+import { CommandList } from "./CommandList";
 
 export default function Page() {
   const data = useData<Data>();
   return (
     <>
-      <h1>To-do List</h1>
-      <TodoList initialTodoItems={data.todo} />
+      <h1>Commands</h1>
+      <CommandList initialCommandItems={data.commands} />
     </>
   );
 }
