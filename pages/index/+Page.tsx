@@ -19,7 +19,7 @@ export default function Page() {
       Select language:
       <ul>
         {locales.map(locale => (
-          <li>
+          <li key={locale}>
             <Link locale={locale} href="/" key={locale}>
               {locale}
             </Link>

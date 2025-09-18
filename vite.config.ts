@@ -2,6 +2,7 @@
 import react from '@vitejs/plugin-react';
 import vike from 'vike/plugin';
 import { defineConfig } from 'vite';
+import checker from 'vite-plugin-checker';
 
 export default defineConfig({
   ssr: {
@@ -10,6 +11,10 @@ export default defineConfig({
     noExternal: ['styled-components'],
   },
   plugins: [
+    checker({
+      // check TypeScript types during development and build
+      typescript: true,
+    }),
     vike(),
     react({
       babel: {
