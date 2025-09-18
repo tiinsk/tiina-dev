@@ -5,6 +5,7 @@ import './style.css';
 
 import logoUrl from '../assets/logo.svg';
 import { Link } from '../components/Link.js';
+import { usePageContext } from 'vike-react/usePageContext';
 
 const StyledLayout = styled.div`
   display: flex;
@@ -17,13 +18,20 @@ export default function LayoutDefault({
 }: {
   children: React.ReactNode;
 }) {
+  const pageContext = usePageContext();
   return (
     <StyledLayout>
       <Sidebar>
         <Logo />
-        <Link href="/">Welcome</Link>
-        <Link href="/todo">Todo</Link>
-        <Link href="/star-wars">Data Fetching</Link>
+        <Link locale={pageContext.locale} href="/">
+          Welcome
+        </Link>
+        <Link locale={pageContext.locale} href="/todo">
+          Todo
+        </Link>
+        <Link locale={pageContext.locale} href="/star-wars">
+          Data Fetching
+        </Link>
       </Sidebar>
       <Content>{children}</Content>
     </StyledLayout>
