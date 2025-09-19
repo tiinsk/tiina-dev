@@ -1,30 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useData } from 'vike-react/useData';
 
 import { Data } from './+data';
-import { locales } from '../../locales';
-import { Link } from '../../components/Link';
-
-const Title = styled.h1`
-  color: #bf4f74;
-`;
+import { LanguageSelector } from '../../components/LanguageSelector';
 
 export default function Page() {
   const data = useData<Data>();
   return (
     <>
-      <Title>My Vike app</Title>
-      Select language:
-      <ul>
-        {locales.map(locale => (
-          <li key={locale}>
-            <Link locale={locale} href="/" key={locale}>
-              {locale}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <LanguageSelector />
       {data.contacts?.title}
       <ul>
         {data.contacts?.links.map(contact => (

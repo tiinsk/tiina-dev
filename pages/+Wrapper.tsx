@@ -1,14 +1,46 @@
 export { Wrapper };
 
 import React from 'react';
-import { StyleSheetManager } from 'styled-components';
+import { createGlobalStyle, StyleSheetManager } from 'styled-components';
 import { usePageContext } from 'vike-react/usePageContext';
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: 62.5%;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      list-style-type: none;
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+`
 
 function Wrapper({ children }: { children: React.ReactNode }) {
   const pageContext = usePageContext();
   if (isBrowser()) return <>{children}</>;
   return (
     <StyleSheetManager sheet={pageContext.styleSheet?.instance}>
+      <GlobalStyle />
       {children}
     </StyleSheetManager>
   );
