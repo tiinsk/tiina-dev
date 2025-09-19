@@ -1,6 +1,6 @@
 /*
-* This file is based on an example project which uses gql.tada and datocms cda: https://github.com/datocms/nextjs-starter-kit/blob/main/src/lib/datocms/graphql.ts
-* */
+ * This file is based on an example project which uses gql.tada and datocms cda: https://github.com/datocms/nextjs-starter-kit/blob/main/src/lib/datocms/graphql.ts
+ * */
 
 /*
  * We use gql.tada to automatically generate TypeScript types from the GraphQL

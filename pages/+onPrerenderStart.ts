@@ -1,8 +1,5 @@
 // https://vike.dev/onPrerenderStart
-import type {
-  PageContext,
-  PrerenderContext,
-} from 'vike/types';
+import type { PageContext, PrerenderContext } from 'vike/types';
 
 import { defaultLocale, locales } from '../locales';
 
@@ -29,7 +26,10 @@ export const onPrerenderStart = async (prerenderContext: PrerenderContext) => {
   prerenderContext.pageContexts.forEach(pageContext => {
     //pagContext types have some issues related to missing data field, because of this "as unknown as PageContext" is here
     //TODO investigate this issue
-    pageContexts = [...pageContexts, ...duplicateWithLocale(pageContext as unknown as PageContext)];
+    pageContexts = [
+      ...pageContexts,
+      ...duplicateWithLocale(pageContext as unknown as PageContext),
+    ];
   });
 
   return {
@@ -37,4 +37,4 @@ export const onPrerenderStart = async (prerenderContext: PrerenderContext) => {
       pageContexts,
     },
   };
-}
+};

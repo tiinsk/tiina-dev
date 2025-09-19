@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export function CommandList({ initialCommandItems }: { initialCommandItems: { text: string }[] }) {
+export function CommandList({
+  initialCommandItems,
+}: {
+  initialCommandItems: { text: string }[];
+}) {
   const [commandItems, setCommandItems] = useState(initialCommandItems);
-  const [newCommand, setNewCommand] = useState("");
+  const [newCommand, setNewCommand] = useState('');
   return (
     <>
       <ul>
@@ -13,14 +17,18 @@ export function CommandList({ initialCommandItems }: { initialCommandItems: { te
       </ul>
       <div>
         <form
-          onSubmit={async (ev) => {
+          onSubmit={async ev => {
             ev.preventDefault();
 
             // Optimistic UI update
-            setCommandItems((prev) => [...prev, { text: newCommand }]);
+            setCommandItems(prev => [...prev, { text: newCommand }]);
           }}
         >
-          <input type="text" onChange={(ev) => setNewCommand(ev.target.value)} value={newCommand} />
+          <input
+            type="text"
+            onChange={ev => setNewCommand(ev.target.value)}
+            value={newCommand}
+          />
           <button type="submit">Send command</button>
         </form>
       </div>

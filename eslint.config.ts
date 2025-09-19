@@ -1,22 +1,22 @@
-import eslint from "@eslint/js";
-import prettier from "eslint-plugin-prettier/recommended";
-import react from "eslint-plugin-react";
-import globals from "globals";
-import tseslint, { type ConfigArray } from "typescript-eslint";
+import eslint from '@eslint/js';
+import prettier from 'eslint-plugin-prettier/recommended';
+import react from 'eslint-plugin-react';
+import globals from 'globals';
+import tseslint, { type ConfigArray } from 'typescript-eslint';
 
 export default tseslint.config(
   {
     ignores: [
-      "dist/*",
+      'dist/*',
       // Temporary compiled files
-      "**/*.ts.build-*.mjs",
+      '**/*.ts.build-*.mjs',
 
-      ".vercel/*",
+      '.vercel/*',
 
       // JS files at the root of the project
-      "*.js",
-      "*.cjs",
-      "*.mjs",
+      '*.js',
+      '*.cjs',
+      '*.mjs',
     ],
   },
   eslint.configs.recommended,
@@ -25,25 +25,25 @@ export default tseslint.config(
     languageOptions: {
       parserOptions: {
         warnOnUnsupportedTypeScriptVersion: false,
-        sourceType: "module",
-        ecmaVersion: "latest",
+        sourceType: 'module',
+        ecmaVersion: 'latest',
       },
     },
   },
   {
     rules: {
-      "@typescript-eslint/no-unused-vars": [
+      '@typescript-eslint/no-unused-vars': [
         1,
         {
-          argsIgnorePattern: "^_",
+          argsIgnorePattern: '^_',
         },
       ],
-      "@typescript-eslint/no-namespace": 0,
+      '@typescript-eslint/no-namespace': 0,
     },
   },
 
   {
-    files: ["**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}"],
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     ...react.configs.flat.recommended,
     languageOptions: {
       ...react.configs.flat.recommended.languageOptions,
@@ -55,12 +55,12 @@ export default tseslint.config(
 
     settings: {
       react: {
-        version: "detect",
+        version: 'detect',
       },
     },
   } as ConfigArray[number],
 
-  react.configs.flat["jsx-runtime"] as ConfigArray[number],
+  react.configs.flat['jsx-runtime'] as ConfigArray[number],
 
-  prettier as ConfigArray[number],
+  prettier as ConfigArray[number]
 );

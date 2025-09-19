@@ -3,7 +3,7 @@
     "dev": "vike dev",
     "build": "vike build",
     "preview": "vike preview",
-    "lint": "eslint .",
+    "lint": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config",
     "generate-schema": "dotenv -c -- bash -c 'gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: $DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN\"'",
     "format": "npx prettier . --write"
   },

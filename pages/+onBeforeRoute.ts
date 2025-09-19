@@ -17,6 +17,6 @@ const onBeforeRoute = (pageContext: PageContext) => {
       urlLogical,
     },
   };
-}
+};
 
 export default onBeforeRoute;

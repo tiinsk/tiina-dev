@@ -1,4 +1,4 @@
-import type { IStyleSheetManager, ServerStyleSheet } from 'styled-components';
+import type { ServerStyleSheet } from 'styled-components';
 import { Locale } from './locales';
 
 declare global {

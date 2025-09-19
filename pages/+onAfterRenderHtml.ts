@@ -10,8 +10,6 @@ export default (pageContext: PageContext) => {
       config({
         Head: styles,
       });
-    } catch (error) {
-      throw error;
     } finally {
       styleSheet.seal();
     }

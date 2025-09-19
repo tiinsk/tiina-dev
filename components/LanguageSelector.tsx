@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { locales } from '../locales';
 import { Link } from './Link';
 
@@ -14,5 +12,5 @@ export const LanguageSelector = () => {
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};

@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
-`
+`;
 
 function Wrapper({ children }: { children: React.ReactNode }) {
   const pageContext = usePageContext();
