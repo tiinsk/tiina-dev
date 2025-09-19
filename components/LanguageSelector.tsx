@@ -1,5 +1,5 @@
 import { locales } from '../locales';
-import { Link } from './Link';
+import { Link } from './common/Link';
 
 export const LanguageSelector = () => {
   return (

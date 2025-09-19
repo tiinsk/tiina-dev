@@ -1,5 +1,5 @@
 import { usePageContext } from 'vike-react/usePageContext';
-import { Locale, defaultLocale } from '../locales';
+import { Locale, defaultLocale } from '../../locales';
 
 type LinkProps = { href: string; locale?: Locale; children: string };
 

@@ -1,7 +1,13 @@
+import { theme } from '../theme';
+
 export { Wrapper };
 
 import React from 'react';
-import { createGlobalStyle, StyleSheetManager } from 'styled-components';
+import {
+  createGlobalStyle,
+  StyleSheetManager,
+  ThemeProvider,
+} from 'styled-components';
 import { usePageContext } from 'vike-react/usePageContext';
 
 const GlobalStyle = createGlobalStyle`
@@ -37,11 +43,18 @@ const GlobalStyle = createGlobalStyle`
 
 function Wrapper({ children }: { children: React.ReactNode }) {
   const pageContext = usePageContext();
-  if (isBrowser()) return <>{children}</>;
-  return (
-    <StyleSheetManager sheet={pageContext.styleSheet?.instance}>
+
+  const themed = (
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       {children}
+    </ThemeProvider>
+  );
+
+  if (isBrowser()) return <>{themed}</>;
+  return (
+    <StyleSheetManager sheet={pageContext.styleSheet?.instance}>
+      {themed}
     </StyleSheetManager>
   );
 }

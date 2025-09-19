@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@datocms/cda-client": "^0.2.7",
+    "@mdi/js": "^7.4.47",
+    "@mdi/react": "^1.6.1",
     "@vitejs/plugin-react": "^5.0.2",
     "gql.tada": "^1.8.13",
     "react": "^19.1.1",

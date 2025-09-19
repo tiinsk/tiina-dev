@@ -1,0 +1,61 @@
+import { css } from 'styled-components';
+
+export const H1Style = css`
+  color: inherit;
+  font-family: ${({ theme }) => theme.fonts.fontHeader};
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+  font-size: 4.8rem;
+  line-height: 7.2rem;
+`;
+
+export const H2Style = css`
+  color: inherit;
+  font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.black};
+  font-size: 10rem;
+  line-height: 14.4rem;
+  letter-spacing: -0.15rem;
+`;
+
+export const SubtitleStyle = css`
+  color: inherit;
+  font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+`;
+
+export const InfoStyle = css`
+  color: inherit;
+  font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+  font-size: 2rem;
+  line-height: 3.2rem;
+`;
+
+export const BodyStyle = css`
+  color: inherit;
+  font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.light};
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+`;
+
+export const SmallStyle = css`
+  color: inherit;
+  font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.04rem;
+`;
+
+export const LabelStyle = css`
+  color: inherit;
+  font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.light};
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.01rem;
+  text-transform: uppercase;
+`;
