@@ -272,12 +272,12 @@ input EducationModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  endDate: DateFilter
   startDate: DateFilter
-  body: TextFilter
+  endDate: DateFilter
+  school: StringFilter
   title: StringFilter
   program: StringFilter
-  school: StringFilter
+  body: TextFilter
   OR: [EducationModelFilter]
   AND: [EducationModelFilter]
 }
@@ -305,16 +305,16 @@ enum EducationModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  endDate_ASC
-  endDate_DESC
   startDate_ASC
   startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  school_ASC
+  school_DESC
   title_ASC
   title_DESC
   program_ASC
   program_DESC
-  school_ASC
-  school_DESC
 }
 
 """Record of type Education (education)"""
@@ -713,52 +713,7 @@ type GlobalSeoField {
 
 """Record of type Header Section (header_section)"""
 type HeaderSectionRecord implements RecordInterface {
-  _allAboutmeLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allEducationLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allInterestsLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
   _allNameLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allProjectsLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allSkillsLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -785,15 +740,6 @@ type HeaderSectionRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [StringMultiLocaleField!]
-  _allWorkhistoryLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -812,55 +758,10 @@ type HeaderSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  aboutme(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
   createdAt: DateTime!
-  education(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
   id: ItemId!
   image: FileField
-  interests(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
   name(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  projects(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  skills(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -888,15 +789,6 @@ type HeaderSectionRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): String
   updatedAt: DateTime!
-  workhistory(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
 }
 
 input ImgixParams {
@@ -3004,9 +2896,9 @@ input LanguageSkillModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  body: TextFilter
   title: StringFilter
   level: StringFilter
+  body: TextFilter
   OR: [LanguageSkillModelFilter]
   AND: [LanguageSkillModelFilter]
 }
@@ -3244,12 +3136,12 @@ input ProjectModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  thumbnails: GalleryFilter
-  images: GalleryFilter
-  body: TextFilter
-  skills: LinksFilter
-  peakSkills: LinksFilter
   title: StringFilter
+  body: TextFilter
+  images: GalleryFilter
+  peakSkills: LinksFilter
+  skills: LinksFilter
+  thumbnails: GalleryFilter
   OR: [ProjectModelFilter]
   AND: [ProjectModelFilter]
 }
@@ -5006,13 +4898,13 @@ input WorkHistoryModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  skills: LinksFilter
-  endDate: DateFilter
   startDate: DateFilter
-  peakSkills: LinksFilter
+  endDate: DateFilter
+  company: StringFilter
   title: StringFilter
   body: TextFilter
-  company: StringFilter
+  peakSkills: LinksFilter
+  skills: LinksFilter
   OR: [WorkHistoryModelFilter]
   AND: [WorkHistoryModelFilter]
 }
@@ -5040,14 +4932,14 @@ enum WorkHistoryModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
-  endDate_ASC
-  endDate_DESC
   startDate_ASC
   startDate_DESC
-  title_ASC
-  title_DESC
+  endDate_ASC
+  endDate_DESC
   company_ASC
   company_DESC
+  title_ASC
+  title_DESC
 }
 
 """Record of type Work History (work_history)"""
