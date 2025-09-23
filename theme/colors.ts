@@ -75,10 +75,12 @@ export const colors = {
   typography: {
     primary: primitiveColors.neutral.filled['100'],
     secondary: primitiveColors.neutral.filled['60'],
+    tertiary: primitiveColors.blue['150'],
     web: primitiveColors.web['100'],
     core: primitiveColors.core['100'],
     design: primitiveColors.design['100'],
     yellow: primitiveColors.yellow['50'],
+    active: primitiveColors.neutral.filled['00'],
   },
   buttons: {
     primary: {

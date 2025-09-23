@@ -1,7 +1,6 @@
 import { css } from 'styled-components';
 
 export const H1Style = css`
-  color: inherit;
   font-family: ${({ theme }) => theme.fonts.fontHeader};
   font-weight: ${({ theme }) => theme.fontWeights.black};
   font-size: 4.8rem;
@@ -10,7 +9,6 @@ export const H1Style = css`
 `;
 
 export const H2Style = css`
-  color: inherit;
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.black};
   font-size: 10rem;
@@ -19,7 +17,6 @@ export const H2Style = css`
 `;
 
 export const SubtitleStyle = css`
-  color: inherit;
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: 2.4rem;
@@ -27,7 +24,6 @@ export const SubtitleStyle = css`
 `;
 
 export const InfoStyle = css`
-  color: inherit;
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: 2rem;
@@ -35,7 +31,6 @@ export const InfoStyle = css`
 `;
 
 export const BodyStyle = css`
-  color: inherit;
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.light};
   font-size: 1.6rem;
@@ -43,7 +38,6 @@ export const BodyStyle = css`
 `;
 
 export const SmallStyle = css`
-  color: inherit;
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: 1.2rem;
@@ -52,7 +46,6 @@ export const SmallStyle = css`
 `;
 
 export const LabelStyle = css`
-  color: inherit;
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.light};
   font-size: 1.2rem;
