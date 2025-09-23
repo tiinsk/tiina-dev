@@ -1,7 +1,3 @@
-import { theme } from '../theme';
-
-export { Wrapper };
-
 import React from 'react';
 import {
   createGlobalStyle,
@@ -9,6 +5,14 @@ import {
   ThemeProvider,
 } from 'styled-components';
 import { usePageContext } from 'vike-react/usePageContext';
+
+import { theme } from '../theme';
+import poppinsBlack from '../assets/fonts/Poppins/Poppins-Black.ttf';
+import poppinsBold from '../assets/fonts/Poppins/Poppins-Bold.ttf';
+import poppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
+import poppinsMedium from '../assets/fonts/Poppins/Poppins-Medium.ttf';
+import poppinsRegular from '../assets/fonts/Poppins/Poppins-Regular.ttf';
+import rubik from '../assets/fonts/Rubik/Rubik-VariableFont_wght.ttf';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -39,9 +43,57 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  @font-face {
+    font-family: Poppins;
+    src: url(${poppinsBlack}) format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: fallback;
+  }
+
+  @font-face {
+    font-family: Poppins;
+    src: url(${poppinsBold}) format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: fallback;
+  }
+
+  @font-face {
+    font-family: Poppins;
+    src: url(${poppinsMedium}) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: fallback;
+  }
+
+  @font-face {
+    font-family: Poppins;
+    src: url(${poppinsRegular}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: fallback;
+  }
+
+  @font-face {
+    font-family: Poppins;
+    src: url(${poppinsLight}) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: fallback;
+  }
+
+  @font-face {
+    font-family: Rubik;
+    src: url(${rubik}) format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: fallback;
+  }
 `;
 
-function Wrapper({ children }: { children: React.ReactNode }) {
+export const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const pageContext = usePageContext();
 
   const themed = (

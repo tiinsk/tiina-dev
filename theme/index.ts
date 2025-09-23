@@ -10,7 +10,7 @@ const variables = {
   pageWidth: '1800px',
   fonts: {
     fontBody: 'Poppins, sans-serif',
-    fontHeader: 'Rubik One, sans-serif',
+    fontHeader: 'Rubik, sans-serif',
   },
   fontWeights: {
     light: '300',

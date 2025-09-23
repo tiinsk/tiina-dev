@@ -3,9 +3,10 @@ import { css } from 'styled-components';
 export const H1Style = css`
   color: inherit;
   font-family: ${({ theme }) => theme.fonts.fontHeader};
-  font-weight: ${({ theme }) => theme.fontWeights.regular};
+  font-weight: ${({ theme }) => theme.fontWeights.black};
   font-size: 4.8rem;
   line-height: 7.2rem;
+  letter-spacing: 0.1rem;
 `;
 
 export const H2Style = css`
