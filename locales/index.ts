@@ -5,3 +5,8 @@ export enum Locale {
 export const defaultLocale: Locale = Locale.EN;
 
 export const locales = Object.values(Locale);
+
+export const languages = {
+  [Locale.FI]: 'Suomi',
+  [Locale.EN]: 'English',
+};

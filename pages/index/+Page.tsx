@@ -1,7 +1,6 @@
 import { useData } from 'vike-react/useData';
 
 import { Data } from './+data';
-import { LanguageSelector } from '../../components/LanguageSelector';
 
 import { HeaderSection } from '../../components/sections/HeaderSection';
 
@@ -9,7 +8,6 @@ export default function Page() {
   const data = useData<Data>();
   return (
     <>
-      <LanguageSelector />
       <HeaderSection data={data.header} />
       {/*{data.contacts?.title}
       <ul>
