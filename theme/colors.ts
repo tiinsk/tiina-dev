@@ -8,6 +8,7 @@ const primitiveColors = {
   },
   yellow: {
     '50': '#F3FFBB',
+    '20': '#F3FFBB80',
   },
   web: {
     '100': '#03890C',
@@ -87,7 +88,7 @@ export const colors = {
       typography: {
         default: primitiveColors.neutral.filled['100'],
         hover: primitiveColors.neutral.filled['00'],
-        disabled: primitiveColors.neutral.filled['100'],
+        disabled: primitiveColors.neutral.filled['50'],
       },
       background: {
         default: primitiveColors.neutral.opaque.light['00'],
@@ -96,15 +97,15 @@ export const colors = {
       },
       border: {
         default: primitiveColors.neutral.filled['100'],
-        hover: primitiveColors.neutral.filled['00'],
-        disabled: primitiveColors.neutral.filled['100'],
+        hover: primitiveColors.neutral.filled['100'],
+        disabled: primitiveColors.neutral.filled['50'],
       },
     },
     secondary: {
       typography: {
         default: primitiveColors.yellow['50'],
-        hover: primitiveColors.yellow['50'],
-        disabled: primitiveColors.yellow['50'],
+        hover: primitiveColors.neutral.filled['100'],
+        disabled: primitiveColors.yellow['20'],
       },
       background: {
         default: primitiveColors.neutral.opaque.light['00'],
@@ -114,7 +115,7 @@ export const colors = {
       border: {
         default: primitiveColors.yellow['50'],
         hover: primitiveColors.yellow['50'],
-        disabled: primitiveColors.yellow['50'],
+        disabled: primitiveColors.yellow['20'],
       },
     },
   },
