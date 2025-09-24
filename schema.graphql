@@ -12,7 +12,7 @@ type AboutMeSectionRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [StringMultiLocaleField!]
-  _allPrintButtonTextLocales(
+  _allContactButtonTextLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -48,6 +48,7 @@ type AboutMeSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: ColorField
   body(
     """Process content as markdown"""
     markdown: Boolean
@@ -60,10 +61,8 @@ type AboutMeSectionRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String
-  createdAt: DateTime!
-  id: ItemId!
-  image: FileField
-  printButtonText(
+  contactButtonIcon: String
+  contactButtonText(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -72,6 +71,9 @@ type AboutMeSectionRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String
+  createdAt: DateTime!
+  id: ItemId!
+  image: FileField
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale

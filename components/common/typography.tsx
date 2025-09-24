@@ -20,6 +20,7 @@ interface TypographyProps extends BoxProps {
   isLoading?: boolean;
   loadingWidth?: Space;
   color?: TypographyColor;
+  dangerouslySetInnerHTML?: { __html: string | null };
 }
 
 interface StyledTypographyProps {
