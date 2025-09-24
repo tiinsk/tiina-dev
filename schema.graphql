@@ -123,8 +123,8 @@ type ColorField {
   red: IntType!
 }
 
-"""Record of type Contacts (contact)"""
-type ContactRecord implements RecordInterface {
+"""Record of type Contact Section (contact_section)"""
+type ContactSectionRecord implements RecordInterface {
   _allLinksLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -161,6 +161,7 @@ type ContactRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: ColorField
   createdAt: DateTime!
   id: ItemId!
   links(
@@ -424,8 +425,8 @@ type EducationRecord implements RecordInterface {
   updatedAt: DateTime!
 }
 
-"""Record of type Education Section (education_section)"""
-type EducationSectionRecord implements RecordInterface {
+"""Record of type Facts Section (facts_section)"""
+type FactsSectionRecord implements RecordInterface {
   _allTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -453,6 +454,7 @@ type EducationSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: ColorField
   createdAt: DateTime!
   educationList: [EducationRecord!]!
   id: ItemId!
@@ -2796,73 +2798,6 @@ type InterestRecord implements RecordInterface {
   updatedAt: DateTime!
 }
 
-type InterestRecordListListNonNullMultiLocaleField {
-  locale: SiteLocale
-  value: [InterestRecord!]!
-}
-
-"""Record of type Interest Section (interest_section)"""
-type InterestSectionRecord implements RecordInterface {
-  _allInterestsLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [InterestRecordListListNonNullMultiLocaleField!]
-  _allTitleLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _createdAt: DateTime!
-
-  """Editing URL"""
-  _editingUrl: String
-  _firstPublishedAt: DateTime!
-  _isValid: BooleanType!
-  _modelApiKey: String!
-  _publicationScheduledAt: DateTime
-  _publishedAt: DateTime!
-
-  """Generates SEO and Social card meta tags to be used in your frontend"""
-  _seoMetaTags(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-  ): [Tag!]!
-  _status: ItemStatus!
-  _unpublishingScheduledAt: DateTime
-  _updatedAt: DateTime!
-  createdAt: DateTime!
-  id: ItemId!
-  image: FileField
-  interests(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [InterestRecord!]!
-  title(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  updatedAt: DateTime!
-}
-
 scalar ItemId
 
 """Specifies how to filter by ID"""
@@ -3314,6 +3249,7 @@ type ProjectSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: ColorField
   createdAt: DateTime!
   id: ItemId!
   linksTitle(
@@ -3622,7 +3558,7 @@ type Query {
   ): [WorkHistoryRecord!]!
 
   """Returns the single instance record"""
-  contact(
+  contactSection(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -3630,7 +3566,7 @@ type Query {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): ContactRecord
+  ): ContactSectionRecord
 
   """Returns a specific record"""
   education(
@@ -3646,7 +3582,7 @@ type Query {
   ): EducationRecord
 
   """Returns the single instance record"""
-  educationSection(
+  factsSection(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -3654,7 +3590,7 @@ type Query {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): EducationSectionRecord
+  ): FactsSectionRecord
 
   """Returns the single instance record"""
   headerSection(
@@ -3666,17 +3602,6 @@ type Query {
     """
     fallbackLocales: [SiteLocale!]
   ): HeaderSectionRecord
-
-  """Returns the single instance record"""
-  interestSection(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): InterestSectionRecord
 
   """Returns a specific record"""
   languageSkill(
@@ -4107,6 +4032,7 @@ type SkillSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: ColorField
   createdAt: DateTime!
   id: ItemId!
   image: FileField
@@ -5062,6 +4988,7 @@ type WorkHistorySectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  backgroundColor: ColorField
   createdAt: DateTime!
   id: ItemId!
   title(

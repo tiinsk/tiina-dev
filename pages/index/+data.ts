@@ -1,10 +1,14 @@
 import { PageContextServer } from 'vike/types';
 
 import { graphql } from '../../datocms/graphql';
-import { ContactFragment } from '../../datocms/fragments';
 import { executeQuery } from '../../datocms/executeQuery';
 import { HeaderFragment } from '../../components/sections/HeaderSection';
 import { AboutMeFragment } from '../../components/sections/AboutMeSection';
+import { ContactFragment } from '../../components/sections/ContactSection';
+import { FactsFragment } from '../../components/sections/FactsSection';
+import { ProjectFragment } from '../../components/sections/ProjectSection';
+import { SkillFragment } from '../../components/sections/SkillSection';
+import { WorkHistoryFragment } from '../../components/sections/WorkHistorySection';
 
 const query = graphql(
   `
@@ -15,12 +19,32 @@ const query = graphql(
       aboutMe: aboutMeSection(locale: $locale) {
         ...AboutMeFragment
       }
-      contacts: contact(locale: $locale) {
+      facts: factsSection(locale: $locale) {
+        ...FactsFragment
+      }
+      skills: skillSection(locale: $locale) {
+        ...SkillFragment
+      }
+      workHistory: workHistorySection(locale: $locale) {
+        ...WorkHistoryFragment
+      }
+      projects: projectSection(locale: $locale) {
+        ...ProjectFragment
+      }
+      contact: contactSection(locale: $locale) {
         ...ContactFragment
       }
     }
   `,
-  [ContactFragment, HeaderFragment, AboutMeFragment]
+  [
+    AboutMeFragment,
+    ContactFragment,
+    FactsFragment,
+    HeaderFragment,
+    ProjectFragment,
+    SkillFragment,
+    WorkHistoryFragment,
+  ]
 );
 
 export const data = async (pageContext: PageContextServer) => {
