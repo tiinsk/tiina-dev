@@ -15,8 +15,10 @@ export const FactsFragment = graphql(`
 
 export const FactsSection = ({
   data,
+  order,
 }: {
   data: FragmentOf<typeof FactsFragment> | null;
+  order: number;
 }) => {
   const factsData = readFragment(FactsFragment, data);
 
@@ -25,7 +27,11 @@ export const FactsSection = ({
   }
 
   return (
-    <Section bgColor={factsData.backgroundColor?.hex}>
+    <Section
+      name="Facts"
+      bgColor={factsData.backgroundColor?.hex}
+      order={order}
+    >
       <H2>{factsData.title}</H2>
     </Section>
   );

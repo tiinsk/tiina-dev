@@ -4,7 +4,7 @@ import { graphql } from '../../datocms/graphql';
 import { Info } from '../common/typography';
 import styled from 'styled-components';
 import { Flex } from '../common/Flex';
-import { Section } from '../common/Section';
+import { BasicSection } from '../common/Section';
 import { Button } from '../common/Button';
 import { IconType } from '../common/MdiIcon';
 
@@ -45,7 +45,7 @@ export const AboutMeSection = ({
   }
 
   return (
-    <Section bgColor={aboutMeData.backgroundColor?.hex}>
+    <BasicSection $bgColor={aboutMeData.backgroundColor?.hex}>
       <StyledAboutMe>
         <Flex flexDirection="row" gap="s64">
           <StyledImage src={aboutMeData.image?.url} />
@@ -60,6 +60,6 @@ export const AboutMeSection = ({
           </Flex>
         </Flex>
       </StyledAboutMe>
-    </Section>
+    </BasicSection>
   );
 };

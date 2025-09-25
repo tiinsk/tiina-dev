@@ -9,18 +9,22 @@ import { FactsSection } from '../../components/sections/FactsSection';
 import { ProjectSection } from '../../components/sections/ProjectSection';
 import { SkillSection } from '../../components/sections/SkillSection';
 import { WorkHistorySection } from '../../components/sections/WorkHistorySection';
+import { SectionContextProvider } from '../../contexts/section-context';
 
 export default function Page() {
   const data = useData<Data>();
+
   return (
     <>
       <HeaderSection data={data.header} />
       <AboutMeSection data={data.aboutMe} />
-      <FactsSection data={data.facts} />
-      <WorkHistorySection data={data.workHistory} />
-      <SkillSection data={data.skills} />
-      <ProjectSection data={data.projects} />
-      <ContactSection data={data.contact} />
+      <SectionContextProvider>
+        <FactsSection order={1} data={data.facts} />
+        <WorkHistorySection order={2} data={data.workHistory} />
+        <SkillSection order={3} data={data.skills} />
+        <ProjectSection order={4} data={data.projects} />
+        <ContactSection order={5} data={data.contact} />
+      </SectionContextProvider>
     </>
   );
 }

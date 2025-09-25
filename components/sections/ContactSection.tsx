@@ -15,8 +15,10 @@ export const ContactFragment = graphql(`
 
 export const ContactSection = ({
   data,
+  order,
 }: {
   data: FragmentOf<typeof ContactFragment> | null;
+  order: number;
 }) => {
   const contactData = readFragment(ContactFragment, data);
 
@@ -25,7 +27,11 @@ export const ContactSection = ({
   }
 
   return (
-    <Section bgColor={contactData.backgroundColor?.hex}>
+    <Section
+      name="Contacts"
+      bgColor={contactData.backgroundColor?.hex}
+      order={order}
+    >
       <H2>{contactData.title}</H2>
     </Section>
   );

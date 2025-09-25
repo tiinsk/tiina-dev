@@ -15,8 +15,10 @@ export const WorkHistoryFragment = graphql(`
 
 export const WorkHistorySection = ({
   data,
+  order,
 }: {
   data: FragmentOf<typeof WorkHistoryFragment> | null;
+  order: number;
 }) => {
   const workHistoryData = readFragment(WorkHistoryFragment, data);
 
@@ -25,7 +27,11 @@ export const WorkHistorySection = ({
   }
 
   return (
-    <Section bgColor={workHistoryData.backgroundColor?.hex}>
+    <Section
+      name="Work history"
+      bgColor={workHistoryData.backgroundColor?.hex}
+      order={order}
+    >
       <H2>{workHistoryData.title}</H2>
     </Section>
   );
