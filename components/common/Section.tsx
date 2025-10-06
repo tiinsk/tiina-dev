@@ -22,6 +22,7 @@ export const BasicSection = styled.section<{ $bgColor?: string }>`
 `;
 
 export const StyledSection = styled(BasicSection)`
+  position: relative;
   min-height: 100vh;
 `;
 

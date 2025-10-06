@@ -3924,7 +3924,7 @@ type SkillRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
+  ): [StringNonNullMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -3953,14 +3953,14 @@ type SkillRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String
+  ): String!
   skillType: String!
   updatedAt: DateTime!
 }
 
 """Record of type Skill Section (skill_section)"""
 type SkillSectionRecord implements RecordInterface {
-  _allLanguageSkillTitleLocales(
+  _allCoreSkillBodyLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -3968,8 +3968,8 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allRatedOtherSkillBodyLocales(
+  ): [StringNonNullMultiLocaleField!]
+  _allCoreSkillTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -3977,8 +3977,8 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allRatedOtherSkillTitleLocales(
+  ): [StringNonNullMultiLocaleField!]
+  _allDesignSkillBodyLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -3986,8 +3986,8 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allRatedTopSkillBodyLocales(
+  ): [StringNonNullMultiLocaleField!]
+  _allDesignSkillTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -3995,8 +3995,8 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allRatedTopSkillTitleLocales(
+  ): [StringNonNullMultiLocaleField!]
+  _allSkillListTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4004,8 +4004,8 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allRatelessOtherSkillBodyLocales(
+  ): [StringNonNullMultiLocaleField!]
+  _allTechSkillBodyLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4013,8 +4013,8 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allRatelessOtherSkillTitleLocales(
+  ): [StringNonNullMultiLocaleField!]
+  _allTechSkillTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4022,25 +4022,7 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allRatelessTopSkillBodyLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allRatelessTopSkillTitleLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
+  ): [StringNonNullMultiLocaleField!]
   _allTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4049,7 +4031,7 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
+  ): [StringNonNullMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -4069,10 +4051,47 @@ type SkillSectionRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   backgroundColor: ColorField
+  coreSkillBody(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
+  coreSkillTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
+  coreSkills: [SkillRecord!]!
   createdAt: DateTime!
+  designSkillBody(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
+  designSkillTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
+  designSkills: [SkillRecord!]!
   id: ItemId!
-  image: FileField
-  languageSkillTitle(
+  skillListTitle(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4080,9 +4099,8 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String
-  languageSkills: [LanguageSkillRecord!]!
-  ratedOtherSkillBody(
+  ): String!
+  techSkillBody(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4090,8 +4108,8 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String
-  ratedOtherSkillTitle(
+  ): String!
+  techSkillTitle(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4099,65 +4117,8 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String
-  ratedOtherSkills: [RatedSkillRecord!]!
-  ratedTopSkillBody(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  ratedTopSkillTitle(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  ratedTopSkills: [RatedSkillRecord!]!
-  ratelessOtherSkillBody(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  ratelessOtherSkillTitle(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  ratelessOtherSkills: [SkillRecord!]!
-  ratelessTopSkillBody(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  ratelessTopSkillTitle(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  ratelessTopSkills: [SkillRecord!]!
+  ): String!
+  techSkills: [SkillRecord!]!
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4166,7 +4127,7 @@ type SkillSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String
+  ): String!
   updatedAt: DateTime!
 }
 
@@ -4230,6 +4191,11 @@ input StringMatchesFilter {
 type StringMultiLocaleField {
   locale: SiteLocale
   value: String
+}
+
+type StringNonNullMultiLocaleField {
+  locale: SiteLocale
+  value: String!
 }
 
 type Tag {
