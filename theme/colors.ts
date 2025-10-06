@@ -10,7 +10,7 @@ const primitiveColors = {
     '50': '#F3FFBB',
     '20': '#F3FFBB80',
   },
-  web: {
+  tech: {
     '100': '#03890C',
   },
   core: {
@@ -51,17 +51,15 @@ const primitiveColors = {
         '00': 'transparent',
       },
       light: {
-        '90': '#FFFFFF1A',
-        '80': '#FFFFFF33',
-        '70': '#FFFFFF4D',
-        '60': '#FFFFFF66',
+        '90': '#FFFFFFE6',
+        '80': '#FFFFFFCC',
+        '70': '#FFFFFFB3',
+        '60': '#FFFFFF99',
         '50': '#FFFFFF80',
-        '40': '#FFFFFF99',
-        '30': '#FFFFFFB3',
-        '20': '#FFFFFFCC',
-        '10': '#FFFFFFE6',
-        '08': '#FFFFFFEB',
-        '02': '#FFFFFFFA',
+        '40': '#FFFFFF66',
+        '30': '#FFFFFF4D',
+        '20': '#FFFFFF33',
+        '10': '#FFFFFF1A',
         '00': 'transparent',
       },
     },
@@ -71,13 +69,13 @@ const primitiveColors = {
 export const colors = {
   background: {
     primary: primitiveColors.neutral.opaque.light['00'],
-    secondary: primitiveColors.neutral.opaque.light['00'],
+    secondary: primitiveColors.neutral.opaque.light['30'],
   },
   typography: {
     primary: primitiveColors.neutral.filled['100'],
     secondary: primitiveColors.neutral.filled['60'],
     tertiary: primitiveColors.blue['150'],
-    web: primitiveColors.web['100'],
+    tech: primitiveColors.tech['100'],
     core: primitiveColors.core['100'],
     design: primitiveColors.design['100'],
     yellow: primitiveColors.yellow['50'],
@@ -123,7 +121,7 @@ export const colors = {
     typography: primitiveColors.design['100'],
   },
   success: {
-    typography: primitiveColors.web['100'],
+    typography: primitiveColors.tech['100'],
   },
 };
 

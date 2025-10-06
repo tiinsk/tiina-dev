@@ -16,6 +16,13 @@ export const H2Style = css`
   letter-spacing: -0.15rem;
 `;
 
+export const H3Style = css`
+  font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  font-size: 2.8rem;
+  line-height: 4.2rem;
+`;
+
 export const SubtitleStyle = css`
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
@@ -43,6 +50,11 @@ export const SmallStyle = css`
   font-size: 1.2rem;
   line-height: 1.6rem;
   letter-spacing: 0.04rem;
+`;
+
+export const SmallBoldStyle = css`
+  ${SmallStyle};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
 `;
 
 export const LabelStyle = css`

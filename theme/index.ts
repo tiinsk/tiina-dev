@@ -7,7 +7,7 @@ const breakpoints = {
 };
 
 const variables = {
-  pageWidth: '1800px',
+  pageWidth: '1200px',
   fonts: {
     fontBody: 'Poppins, sans-serif',
     fontHeader: 'Rubik, sans-serif',
@@ -40,6 +40,8 @@ const variables = {
     s96: '9.6rem',
     s128: '12.8rem',
     s192: '19.2rem',
+    s256: '25.6rem',
+    s320: '32.0rem',
     s640: '64.0rem',
   },
   zIndex: {

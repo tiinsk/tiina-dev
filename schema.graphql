@@ -2772,6 +2772,38 @@ Represents non-fractional signed whole numeric values. Int can represent values 
 """
 scalar IntType
 
+"""Specifies how to filter Integer fields"""
+input IntegerFilter {
+  """
+  Filter records with a value that's strictly greater than the one specified
+  """
+  gt: IntType
+
+  """Filter records with a value that's less than the one specified"""
+  lt: IntType
+
+  """
+  Filter records with a value that's greater than or equal to the one specified
+  """
+  gte: IntType
+
+  """
+  Filter records with a value that's less or equal than the one specified
+  """
+  lte: IntType
+
+  """
+  Filter records with the specified field defined (i.e. with any value) or not
+  """
+  exists: BooleanType
+
+  """Search for records with an exact match"""
+  eq: IntType
+
+  """Exclude records with an exact match"""
+  neq: IntType
+}
+
 """Block of type Interest (interest)"""
 type InterestRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -3847,6 +3879,7 @@ input SkillModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  skillType: StringFilter
   name: StringFilter
   OR: [SkillModelFilter]
   AND: [SkillModelFilter]
@@ -3875,6 +3908,8 @@ enum SkillModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  skillType_ASC
+  skillType_DESC
   name_ASC
   name_DESC
 }
@@ -3919,6 +3954,7 @@ type SkillRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String
+  skillType: String!
   updatedAt: DateTime!
 }
 
@@ -4826,6 +4862,7 @@ input WorkHistoryModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  roadIcon: IntegerFilter
   startDate: DateFilter
   endDate: DateFilter
   company: StringFilter
@@ -4860,6 +4897,8 @@ enum WorkHistoryModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  roadIcon_ASC
+  roadIcon_DESC
   startDate_ASC
   startDate_DESC
   endDate_ASC
@@ -4945,6 +4984,7 @@ type WorkHistoryRecord implements RecordInterface {
   endDate: Date
   id: ItemId!
   peakSkills: [SkillRecord!]!
+  roadIcon: IntType
   skills: [SkillRecord!]!
   startDate: Date
   title(

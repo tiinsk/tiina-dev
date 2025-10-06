@@ -25,6 +25,10 @@ export const StyledSection = styled(BasicSection)`
   min-height: 100vh;
 `;
 
+export const Content = styled.div`
+  max-width: ${({ theme }) => theme.pageWidth};
+`;
+
 export const Section = ({ name, children, bgColor, order }: SectionProps) => {
   const ref = useRef<HTMLElementTagNameMap['section'] | null>(null);
 
@@ -48,5 +52,9 @@ export const Section = ({ name, children, bgColor, order }: SectionProps) => {
     });
   }, [name]);
 
-  return <StyledSection ref={ref}>{children}</StyledSection>;
+  return (
+    <StyledSection ref={ref}>
+      <Content>{children}</Content>
+    </StyledSection>
+  );
 };

@@ -5,8 +5,10 @@ import {
   BodyStyle,
   H1Style,
   H2Style,
+  H3Style,
   InfoStyle,
   LabelStyle,
+  SmallBoldStyle,
   SmallStyle,
   SubtitleStyle,
 } from '../../theme/typography';
@@ -56,6 +58,18 @@ export const H2 = ({ children, color, ...props }: TypographyProps) => {
   );
 };
 
+const StyledH3 = styled(StyledTypography)<StyledTypographyProps>`
+  ${H3Style};
+`;
+
+export const H3 = ({ children, color, ...props }: TypographyProps) => {
+  return (
+    <StyledH3 {...props} color={color} component="h3">
+      {children}
+    </StyledH3>
+  );
+};
+
 const StyledSubtitle = styled(StyledTypography)<StyledTypographyProps>`
   ${SubtitleStyle};
 `;
@@ -101,6 +115,18 @@ export const Small = ({ children, color, ...props }: TypographyProps) => {
     <StyledSmall {...props} color={color} component="p">
       {children}
     </StyledSmall>
+  );
+};
+
+const StyledSmallBold = styled(StyledTypography)<StyledTypographyProps>`
+  ${SmallBoldStyle};
+`;
+
+export const SmallBold = ({ children, color, ...props }: TypographyProps) => {
+  return (
+    <StyledSmallBold {...props} color={color} component="p">
+      {children}
+    </StyledSmallBold>
   );
 };
 
