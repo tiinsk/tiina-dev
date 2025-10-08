@@ -10,6 +10,7 @@ type SectionProps = {
   children: React.ReactNode;
   bgColor?: string;
   order: number;
+  useMaxWidth?: boolean;
 };
 
 export const BasicSection = styled.section<{ $bgColor?: string }>`
@@ -26,11 +27,18 @@ export const StyledSection = styled(BasicSection)`
   min-height: 100vh;
 `;
 
-export const Content = styled.div`
-  max-width: ${({ theme }) => theme.pageWidth};
+export const Content = styled.div<{ $useMaxWidth: boolean }>`
+  max-width: ${({ theme, $useMaxWidth }) =>
+    $useMaxWidth ? theme.pageWidth : 'none'};
 `;
 
-export const Section = ({ name, children, bgColor, order }: SectionProps) => {
+export const Section = ({
+  name,
+  children,
+  bgColor,
+  order,
+  useMaxWidth = true,
+}: SectionProps) => {
   const ref = useRef<HTMLElementTagNameMap['section'] | null>(null);
 
   const { addSection } = useSectionContext();
@@ -55,7 +63,7 @@ export const Section = ({ name, children, bgColor, order }: SectionProps) => {
 
   return (
     <StyledSection ref={ref}>
-      <Content>{children}</Content>
+      <Content $useMaxWidth={useMaxWidth}>{children}</Content>
     </StyledSection>
   );
 };

@@ -6,7 +6,7 @@ import { HeaderFragment } from '../../components/sections/HeaderSection';
 import { AboutMeFragment } from '../../components/sections/AboutMeSection';
 import { ContactFragment } from '../../components/sections/ContactSection';
 import { FactsFragment } from '../../components/sections/FactsSection';
-import { ProjectFragment } from '../../components/sections/ProjectSection';
+import { ProjectsFragment } from '../../components/sections/ProjectSection';
 import { SkillFragment } from '../../components/sections/SkillSection';
 import { WorkHistoryFragment } from '../../components/sections/WorkHistorySection';
 
@@ -29,7 +29,7 @@ const query = graphql(
         ...WorkHistoryFragment
       }
       projects: projectSection(locale: $locale) {
-        ...ProjectFragment
+        ...ProjectsFragment
       }
       contact: contactSection(locale: $locale) {
         ...ContactFragment
@@ -41,7 +41,7 @@ const query = graphql(
     ContactFragment,
     FactsFragment,
     HeaderFragment,
-    ProjectFragment,
+    ProjectsFragment,
     SkillFragment,
     WorkHistoryFragment,
   ]

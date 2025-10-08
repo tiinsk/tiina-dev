@@ -19,6 +19,7 @@ interface Margins {
 export interface BoxProps extends Paddings, Margins {
   children?: React.ReactNode;
   component?: React.ElementType;
+  ref?: React.Ref<HTMLDivElement>;
 
   p?: Space;
   px?: Space;

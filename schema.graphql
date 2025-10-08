@@ -674,31 +674,22 @@ interface FileFieldInterface {
   width: IntType
 }
 
-"""
-Represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point).
-"""
-scalar FloatType
-
-"""Specifies how to filter Multiple files/images field"""
-input GalleryFilter {
+"""Specifies how to filter Single-file/image fields"""
+input FileFilter {
   """
-  Search for records with an exact match. The specified values must be Upload IDs
+  Search for records with an exact match. The specified value must be an Upload ID
   """
-  eq: [UploadId]
+  eq: UploadId
 
   """
-  Filter records that have all of the specified uploads. The specified values must be Upload IDs
+  Exclude records with an exact match. The specified value must be an Upload ID
   """
-  allIn: [UploadId]
+  neq: UploadId
 
-  """
-  Filter records that have one of the specified uploads. The specified values must be Upload IDs
-  """
-  anyIn: [UploadId]
+  """Filter records that have one of the specified uploads"""
+  in: [UploadId]
 
-  """
-  Filter records that do not have any of the specified uploads. The specified values must be Upload IDs
-  """
+  """Filter records that do not have one of the specified uploads"""
   notIn: [UploadId]
 
   """
@@ -706,6 +697,11 @@ input GalleryFilter {
   """
   exists: BooleanType
 }
+
+"""
+Represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point).
+"""
+scalar FloatType
 
 type GlobalSeoField {
   facebookPageUrl: String
@@ -3010,9 +3006,9 @@ type LinkRecord implements RecordInterface {
   icon: String
   id: ItemId!
   target: String
-  title: String
+  title: String!
   updatedAt: DateTime!
-  url: String
+  url: String!
 }
 
 type LinkRecordListListNonNullMultiLocaleField {
@@ -3105,12 +3101,11 @@ input ProjectModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
-  title: StringFilter
+  activeYearList: StringFilter
   body: TextFilter
-  images: GalleryFilter
-  peakSkills: LinksFilter
+  image: FileFilter
   skills: LinksFilter
-  thumbnails: GalleryFilter
+  title: StringFilter
   OR: [ProjectModelFilter]
   AND: [ProjectModelFilter]
 }
@@ -3140,6 +3135,8 @@ enum ProjectModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  activeYearList_ASC
+  activeYearList_DESC
   title_ASC
   title_DESC
 }
@@ -3157,7 +3154,7 @@ type ProjectRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
+  ): [StringNonNullMultiLocaleField!]
   _allLinksLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3175,7 +3172,7 @@ type ProjectRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
+  ): [StringNonNullMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -3194,6 +3191,7 @@ type ProjectRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  activeYearList: String
   body(
     """Process content as markdown"""
     markdown: Boolean
@@ -3205,10 +3203,10 @@ type ProjectRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String
+  ): String!
   createdAt: DateTime!
   id: ItemId!
-  images: [FileField!]!
+  image: FileField!
   links(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3218,10 +3216,8 @@ type ProjectRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [LinkRecord!]!
-  peakSkills: [SkillRecord!]!
   position: IntType
   skills: [SkillRecord!]!
-  thumbnails: [FileField!]!
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3230,13 +3226,13 @@ type ProjectRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String
+  ): String!
   updatedAt: DateTime!
 }
 
 """Record of type Project Section (project_section)"""
 type ProjectSectionRecord implements RecordInterface {
-  _allLinksTitleLocales(
+  _allActiveTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -3244,8 +3240,8 @@ type ProjectSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allSkillsTitleLocales(
+  ): [StringNonNullMultiLocaleField!]
+  _allMoreButtonTextLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -3253,7 +3249,7 @@ type ProjectSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
+  ): [StringNonNullMultiLocaleField!]
   _allTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3281,10 +3277,19 @@ type ProjectSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  activeTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
   backgroundColor: ColorField
   createdAt: DateTime!
   id: ItemId!
-  linksTitle(
+  moreButtonText(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -3292,17 +3297,8 @@ type ProjectSectionRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String
+  ): String!
   projects: [ProjectRecord!]!
-  skillsTitle(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale

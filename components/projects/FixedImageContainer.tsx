@@ -1,0 +1,46 @@
+import styled from 'styled-components';
+import { useProjectContext } from '../../contexts/project-context';
+
+const StyledFixedImageContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: ${({ theme }) => theme.spacings.s128};
+  margin-left: 50%;
+`;
+
+const FixedImage = styled.img`
+  position: absolute;
+  width: 100%;
+`;
+
+export const FixedImageContainer = () => {
+  const { projects, visibleProject } = useProjectContext();
+  return (
+    <StyledFixedImageContainer>
+      {Object.values(projects)
+        .sort((a, b) => ((a?.initialY1 || 0) > (b?.initialY1 || 0) ? 1 : -1))
+        .map(
+          project =>
+            project && (
+              <FixedImage
+                key={project.name}
+                src={project.image}
+                style={{
+                  opacity:
+                    visibleProject.name === project.name
+                      ? visibleProject.opacity
+                      : 0,
+                }}
+              />
+            )
+        )}
+    </StyledFixedImageContainer>
+  );
+};
