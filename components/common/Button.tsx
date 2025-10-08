@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
 
 import { IconType, MdiIcon } from './MdiIcon';
-import { Box } from './Box';
 import { BodyStyle } from '../../theme/typography';
+import { customIcons, CustomIconType, Icon } from './Icon';
 
 export type ButtonVariant = 'primary' | 'secondary';
 
@@ -25,7 +25,7 @@ export const ButtonStyle = ({
 
   transition: all 0.3s ease-out;
 
-  padding: ${theme.spacings.s12} ${theme.spacings.s16};
+  padding: ${theme.spacings.s8} ${theme.spacings.s16};
   border-width: 1px;
   border-radius: ${theme.spacings.s8};
   border-style: solid;
@@ -66,11 +66,13 @@ export const StyledButton = styled.button<{
   ${ButtonStyle};
 `;
 
+export type ButtonIconType = IconType | CustomIconType;
+
 export interface ButtonProps {
   variant?: ButtonVariant;
-  iconLeft?: IconType | React.ReactNode;
+  iconLeft?: ButtonIconType;
   text?: string;
-  iconRight?: IconType | React.ReactNode;
+  iconRight?: ButtonIconType;
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   buttonRef?: React.Ref<HTMLButtonElement>;
@@ -80,23 +82,27 @@ export interface ButtonProps {
 export const ButtonContent = ({ iconLeft, iconRight, text }: ButtonProps) => {
   return (
     <>
-      {iconLeft && typeof iconLeft === 'string' && (
-        <MdiIcon
-          size={'s24'}
-          type={iconLeft as IconType}
-          mr={text ? 's12' : undefined}
-        />
-      )}
-      {iconLeft && typeof iconLeft !== 'string' && (
-        <Box mr={text ? 's12' : undefined}>{iconLeft}</Box>
-      )}
+      {iconLeft &&
+        (customIcons.includes(iconLeft as CustomIconType) ? (
+          <Icon
+            size={'s24'}
+            type={iconLeft as CustomIconType}
+            mr={text ? 's12' : undefined}
+          />
+        ) : (
+          <MdiIcon
+            size={'s24'}
+            type={iconLeft as IconType}
+            mr={text ? 's12' : undefined}
+          />
+        ))}
       {text && <ButtonText>{text}</ButtonText>}
-      {iconRight && typeof iconRight === 'string' && (
-        <MdiIcon size={'s24'} type={iconRight as IconType} ml="s12" />
-      )}
-      {iconRight && typeof iconRight !== 'string' && (
-        <Box ml="s12">{iconRight}</Box>
-      )}
+      {iconRight &&
+        (customIcons.includes(iconRight as CustomIconType) ? (
+          <Icon size={'s24'} type={iconRight as CustomIconType} ml="s12" />
+        ) : (
+          <MdiIcon size={'s24'} type={iconRight as IconType} ml="s12" />
+        ))}
     </>
   );
 };
