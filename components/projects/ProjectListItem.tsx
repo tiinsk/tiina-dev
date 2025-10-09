@@ -101,16 +101,22 @@ export const ProjectListItem = ({
           ))}
         </Flex>
         <Body dangerouslySetInnerHTML={{ __html: itemData.body }} />
-        <Flex flexDirection="row" gap="s16">
-          {itemData.links.map(link => (
-            <LinkButton
-              key={link.title}
-              iconLeft={(link.icon as ButtonIconType) || undefined}
-              href={link.url}
-              target="_blank"
-            />
-          ))}
-          <Button text={moreButtonText} iconRight="mdiArrowTopRight" />
+        <Flex flexDirection="row" gap="s16" justifyContent="space-between">
+          <Flex flexDirection="row" gap="s16" flexWrap="wrap">
+            {itemData.links.map(link => (
+              <LinkButton
+                key={link.title}
+                iconLeft={(link.icon as ButtonIconType) || undefined}
+                href={link.url}
+                target="_blank"
+              />
+            ))}
+          </Flex>
+          <Button
+            variant="secondary"
+            text={moreButtonText}
+            iconRight="mdiArrowTopRight"
+          />
         </Flex>
       </TextContent>
     </StyledProjectItem>

@@ -91,7 +91,7 @@ const getProjectCoordinates = (
       ...project,
       y1,
       y2,
-      visibilityRatio: Math.max(0, Number(visibilityRatio.toFixed(2))),
+      visibilityRatio: Math.max(0, Number((visibilityRatio * 1.5).toFixed(2))),
     };
   });
 };
