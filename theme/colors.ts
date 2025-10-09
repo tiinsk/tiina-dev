@@ -71,6 +71,7 @@ export const colors = {
   background: {
     primary: primitiveColors.neutral.opaque.light['00'],
     secondary: primitiveColors.neutral.opaque.light['30'],
+    tertiary: primitiveColors.neutral.opaque.dark['08'],
   },
   typography: {
     primary: primitiveColors.neutral.filled['100'],

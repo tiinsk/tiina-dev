@@ -25,11 +25,18 @@ export const BasicSection = styled.section<{ $bgColor?: string }>`
 export const StyledSection = styled(BasicSection)`
   position: relative;
   min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Content = styled.div<{ $useMaxWidth: boolean }>`
   max-width: ${({ theme, $useMaxWidth }) =>
     $useMaxWidth ? theme.pageWidth : 'none'};
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Section = ({

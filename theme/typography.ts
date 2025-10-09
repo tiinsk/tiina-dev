@@ -14,6 +14,7 @@ export const H2Style = css`
   font-size: 10rem;
   line-height: 14.4rem;
   letter-spacing: -0.15rem;
+  margin-bottom: ${({ theme }) => theme.spacings.s80};
 `;
 
 export const H3Style = css`

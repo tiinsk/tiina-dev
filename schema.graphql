@@ -125,15 +125,6 @@ type ColorField {
 
 """Record of type Contact Section (contact_section)"""
 type ContactSectionRecord implements RecordInterface {
-  _allLinksLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [LinkRecordListListNonNullMultiLocaleField!]
   _allTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -162,17 +153,10 @@ type ContactSectionRecord implements RecordInterface {
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
   backgroundColor: ColorField
+  buttonLinks: [LinkRecord!]!
   createdAt: DateTime!
   id: ItemId!
-  links(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [LinkRecord!]!
+  links: [LinkRecord!]!
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
