@@ -13,12 +13,14 @@ const primitiveColors = {
   },
   tech: {
     '100': '#03890C',
+    '20': '#CDE7CE',
   },
   core: {
     '100': '#001CA9',
   },
   design: {
     '100': '#DA0087',
+    '20': '#F8CCE7',
   },
   neutral: {
     filled: {
@@ -82,6 +84,11 @@ export const colors = {
     design: primitiveColors.design['100'],
     yellow: primitiveColors.yellow['50'],
     active: primitiveColors.neutral.filled['00'],
+  },
+  posIts: {
+    primary: primitiveColors.yellow['50'],
+    secondary: primitiveColors.tech['20'],
+    tertiary: primitiveColors.design['20'],
   },
   buttons: {
     primary: {

@@ -2,10 +2,12 @@ import styled, { useTheme } from 'styled-components';
 
 import { Space } from '../../theme';
 import { IconColor } from './MdiIcon';
-import { Figma } from '../../assets/images/icons/icons/Figma';
+import { Figma } from '../../assets/images/icons/Figma';
+import { Cap } from '../../assets/images/icons/Cap';
+import { Certificate } from '../../assets/images/icons/Certificate';
 import { Box, BoxProps } from './Box';
 
-export const customIcons = ['figma'] as const;
+export const customIcons = ['figma', 'teekkariCap', 'certificate'] as const;
 
 export type CustomIconType = (typeof customIcons)[number];
 
@@ -23,6 +25,10 @@ const getIcon = (
   switch (type) {
     case 'figma':
       return <Figma size={size} color={color} />;
+    case 'teekkariCap':
+      return <Cap size={size} color={color} />;
+    case 'certificate':
+      return <Certificate size={size} color={color} />;
     default:
       return undefined;
   }
