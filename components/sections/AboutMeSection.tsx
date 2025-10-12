@@ -11,9 +11,6 @@ import { IconType } from '../common/MdiIcon';
 export const AboutMeFragment = graphql(`
   fragment AboutMeFragment on AboutMeSectionRecord {
     body
-    backgroundColor {
-      hex
-    }
     contactButtonIcon
     contactButtonText
     image {
@@ -21,6 +18,10 @@ export const AboutMeFragment = graphql(`
     }
   }
 `);
+
+const StyledSection = styled(BasicSection)`
+  margin-top: ${({ theme }) => theme.spacings.s80};
+`;
 
 const StyledAboutMe = styled.div`
   display: flex;
@@ -45,7 +46,7 @@ export const AboutMeSection = ({
   }
 
   return (
-    <BasicSection $bgColor={aboutMeData.backgroundColor?.hex}>
+    <StyledSection $bgColor="#2F5C6D">
       <StyledAboutMe>
         <Flex flexDirection="row" gap="s64">
           <StyledImage src={aboutMeData.image?.url} />
@@ -60,6 +61,6 @@ export const AboutMeSection = ({
           </Flex>
         </Flex>
       </StyledAboutMe>
-    </BasicSection>
+    </StyledSection>
   );
 };

@@ -80,6 +80,7 @@ export const colors = {
     secondary: primitiveColors.neutral.filled['60'],
     tertiary: primitiveColors.blue['150'],
     tech: primitiveColors.tech['100'],
+    light: primitiveColors.neutral.filled['00'],
     core: primitiveColors.core['100'],
     design: primitiveColors.design['100'],
     yellow: primitiveColors.yellow['50'],
