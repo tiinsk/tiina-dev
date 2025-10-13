@@ -15,6 +15,11 @@ export const H2Style = css`
   line-height: 14.4rem;
   letter-spacing: -0.15rem;
   margin-bottom: ${({ theme }) => theme.spacings.s80};
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 6rem;
+    line-height: 8rem;
+  }
 `;
 
 export const H3Style = css`

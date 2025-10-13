@@ -19,6 +19,13 @@ const GlobalStyle = createGlobalStyle`
     font-size: 62.5%;
     width: 100vw;
     overflow-x: hidden;
+
+    ${({ theme }) => theme.mediaQueries.md} { 
+      font-size: 1vw;
+    }
+    ${({ theme }) => theme.mediaQueries.sm} {
+      font-size: 2.2vw;
+    }
   }
 
   * {
