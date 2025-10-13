@@ -27,20 +27,37 @@ const ContentContainer = styled.div`
 `;
 
 const PostItContainer = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
-
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: auto auto;
   justify-items: center;
-  grid-gap: ${({ theme }) => theme.spacings.s64};
+  grid-gap: ${({ theme }) => theme.spacings.s16}
+    ${({ theme }) => theme.spacings.s48};
   padding: 15%;
+  padding-right: 10%;
+  padding-left: 10%;
+  padding-top: 10%;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding-right: 0;
+    left: 0;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    grid-template-columns: auto;
+    padding-left: 0;
+    padding-top: 10rem;
+    grid-gap: ${({ theme }) => theme.spacings.s48};
+  }
 `;
 
 const NotepadImage = styled.img`
-  position: relative;
-  width: 100%;
+  position: absolute;
+  height: 100%;
+  width: auto;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    left: -28vw;
+  }
 `;
 
 export const FactsSection = ({

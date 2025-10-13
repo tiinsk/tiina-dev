@@ -33,11 +33,15 @@ export interface FactItemProps {
 const FactContainer = styled(Flex)`
   width: 100%;
   position: relative;
+  aspect-ratio: 1/1;
 `;
 
 const FactContent = styled.div`
+  height: 100%;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: ${({ theme }) => theme.spacings.s16};
   ul {
     padding-left: ${({ theme }) => theme.spacings.s16};
@@ -53,8 +57,8 @@ const BodyText = styled.div`
 
 const IconPostItContainer = styled(Box)`
   position: absolute;
-  right: -20%;
-  top: -15%;
+  right: -5rem;
+  top: -7rem;
 `;
 
 export const FactItem = ({ data }: FactItemProps) => {
@@ -67,16 +71,18 @@ export const FactItem = ({ data }: FactItemProps) => {
     <FactContainer>
       <PostIt variant={itemData.postItVariant as PostItVariant}>
         <FactContent>
-          {(itemData.startDate || itemData.endDate) && (
-            <Label>
-              {`${itemData.startDate ? getFormattedDateMMMYYYY(itemData.startDate, locale) : ''} - ${
-                itemData.endDate
-                  ? getFormattedDateMMMYYYY(itemData.endDate, locale)
-                  : ''
-              }`}
-            </Label>
-          )}
-          <Subtitle>{itemData.title}</Subtitle>
+          <Flex flexDirection="column" gap="s8">
+            {(itemData.startDate || itemData.endDate) && (
+              <Label>
+                {`${itemData.startDate ? getFormattedDateMMMYYYY(itemData.startDate, locale) : ''} - ${
+                  itemData.endDate
+                    ? getFormattedDateMMMYYYY(itemData.endDate, locale)
+                    : ''
+                }`}
+              </Label>
+            )}
+            <Subtitle>{itemData.title}</Subtitle>
+          </Flex>
           <BodyText dangerouslySetInnerHTML={{ __html: itemData.body || '' }} />
         </FactContent>
       </PostIt>
@@ -84,11 +90,16 @@ export const FactItem = ({ data }: FactItemProps) => {
         <IconPostItContainer>
           <PostIt
             variant={4}
-            width={spacings.s192}
-            height={spacings.s192}
+            size={spacings.s192}
             color={itemData.iconBackgroundVariant as PostItColor}
           >
-            <Icon type={itemData.icon as CustomIconType} size="s128" />
+            <Flex
+              justifyContent="center"
+              alignItems="center"
+              style={{ height: '100%' }}
+            >
+              <Icon type={itemData.icon as CustomIconType} size="s96" />
+            </Flex>
           </PostIt>
         </IconPostItContainer>
       )}

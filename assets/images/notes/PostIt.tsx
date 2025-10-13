@@ -13,8 +13,7 @@ export interface PostItProps {
   variant: PostItVariant;
   color?: PostItColor;
   children: React.ReactNode;
-  width?: string;
-  height?: string;
+  size?: string;
 }
 
 const getPostItVariant = (variant: PostItVariant) => {
@@ -52,45 +51,31 @@ const PostItWrapper = styled.div`
   }
 `;
 
-const ContentContainer = styled.div`
-  position: relative;
-  width: 100%;
-  padding-top: 100%;
-`;
-
 const Content = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
+  position: relative;
   padding: 15%;
-  padding-top: 20%;
+  height: 100%;
 `;
 
 export const PostIt = ({
   variant,
   children,
   color,
-  width = '100%',
-  height = '100%',
+  size = '100%',
 }: PostItProps) => {
   const PostItElement = getPostItVariant(variant);
   const { colors } = useTheme();
 
   return (
-    <PostItBox $width={width} $height={height}>
+    <PostItBox $width={size} $height={size}>
       <PostItWrapper>
         <PostItElement
-          width={width}
-          height={height}
+          width={size}
+          height={size}
           color={colors.posIts[color || 'primary']}
         />
       </PostItWrapper>
-      <ContentContainer>
-        <Content>{children}</Content>
-      </ContentContainer>
+      <Content>{children}</Content>
     </PostItBox>
   );
 };
