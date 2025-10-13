@@ -27,7 +27,7 @@ export const Road4 = ({
       <path
         className="bottom-land"
         style={{
-          transform: `translateY(-${svgDimensions.endTransformY}px)`,
+          transform: `translateY(${svgDimensions.endTransformY}px)`,
         }}
         d="M300 900H700V970C700 986.569 686.569 1000 670 1000H330C313.431 1000 300 986.569 300 970V900Z"
         fill="#C1CAA8"
@@ -70,7 +70,7 @@ export const Road4 = ({
       <rect
         className="bottom-road"
         style={{
-          transform: `translateY(-${svgDimensions.endTransformY}px)`,
+          transform: `translateY(${svgDimensions.endTransformY}px)`,
         }}
         x="460"
         y="880"

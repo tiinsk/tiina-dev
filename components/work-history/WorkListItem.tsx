@@ -43,6 +43,14 @@ const TextContent = styled(Flex)`
   gap: ${({ theme }) => theme.spacings.s16};
   margin: ${({ theme }) => theme.spacings.s32} 0;
   min-height: ${({ theme }) => theme.spacings.s256};
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    min-height: ${({ theme }) => theme.spacings.s480};
+    margin-right: ${({ theme }) => theme.spacings.s80};
+  }
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-right: 0;
+  }
 `;
 
 export const WorkListItem = ({ data, isFirst, isLast }: WorkItemProps) => {
@@ -70,7 +78,7 @@ export const WorkListItem = ({ data, isFirst, isLast }: WorkItemProps) => {
             <H3>{itemData.title}</H3>
             <SmallBold>{itemData.company}</SmallBold>
           </Flex>
-          <Flex flexDirection="row" gap="s16" flexWrap="wrap">
+          <Flex flexDirection="row" gap="s12" flexWrap="wrap">
             {itemData.skills.map(skill => (
               <Tag
                 key={skill.name}

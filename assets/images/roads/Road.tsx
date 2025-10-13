@@ -7,6 +7,11 @@ import { Road2 } from './Road2';
 import { Road3 } from './Road3';
 import { Road4 } from './Road4';
 
+import { MobileRoad1 } from './mobile/MobileRoad1';
+import { MobileRoad2 } from './mobile/MobileRoad2';
+import { MobileRoad3 } from './mobile/MobileRoad3';
+import { MobileRoad4 } from './mobile/MobileRoad4';
+
 const ROAD_BOX_MAX_WIDTH = 280;
 const SVG_WIDTH_MULTIPLIER = 2; // SVG width is 2x the width of the road box
 const SVG_OFFSET = 80; // SVG is offset by 80px from the right of the road box
@@ -36,17 +41,42 @@ const getRoadVariant = (variant: RoadVariant) => {
   }
 };
 
+const getMobileRoadVariant = (variant: RoadVariant) => {
+  switch (variant) {
+    case 1:
+      return MobileRoad1;
+    case 2:
+      return MobileRoad2;
+    case 3:
+      return MobileRoad3;
+    case 4:
+      return MobileRoad4;
+    default:
+      return MobileRoad1;
+  }
+};
+
 const RoadBox = styled.div`
   width: 20vw;
   height: 100%;
   position: relative;
   max-width: ${ROAD_BOX_MAX_WIDTH}px;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 40vw;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    width: 100px;
+  }
 `;
 
 export const StyledSvg = styled.svg<{ $isFirst?: boolean; $isLast?: boolean }>`
   position: absolute;
   top: 0;
   right: -${SVG_OFFSET}px;
+  overflow: visible;
+
   width: ${SVG_WIDTH_MULTIPLIER * ROAD_BOX_MAX_WIDTH}px;
   z-index: 0;
 
@@ -61,6 +91,22 @@ export const StyledSvg = styled.svg<{ $isFirst?: boolean; $isLast?: boolean }>`
   }
   .top-land {
     display: ${({ $isFirst }) => ($isFirst ? 'block' : 'none')};
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: none;
+  }
+`;
+
+export const MobileStyledSvg = styled(StyledSvg)<{
+  $isFirst?: boolean;
+  $isLast?: boolean;
+}>`
+  right: -205px;
+
+  display: none;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: block;
   }
 `;
 
@@ -85,6 +131,8 @@ export const Road = ({ variant, isFirst, isLast }: RoadProps) => {
 
   const RoadVariant = getRoadVariant(variant);
 
+  const MobileRoadVariant = getMobileRoadVariant(variant);
+
   const resizeSvg = () => {
     const el = ref.current;
     if (!el) return;
@@ -99,7 +147,7 @@ export const Road = ({ variant, isFirst, isLast }: RoadProps) => {
       height: svgHeight,
       startY: isFirst ? FIRST_LAST_OFFSET : 0,
       endY: isLast ? svgHeight - FIRST_LAST_OFFSET : svgHeight,
-      endTransformY: SVG_ORIGINAL_VIEWBOX - svgHeight,
+      endTransformY: -(SVG_ORIGINAL_VIEWBOX - svgHeight),
     });
   };
 
@@ -120,6 +168,11 @@ export const Road = ({ variant, isFirst, isLast }: RoadProps) => {
   return (
     <RoadBox ref={ref}>
       <RoadVariant
+        isFirst={isFirst}
+        isLast={isLast}
+        svgDimensions={svgDimensions}
+      />
+      <MobileRoadVariant
         isFirst={isFirst}
         isLast={isLast}
         svgDimensions={svgDimensions}

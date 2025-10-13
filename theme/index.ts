@@ -43,6 +43,7 @@ const variables = {
     s192: '19.2rem',
     s256: '25.6rem',
     s320: '32.0rem',
+    s480: '48.0rem',
     s640: '64.0rem',
   },
   zIndex: {
