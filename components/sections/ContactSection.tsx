@@ -83,9 +83,11 @@ const MailImg = styled.img`
 export const ContactSection = ({
   data,
   order,
+  ref,
 }: {
   data: FragmentOf<typeof ContactFragment> | null;
   order: number;
+  ref: React.RefObject<HTMLElementTagNameMap['section'] | null>;
 }) => {
   const contactData = readFragment(ContactFragment, data);
 
@@ -100,6 +102,7 @@ export const ContactSection = ({
         name="Contacts"
         bgColor={contactData.backgroundColor?.hex}
         order={order}
+        forwardRef={ref}
       >
         <BackgroundGround />
         <H2>{contactData.title}</H2>

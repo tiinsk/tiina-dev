@@ -1,4 +1,4 @@
-import { languages, Locale, locales } from '../locales';
+import { languages, locales } from '../locales';
 import { Link } from './common/Link';
 import styled, { css } from 'styled-components';
 import { Flex } from './common/Flex';
@@ -10,29 +10,37 @@ const StyledLanguageSelector = styled.nav`
   top: 0;
   width: 100%;
   padding: ${({ theme }) => theme.spacings.s16};
+  margin-right: ${({ theme }) => theme.spacings.s40};
   display: flex;
   justify-content: flex-end;
 `;
 
+const LanguageSelectorBox = styled(Flex)`
+  display: flex;
+
+  border: 2px solid ${({ theme }) => theme.colors.background.secondary};
+  border-radius: ${({ theme }) => theme.spacings.s12};
+  overflow: hidden;
+`;
+
 const ActiveStyle = css`
-  background-color: ${({ theme }) => theme.colors.typography.primary};
   color: ${({ theme }) => theme.colors.typography.active};
+  background-color: ${({ theme }) => theme.colors.background.secondary};
 `;
 
 const StyledLink = styled(Link)<{ $isActive?: boolean }>`
   ${InfoStyle};
   color: ${({ theme }) => theme.colors.typography.tertiary};
-  padding: ${({ theme }) => theme.spacings.s8}
+  padding: ${({ theme }) => theme.spacings.s4}
     ${({ theme }) => theme.spacings.s16};
   ${({ $isActive }) => $isActive && ActiveStyle};
-  border-radius: ${({ theme }) => theme.spacings.s24};
 `;
 
 export const LanguageSelector = () => {
   const pageContext = usePageContext();
   return (
     <StyledLanguageSelector>
-      <Flex>
+      <LanguageSelectorBox>
         {locales.map(locale => (
           <StyledLink
             $isActive={pageContext.locale === locale}
@@ -43,10 +51,11 @@ export const LanguageSelector = () => {
             {languages[locale]}
           </StyledLink>
         ))}
-        <StyledLink href="/console" locale={Locale.EN}>
+        {/*TODO show when console page is implemented */}
+        {/*<StyledLink href="/console" locale={Locale.EN}>
           Console
-        </StyledLink>
-      </Flex>
+        </StyledLink>*/}
+      </LanguageSelectorBox>
     </StyledLanguageSelector>
   );
 };

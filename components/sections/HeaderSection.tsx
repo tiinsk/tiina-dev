@@ -35,6 +35,18 @@ const BackgroundWrapper = styled.div`
   bottom: 0;
 `;
 
+const ContentContainer = styled(Flex)`
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacings.s16};
+  margin-left: ${({ theme }) => theme.spacings.s192};
+  margin-right: ${({ theme }) => theme.spacings.s80};
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-left: ${({ theme }) => theme.spacings.s40};
+    margin-right: ${({ theme }) => theme.spacings.s40};
+  }
+`;
+
 export const HeaderSection = ({
   data,
 }: {
@@ -57,12 +69,12 @@ export const HeaderSection = ({
         <Fish variant="typescript" positionY="70%" delayS={20} />
       </BackgroundWrapper>
       <LanguageSelector />
-      <Flex flexDirection="column" gap="s16" ml="s192">
+      <ContentContainer>
         <H1 color="light">
           {headerData.title} {headerData.name}
         </H1>
         <Subtitle color="tertiary">{headerData.subtitle}</Subtitle>
-      </Flex>
+      </ContentContainer>
     </StyledHeader>
   );
 };

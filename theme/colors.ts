@@ -126,6 +126,23 @@ export const colors = {
         disabled: primitiveColors.yellow['20'],
       },
     },
+    secondaryGhost: {
+      typography: {
+        default: primitiveColors.yellow['50'],
+        hover: primitiveColors.neutral.filled['100'],
+        disabled: primitiveColors.yellow['20'],
+      },
+      background: {
+        default: primitiveColors.neutral.opaque.light['00'],
+        hover: primitiveColors.yellow['50'],
+        disabled: primitiveColors.neutral.opaque.light['00'],
+      },
+      border: {
+        default: primitiveColors.yellow['50'],
+        hover: primitiveColors.yellow['50'],
+        disabled: primitiveColors.yellow['20'],
+      },
+    },
   },
   error: {
     typography: primitiveColors.design['100'],

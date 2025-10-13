@@ -8,18 +8,28 @@ import {
 type SectionProps = {
   name: string;
   children: React.ReactNode;
+  forwardRef?: React.RefObject<HTMLElementTagNameMap['section'] | null>;
   bgColor?: string;
   order: number;
   useMaxWidth?: boolean;
 };
 
 export const BasicSection = styled.section<{ $bgColor?: string }>`
-  padding-left: ${({ theme }) => theme.spacings.s128};
+  padding-left: 10vw;
   padding-right: ${({ theme }) => theme.spacings.s64};
   padding-top: ${({ theme }) => theme.spacings.s128};
   padding-bottom: ${({ theme }) => theme.spacings.s80};
 
   background-color: ${({ $bgColor }) => $bgColor};
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding-left: 5vw;
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    padding-left: ${({ theme }) => theme.spacings.s40};
+    padding-right: ${({ theme }) => theme.spacings.s40};
+  }
 `;
 
 export const StyledSection = styled(BasicSection)`
@@ -44,6 +54,7 @@ export const Section = ({
   children,
   bgColor,
   order,
+  forwardRef,
   useMaxWidth = true,
 }: SectionProps) => {
   const ref = useRef<HTMLElementTagNameMap['section'] | null>(null);
@@ -55,7 +66,7 @@ export const Section = ({
       return;
     }
 
-    const el = ref.current;
+    const el = forwardRef?.current || ref.current;
     if (!el) return;
 
     const rect = el.getBoundingClientRect();
@@ -69,7 +80,7 @@ export const Section = ({
   }, [name]);
 
   return (
-    <StyledSection ref={ref}>
+    <StyledSection ref={forwardRef || ref}>
       <Content $useMaxWidth={useMaxWidth}>{children}</Content>
     </StyledSection>
   );

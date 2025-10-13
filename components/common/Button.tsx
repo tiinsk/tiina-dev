@@ -5,7 +5,7 @@ import { IconType, MdiIcon } from './MdiIcon';
 import { BodyStyle } from '../../theme/typography';
 import { customIcons, CustomIconType, Icon } from './Icon';
 
-export type ButtonVariant = 'primary' | 'secondary';
+export type ButtonVariant = 'primary' | 'secondary' | 'secondaryGhost';
 
 const ButtonText = styled.span`
   ${BodyStyle};

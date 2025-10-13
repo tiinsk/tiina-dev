@@ -8,6 +8,7 @@ const breakpoints = {
 
 const variables = {
   pageWidth: '1200px',
+  smallPageWidth: '900px',
   fonts: {
     fontBody: 'Poppins, sans-serif',
     fontHeader: 'Rubik, sans-serif',
