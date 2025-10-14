@@ -1,7 +1,6 @@
 // https://vike.dev/Head
 
-//# BATI.has("mantine")
-import logoUrl from '../assets/logo.svg';
+import logoUrl from '../assets/images/iceberg/duck.svg';
 import poppinsBlack from '../assets/fonts/Poppins/Poppins-Black.ttf';
 import poppinsBold from '../assets/fonts/Poppins/Poppins-Bold.ttf';
 import poppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
