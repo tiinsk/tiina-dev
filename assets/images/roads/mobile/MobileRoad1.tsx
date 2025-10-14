@@ -9,8 +9,6 @@ export const MobileRoad1 = ({
   isFirst?: boolean;
   isLast?: boolean;
 }) => {
-  console.log(svgDimensions.startY, svgDimensions.endTransformY);
-
   return (
     <MobileStyledSvg
       $isFirst={isFirst}
