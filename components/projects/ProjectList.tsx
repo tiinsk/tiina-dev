@@ -7,11 +7,12 @@ const StyledProjectList = styled.ul`
   margin-top: ${({ theme }) => theme.spacings.s128};
   display: flex;
   flex-direction: column;
-  width: calc(50vw - ${({ theme }) => theme.spacings.s128});
+  width: 50%;
   padding-right: ${({ theme }) => theme.spacings.s128};
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding-right: 0;
+    padding-right: ${({ theme }) => theme.spacings.s16};
+    width: 50%;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {

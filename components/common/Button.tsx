@@ -25,7 +25,7 @@ export const ButtonStyle = ({
 
   transition: all 0.3s ease-out;
 
-  padding: ${theme.spacings.s8} ${theme.spacings.s16};
+  padding: ${theme.spacings.s8} ${theme.spacings.s12};
   border-width: 1px;
   border-radius: ${theme.spacings.s8};
   border-style: solid;

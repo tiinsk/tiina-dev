@@ -115,7 +115,7 @@ export const ProjectListItem = ({
         </Flex>
         <Body dangerouslySetInnerHTML={{ __html: itemData.body }} />
         <Flex flexDirection="row" gap="s16" justifyContent="space-between">
-          <Flex flexDirection="row" gap="s16" flexWrap="wrap">
+          <Flex flexDirection="row" gap="s8" flexWrap="wrap">
             {itemData.links.map(link => (
               <LinkButton
                 key={link.title}

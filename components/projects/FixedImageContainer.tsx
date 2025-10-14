@@ -14,7 +14,7 @@ const StyledFixedImageContainer = styled.div`
   margin: ${({ theme }) => theme.spacings.s128};
   margin-left: 50%;
 
-  ${({ theme }) => theme.mediaQueries.md} {
+  ${({ theme }) => theme.mediaQueries.lg} {
     margin-right: ${({ theme }) => theme.spacings.s40};
   }
 
