@@ -9,6 +9,17 @@ const StyledProjectList = styled.ul`
   flex-direction: column;
   width: calc(50vw - ${({ theme }) => theme.spacings.s128});
   padding-right: ${({ theme }) => theme.spacings.s128};
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding-right: 0;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    margin-top: 0;
+    width: 100%;
+    padding-right: 0;
+    gap: ${({ theme }) => theme.spacings.s128};
+  }
 `;
 
 export const ProjectList = ({

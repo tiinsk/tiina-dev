@@ -13,6 +13,14 @@ const StyledFixedImageContainer = styled.div`
   align-items: center;
   margin: ${({ theme }) => theme.spacings.s128};
   margin-left: 50%;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    margin-right: ${({ theme }) => theme.spacings.s40};
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: none;
+  }
 `;
 
 const FixedImage = styled.img`

@@ -46,6 +46,18 @@ const StyledProjectItem = styled.li`
   min-height: 80vh;
   display: flex;
   align-items: flex-start;
+  flex-direction: column;
+`;
+
+const MobileImg = styled.img`
+  position: relative;
+  width: calc(100% + ${({ theme }) => theme.spacings.s48});
+  left: -${({ theme }) => theme.spacings.s24};
+
+  display: none;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: block;
+  }
 `;
 
 const TextContent = styled(Flex)`
@@ -86,12 +98,13 @@ export const ProjectListItem = ({
 
   return (
     <StyledProjectItem>
+      <MobileImg src={itemData.image.url} alt={itemData.title} />
       <TextContent ref={ref}>
         <H3>{itemData.title}</H3>
         {itemData.activeYearList && (
           <Small>{`${activeTitle}: ${itemData.activeYearList}`}</Small>
         )}
-        <Flex flexDirection="row" gap="s16" flexWrap="wrap">
+        <Flex flexDirection="row" gap="s12" flexWrap="wrap">
           {itemData.skills.map(skill => (
             <Tag
               key={skill.name}

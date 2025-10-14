@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import throttle from 'lodash/throttle';
 import { FixedImageContainer } from '../components/projects/FixedImageContainer';
+import { useTheme } from 'styled-components';
 
 type Project = {
   name: string;
@@ -115,6 +116,7 @@ export const ProjectContextProvider: React.FC<React.PropsWithChildren> = ({
     name?: string;
     opacity: number;
   }>({ name: undefined, opacity: 0 });
+  const { breakpoints } = useTheme();
 
   const onScroll = useCallback(() => {
     if (typeof window === 'undefined') return;
@@ -152,6 +154,8 @@ export const ProjectContextProvider: React.FC<React.PropsWithChildren> = ({
 
   useEffect(() => {
     if (typeof window === 'undefined') {
+      return;
+    } else if (window.innerWidth <= breakpoints.sm) {
       return;
     }
 

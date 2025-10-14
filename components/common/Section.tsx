@@ -28,7 +28,7 @@ export const BasicSection = styled.section<{ $bgColor?: string }>`
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
-    padding-left: ${({ theme }) => theme.spacings.s40};
+    padding-left: ${({ theme }) => theme.spacings.s24};
     padding-right: ${({ theme }) => theme.spacings.s24};
   }
 `;

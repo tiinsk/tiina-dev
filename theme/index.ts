@@ -1,9 +1,9 @@
 import { colors } from './colors';
 
 const breakpoints = {
-  lg: '1200px',
-  md: '900px',
-  sm: '600px',
+  lg: 1200,
+  md: 900,
+  sm: 600,
 };
 
 const variables = {
@@ -22,9 +22,9 @@ const variables = {
   },
   breakpoints,
   mediaQueries: {
-    sm: `@media (max-width: ${breakpoints.sm})`,
-    md: `@media (max-width: ${breakpoints.md})`,
-    lg: `@media (max-width: ${breakpoints.lg})`,
+    sm: `@media (max-width: ${breakpoints.sm}px)`,
+    md: `@media (max-width: ${breakpoints.md}px)`,
+    lg: `@media (max-width: ${breakpoints.lg}px)`,
   },
   spacings: {
     s2: '0.2rem',
