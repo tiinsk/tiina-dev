@@ -12,6 +12,7 @@ type SectionProps = {
   bgColor?: string;
   order: number;
   useMaxWidth?: boolean;
+  style?: React.CSSProperties;
 };
 
 export const BasicSection = styled.section<{ $bgColor?: string }>`
@@ -55,6 +56,7 @@ export const Section = ({
   bgColor,
   order,
   forwardRef,
+  style,
   useMaxWidth = true,
 }: SectionProps) => {
   const ref = useRef<HTMLElementTagNameMap['section'] | null>(null);
@@ -80,7 +82,7 @@ export const Section = ({
   }, [name]);
 
   return (
-    <StyledSection ref={forwardRef || ref}>
+    <StyledSection ref={forwardRef || ref} style={style}>
       <Content $useMaxWidth={useMaxWidth}>{children}</Content>
     </StyledSection>
   );

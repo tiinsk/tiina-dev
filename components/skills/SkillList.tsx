@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-import { Label, Small, SmallBold } from '../common/typography';
+import {
+  Body,
+  Info,
+  Small,
+} from '../common/typography';
 import { Tag, TagVariant } from '../common/Tag';
 import { Flex } from '../common/Flex';
 
@@ -15,7 +19,7 @@ const StyledSkillList = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacings.s16};
+  gap: ${({ theme }) => theme.spacings.s12};
 `;
 
 const getTagVariant = (skillType: string): TagVariant => {
@@ -38,9 +42,9 @@ export const SkillList = ({
   skills: Skill[];
 }) => (
   <Flex flexDirection="column" gap="s16" m="s32">
-    <SmallBold color={variant}>{title}</SmallBold>
-    <Small color="secondary">{body}</Small>
-    <Label color="secondary">{skillListTitle}</Label>
+    <Info color={variant}>{title}</Info>
+    <Body>{body}</Body>
+    <Small>{skillListTitle}</Small>
     <StyledSkillList>
       {skills.map((item, index) => (
         <Tag
