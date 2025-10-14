@@ -16,6 +16,7 @@ type SectionProps = {
 };
 
 export const BasicSection = styled.section<{ $bgColor?: string }>`
+  overflow-x: hidden;
   padding-left: 10vw;
   padding-right: ${({ theme }) => theme.spacings.s64};
   padding-top: ${({ theme }) => theme.spacings.s128};

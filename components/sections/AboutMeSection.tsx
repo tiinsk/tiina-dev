@@ -20,7 +20,6 @@ export const AboutMeFragment = graphql(`
 `);
 
 const StyledSection = styled(BasicSection)`
-  margin-top: ${({ theme }) => theme.spacings.s128};
   padding-top: ${({ theme }) => theme.spacings.s128};
   padding-bottom: ${({ theme }) => theme.spacings.s256};
   min-height: calc(100vh - ${({ theme }) => theme.spacings.s128});
