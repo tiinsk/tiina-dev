@@ -10,7 +10,6 @@ const StyledLanguageSelector = styled.nav`
   top: 0;
   width: 100%;
   padding: ${({ theme }) => theme.spacings.s16};
-  margin-right: ${({ theme }) => theme.spacings.s40};
   display: flex;
   justify-content: flex-end;
 `;
