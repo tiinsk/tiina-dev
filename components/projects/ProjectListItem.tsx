@@ -6,9 +6,10 @@ import { Flex } from '../common/Flex';
 import { Body, H3, Small } from '../common/typography';
 import { Tag, TagVariant } from '../common/Tag';
 import { useProjectContext } from '../../contexts/project-context';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, ButtonIconType } from '../common/Button';
 import { LinkButton } from '../common/LinkButton';
+import { ProjectDialog, ProjectDialogFragment } from './ProjectDialog';
 
 interface ProjectItemProps {
   data: FragmentOf<typeof ProjectItemFragment>;
@@ -16,25 +17,29 @@ interface ProjectItemProps {
   activeTitle: string;
 }
 
-export const ProjectItemFragment = graphql(`
-  fragment ProjectItemFragment on ProjectRecord {
-    title
-    body
-    activeYearList
-    image {
-      url
-    }
-    skills {
-      name
-      skillType
-    }
-    links {
+export const ProjectItemFragment = graphql(
+  `
+    fragment ProjectItemFragment on ProjectRecord {
       title
-      icon
-      url
+      body
+      activeYearList
+      image {
+        url
+      }
+      skills {
+        name
+        skillType
+      }
+      links {
+        title
+        icon
+        url
+      }
+      ...ProjectDialogFragment
     }
-  }
-`);
+  `,
+  [ProjectDialogFragment]
+);
 
 const getTagVariant = (skillType: string): TagVariant => {
   if (['tech', 'core', 'design'].includes(skillType))
@@ -72,6 +77,7 @@ export const ProjectListItem = ({
   activeTitle,
 }: ProjectItemProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const itemData = readFragment(ProjectItemFragment, data);
 
@@ -129,9 +135,15 @@ export const ProjectListItem = ({
             variant="secondary"
             text={moreButtonText}
             iconRight="mdiArrowTopRight"
+            onClick={() => setIsDialogOpen(true)}
           />
         </Flex>
       </TextContent>
+      <ProjectDialog
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        data={data}
+      />
     </StyledProjectItem>
   );
 };

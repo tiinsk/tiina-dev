@@ -5,7 +5,11 @@ import { IconType, MdiIcon } from './MdiIcon';
 import { BodyStyle } from '../../theme/typography';
 import { customIcons, CustomIconType, Icon } from './Icon';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'secondaryGhost';
+export type ButtonVariant =
+  | 'basic'
+  | 'primary'
+  | 'secondary'
+  | 'secondaryGhost';
 
 const ButtonText = styled.span`
   ${BodyStyle};
@@ -77,6 +81,8 @@ export interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   buttonRef?: React.Ref<HTMLButtonElement>;
   tabIndex?: number;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 export const ButtonContent = ({ iconLeft, iconRight, text }: ButtonProps) => {

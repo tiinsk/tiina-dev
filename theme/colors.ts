@@ -71,6 +71,7 @@ const primitiveColors = {
 
 export const colors = {
   background: {
+    default: primitiveColors.neutral.filled['00'],
     primary: primitiveColors.neutral.opaque.light['00'],
     secondary: primitiveColors.neutral.opaque.light['30'],
     tertiary: primitiveColors.neutral.opaque.dark['08'],
@@ -92,6 +93,23 @@ export const colors = {
     tertiary: primitiveColors.design['20'],
   },
   buttons: {
+    basic: {
+      typography: {
+        default: primitiveColors.neutral.filled['100'],
+        hover: primitiveColors.neutral.filled['100'],
+        disabled: primitiveColors.neutral.filled['50'],
+      },
+      background: {
+        default: primitiveColors.neutral.opaque.light['00'],
+        hover: primitiveColors.neutral.opaque.dark['08'],
+        disabled: primitiveColors.neutral.opaque.light['00'],
+      },
+      border: {
+        default: 'transparent',
+        hover: 'transparent',
+        disabled: 'transparent',
+      },
+    },
     primary: {
       typography: {
         default: primitiveColors.neutral.filled['100'],

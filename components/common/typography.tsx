@@ -23,6 +23,7 @@ interface TypographyProps extends BoxProps {
   loadingWidth?: Space;
   color?: TypographyColor;
   dangerouslySetInnerHTML?: { __html: string | null };
+  id?: string;
 }
 
 interface StyledTypographyProps {

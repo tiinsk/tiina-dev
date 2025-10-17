@@ -18,7 +18,6 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size: 62.5%;
     width: 100vw;
-    overflow-x: hidden;
 
     ${({ theme }) => theme.mediaQueries.md} { 
       font-size: 1vw;
@@ -34,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
+    overflow-x: hidden;
   }
 
   p {
@@ -114,6 +114,7 @@ export const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <StyleSheetManager sheet={pageContext.styleSheet?.instance}>
       {themed}
+      <div id="portal-root" />
     </StyleSheetManager>
   );
 };

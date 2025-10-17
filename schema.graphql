@@ -819,6 +819,34 @@ Represents signed double-precision fractional values as specified by [IEEE 754](
 """
 scalar FloatType
 
+"""Specifies how to filter Multiple files/images field"""
+input GalleryFilter {
+  """
+  Search for records with an exact match. The specified values must be Upload IDs
+  """
+  eq: [UploadId]
+
+  """
+  Filter records that have all of the specified uploads. The specified values must be Upload IDs
+  """
+  allIn: [UploadId]
+
+  """
+  Filter records that have one of the specified uploads. The specified values must be Upload IDs
+  """
+  anyIn: [UploadId]
+
+  """
+  Filter records that do not have any of the specified uploads. The specified values must be Upload IDs
+  """
+  notIn: [UploadId]
+
+  """
+  Filter records with the specified field defined (i.e. with any value) or not
+  """
+  exists: BooleanType
+}
+
 type GlobalSeoField {
   facebookPageUrl: String
   fallbackSeo: SeoField
@@ -3222,6 +3250,7 @@ input ProjectModelFilter {
   image: FileFilter
   skills: LinksFilter
   title: StringFilter
+  galleryImages: GalleryFilter
   OR: [ProjectModelFilter]
   AND: [ProjectModelFilter]
 }
@@ -3321,6 +3350,7 @@ type ProjectRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): String!
   createdAt: DateTime!
+  galleryImages: [FileField!]!
   id: ItemId!
   image: FileField!
   links(
