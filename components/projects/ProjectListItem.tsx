@@ -41,7 +41,7 @@ export const ProjectItemFragment = graphql(
   [ProjectDialogFragment]
 );
 
-const getTagVariant = (skillType: string): TagVariant => {
+export const getTagVariant = (skillType: string): TagVariant => {
   if (['tech', 'core', 'design'].includes(skillType))
     return skillType as TagVariant;
   return 'tech';
@@ -143,6 +143,7 @@ export const ProjectListItem = ({
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         data={data}
+        activeTitle={activeTitle}
       />
     </StyledProjectItem>
   );
