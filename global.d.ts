@@ -6,6 +6,7 @@ declare global {
     interface PageContext {
       styleSheet?: ServerStyleSheet;
       locale: Locale;
+      data?: Record<string, unknown>;
     }
   }
 }

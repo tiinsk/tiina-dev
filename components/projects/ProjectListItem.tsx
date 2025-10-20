@@ -7,7 +7,7 @@ import { Body, H4, Small } from '../common/typography';
 import { Tag, TagVariant } from '../common/Tag';
 import { useProjectContext } from '../../contexts/project-context';
 import { useEffect, useRef, useState } from 'react';
-import { Button, ButtonIconType } from '../common/Button';
+import { ButtonIconType } from '../common/Button';
 import { LinkButton } from '../common/LinkButton';
 import { ProjectDialog, ProjectDialogFragment } from './ProjectDialog';
 
@@ -23,6 +23,7 @@ export const ProjectItemFragment = graphql(
       title
       body
       activeYearList
+      slug
       image {
         url
       }
@@ -127,15 +128,16 @@ export const ProjectListItem = ({
                 key={link.title}
                 iconLeft={(link.icon as ButtonIconType) || undefined}
                 href={link.url}
+                isExternal={true}
                 target="_blank"
               />
             ))}
           </Flex>
-          <Button
+          <LinkButton
             variant="secondary"
             text={moreButtonText}
             iconRight="mdiArrowTopRight"
-            onClick={() => setIsDialogOpen(true)}
+            href={`/projects/${itemData.slug}`}
           />
         </Flex>
       </TextContent>

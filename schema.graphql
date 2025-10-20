@@ -3247,6 +3247,7 @@ input ProjectModelFilter {
   _isValid: BooleanFilter
   activeYearList: StringFilter
   body: TextFilter
+  slug: SlugFilter
   image: FileFilter
   skills: LinksFilter
   title: StringFilter
@@ -3309,6 +3310,15 @@ type ProjectRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [LinkRecordListListNonNullMultiLocaleField!]
+  _allSlugLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringNonNullMultiLocaleField!]
   _allTitleLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3364,6 +3374,15 @@ type ProjectRecord implements RecordInterface {
   ): [LinkRecord!]!
   position: IntType
   skills: [SkillRecord!]!
+  slug(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
   title(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -4315,6 +4334,21 @@ type SkillSectionRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): String!
   updatedAt: DateTime!
+}
+
+"""Specifies how to filter Slug fields"""
+input SlugFilter {
+  """Search for records with an exact match"""
+  eq: String
+
+  """Exclude records with an exact match"""
+  neq: String
+
+  """Filter records that have one of the specified slugs"""
+  in: [String]
+
+  """Filter records that do have one of the specified slugs"""
+  notIn: [String]
 }
 
 """Specifies how to filter by status"""
