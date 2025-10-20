@@ -1,7 +1,7 @@
 import { FragmentOf, readFragment } from 'gql.tada';
 
 import { graphql } from '../../datocms/graphql';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { Flex } from '../common/Flex';
 import { BasicSection } from '../common/Section';
 import { Button } from '../common/Button';
@@ -64,8 +64,10 @@ export const AboutMeSection = ({
     return null;
   }
 
+  const { colors } = useTheme();
+
   return (
-    <StyledSection $bgColor="#2F5C6D">
+    <StyledSection $bgColor={colors.background.sections.aboutMe}>
       <StyledAboutMe>
         <ContentContainer>
           <StyledImage src={aboutMeData.image?.url} />

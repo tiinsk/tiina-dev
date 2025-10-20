@@ -32,9 +32,6 @@ export const SkillFragment = graphql(`
       name
       skillType
     }
-    backgroundColor {
-      hex
-    }
   }
 `);
 
@@ -175,7 +172,7 @@ export const SkillSection = ({
   return (
     <Section
       name="Skills"
-      bgColor={skillData.backgroundColor?.hex}
+      bgColor="skills"
       order={order}
       style={{ overflow: 'hidden' }}
     >

@@ -21,9 +21,6 @@ const MAIL_HEIGHT = 269;
 export const ContactFragment = graphql(`
   fragment ContactFragment on ContactSectionRecord {
     title
-    backgroundColor {
-      hex
-    }
     links {
       title
       url
@@ -149,7 +146,7 @@ export const ContactSection = ({
       <MailImg src={MailSvg} />
       <Section
         name="Contacts"
-        bgColor={contactData.backgroundColor?.hex}
+        bgColor="contacts"
         order={order}
         forwardRef={ref}
         useMaxWidth={false}

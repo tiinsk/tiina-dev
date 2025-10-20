@@ -1,15 +1,18 @@
 import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { DefaultTheme, useTheme } from 'styled-components';
 import {
   DEFAULT_COLOR_HEX,
   useSectionContext,
 } from '../../contexts/section-context';
 
+export type SectionColor =
+  keyof DefaultTheme['colors']['background']['sections'];
+
 type SectionProps = {
   name: string;
   children: React.ReactNode;
   forwardRef?: React.RefObject<HTMLElementTagNameMap['section'] | null>;
-  bgColor?: string;
+  bgColor?: SectionColor;
   order: number;
   useMaxWidth?: boolean;
   style?: React.CSSProperties;
@@ -61,6 +64,7 @@ export const Section = ({
   useMaxWidth = true,
 }: SectionProps) => {
   const ref = useRef<HTMLElementTagNameMap['section'] | null>(null);
+  const { colors } = useTheme();
 
   const { addSection } = useSectionContext();
 
@@ -76,7 +80,9 @@ export const Section = ({
     const totalHeight = Math.max(1, rect.height);
 
     addSection(name, {
-      bgColorHex: bgColor || DEFAULT_COLOR_HEX,
+      bgColorHex: bgColor
+        ? colors.background.sections[bgColor]
+        : DEFAULT_COLOR_HEX,
       height: totalHeight,
       order,
     });

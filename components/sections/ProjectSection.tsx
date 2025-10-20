@@ -13,9 +13,6 @@ export const ProjectsFragment = graphql(
       title
       moreButtonText
       activeTitle
-      backgroundColor {
-        hex
-      }
       projects {
         ...ProjectItemFragment
       }
@@ -40,7 +37,7 @@ export const ProjectSection = ({
   return (
     <Section
       name="Project"
-      bgColor={projectData.backgroundColor?.hex}
+      bgColor="projects"
       order={order}
       useMaxWidth={false}
     >

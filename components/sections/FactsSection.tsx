@@ -11,9 +11,6 @@ export const FactsFragment = graphql(
   `
     fragment FactsFragment on FactsSectionRecord {
       title
-      backgroundColor {
-        hex
-      }
       factList {
         ...FactFragment
       }
@@ -74,11 +71,7 @@ export const FactsSection = ({
   }
 
   return (
-    <Section
-      name="Facts"
-      bgColor={factsData.backgroundColor?.hex}
-      order={order}
-    >
+    <Section name="Facts" bgColor="facts" order={order}>
       <H2>{factsData.title}</H2>
       <ContentContainer>
         <NotepadImage src={NotepadSvg} />

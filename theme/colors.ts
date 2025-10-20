@@ -1,4 +1,12 @@
 const primitiveColors = {
+  sections: {
+    aboutMe: '#2F5C6D',
+    workHistory: '#DFDCE7',
+    facts: '#DCE4E7',
+    skills: '#E7DDDC',
+    projects: '#E2E7DC',
+    contacts: '#DCE7E6',
+  },
   blue: {
     '150': '#002732',
     '100': '#00475B',
@@ -75,6 +83,9 @@ export const colors = {
     primary: primitiveColors.neutral.opaque.light['00'],
     secondary: primitiveColors.neutral.opaque.light['30'],
     tertiary: primitiveColors.neutral.opaque.dark['08'],
+    sections: {
+      ...primitiveColors.sections,
+    },
   },
   typography: {
     primary: primitiveColors.neutral.filled['100'],

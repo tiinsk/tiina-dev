@@ -10,9 +10,6 @@ export const WorkHistoryFragment = graphql(
   `
     fragment WorkHistoryFragment on WorkHistorySectionRecord {
       title
-      backgroundColor {
-        hex
-      }
       workHistoryList {
         ...WorkItemFragment
       }
@@ -35,11 +32,7 @@ export const WorkHistorySection = ({
   }
 
   return (
-    <Section
-      name="Work history"
-      bgColor={workHistoryData.backgroundColor?.hex}
-      order={order}
-    >
+    <Section name="Work history" bgColor="workHistory" order={order}>
       <H2>{workHistoryData.title}</H2>
       <WorkList data={workHistoryData.workHistoryList} />
     </Section>
