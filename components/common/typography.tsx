@@ -6,6 +6,7 @@ import {
   H1Style,
   H2Style,
   H3Style,
+  H4Style,
   InfoStyle,
   LabelStyle,
   SmallBoldStyle,
@@ -68,6 +69,18 @@ export const H3 = ({ children, color, ...props }: TypographyProps) => {
     <StyledH3 {...props} color={color} component="h3">
       {children}
     </StyledH3>
+  );
+};
+
+const StyledH4 = styled(StyledTypography)<StyledTypographyProps>`
+  ${H4Style};
+`;
+
+export const H4 = ({ children, color, ...props }: TypographyProps) => {
+  return (
+    <StyledH4 {...props} color={color} component="h3">
+      {children}
+    </StyledH4>
   );
 };
 

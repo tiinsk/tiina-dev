@@ -1,7 +1,7 @@
 import { graphql } from '../../datocms/graphql';
 import { FragmentOf, readFragment } from 'gql.tada';
 import { Flex } from '../common/Flex';
-import { Body, H3, Label, SmallBold } from '../common/typography';
+import { Body, H4, Label, SmallBold } from '../common/typography';
 import { Tag, TagVariant } from '../common/Tag';
 import styled from 'styled-components';
 import { Road, RoadVariant } from '../../assets/images/roads/Road';
@@ -75,7 +75,7 @@ export const WorkListItem = ({ data, isFirst, isLast }: WorkItemProps) => {
                   : ''
               }`}
             </Label>
-            <H3>{itemData.title}</H3>
+            <H4>{itemData.title}</H4>
             <SmallBold>{itemData.company}</SmallBold>
           </Flex>
           <Flex flexDirection="row" gap="s12" flexWrap="wrap">

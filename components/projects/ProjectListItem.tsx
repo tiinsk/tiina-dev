@@ -3,7 +3,7 @@ import { FragmentOf, readFragment } from 'gql.tada';
 import styled from 'styled-components';
 
 import { Flex } from '../common/Flex';
-import { Body, H3, Small } from '../common/typography';
+import { Body, H4, Small } from '../common/typography';
 import { Tag, TagVariant } from '../common/Tag';
 import { useProjectContext } from '../../contexts/project-context';
 import { useEffect, useRef, useState } from 'react';
@@ -106,7 +106,7 @@ export const ProjectListItem = ({
     <StyledProjectItem>
       <MobileImg src={itemData.image.url} alt={itemData.title} />
       <TextContent ref={ref}>
-        <H3>{itemData.title}</H3>
+        <H4>{itemData.title}</H4>
         {itemData.activeYearList && (
           <Small>{`${activeTitle}: ${itemData.activeYearList}`}</Small>
         )}

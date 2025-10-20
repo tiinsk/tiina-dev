@@ -24,6 +24,15 @@ export const H2Style = css`
 
 export const H3Style = css`
   font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.black};
+  font-size: 7rem;
+  line-height: 10.5rem;
+  letter-spacing: -0.15rem;
+  margin-bottom: ${({ theme }) => theme.spacings.s24};
+`;
+
+export const H4Style = css`
+  font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: 2.8rem;
   line-height: 4.2rem;

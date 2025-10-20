@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import { H3 } from './typography';
+import { H4 } from './typography';
 import { Button } from './Button';
 import { Box } from './Box';
 
@@ -101,7 +101,7 @@ export const Dialog = ({
         <Header>
           {title && (
             <Box mt="s40">
-              <H3 id="dialog-title">{title}</H3>
+              <H4 id="dialog-title">{title}</H4>
             </Box>
           )}
           <Button variant="basic" iconLeft="mdiClose" onClick={onClose} />
