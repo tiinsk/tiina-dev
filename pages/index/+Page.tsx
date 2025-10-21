@@ -32,11 +32,12 @@ export default function Page() {
         onScrollToContacts={() => onScrollToContacts()}
       />
       <SectionContextProvider>
-        <FactsSection order={1} data={data.facts} />
-        <WorkHistorySection order={2} data={data.workHistory} />
-        <SkillSection order={3} data={data.skills} />
-        <ProjectSection order={4} data={data.projects} />
-        <ContactSection order={5} data={data.contact} ref={contactRef} />
+        {/* Hide facts section for now (waiting for better design)*/}
+        {/*<FactsSection order={1} data={data.facts} />*/}
+        <WorkHistorySection order={1} data={data.workHistory} />
+        <SkillSection order={2} data={data.skills} />
+        <ProjectSection order={3} data={data.projects} />
+        <ContactSection order={4} data={data.contact} ref={contactRef} />
       </SectionContextProvider>
     </>
   );
