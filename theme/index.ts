@@ -4,10 +4,13 @@ const breakpoints = {
   lg: 1200,
   md: 900,
   sm: 600,
+  max: 1392, // = pageWidth + pageMaxPaddingLeft + pageMaxPaddingRight
 };
 
 const variables = {
   pageWidth: '1200px',
+  pageMaxPaddingLeft: '128px', //if this is changed, also change max breakpoint
+  pageMaxPaddingRight: '64px', //if this is changed, also change max breakpoint
   smallPageWidth: '900px',
   fonts: {
     fontBody: 'Poppins, sans-serif',
@@ -25,6 +28,7 @@ const variables = {
     sm: `@media (max-width: ${breakpoints.sm}px)`,
     md: `@media (max-width: ${breakpoints.md}px)`,
     lg: `@media (max-width: ${breakpoints.lg}px)`,
+    max: `@media (max-width: ${breakpoints.max}px)`,
   },
   spacings: {
     s2: '0.2rem',

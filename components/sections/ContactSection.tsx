@@ -106,11 +106,21 @@ const MailImg = styled.img`
   width: ${MAIL_WIDTH}px;
   position: sticky;
 
-  //Position the mail image to middle of the the post box
+  //Position the mail image to max page width
   left: calc(
-    100vw - ${MAIL_WIDTH}px - ${({ theme }) => theme.spacings.s64} -
-      ${POST_BOX_WIDTH / 2}px + ${MAIL_WIDTH / 2}px
+    ${({ theme }) => theme.breakpoints.max}px - ${MAIL_WIDTH}px -
+      ${({ theme }) => theme.spacings.s64} - ${POST_BOX_WIDTH / 2}px +
+      ${MAIL_WIDTH / 2}px
   );
+
+  ${({ theme }) => theme.mediaQueries.max} {
+    //Position the mail image to middle of the the post box
+    left: calc(
+      100vw - ${MAIL_WIDTH}px - ${({ theme }) => theme.spacings.s64} -
+        ${POST_BOX_WIDTH / 2}px + ${MAIL_WIDTH / 2}px
+    );
+  }
+
   top: calc(100dvh - ${BOTTOM_BACKGROUND_HEIGHT} - ${MAIL_HEIGHT}px);
   z-index: 2;
 
@@ -149,7 +159,6 @@ export const ContactSection = ({
         bgColor="contacts"
         order={order}
         forwardRef={ref}
-        useMaxWidth={false}
       >
         <BackgroundGround />
         <H2>{contactData.title}</H2>

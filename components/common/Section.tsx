@@ -20,15 +20,16 @@ type SectionProps = {
 
 export const BasicSection = styled.section<{ $bgColor?: string }>`
   overflow-x: hidden;
-  padding-left: 10vw;
-  padding-right: ${({ theme }) => theme.spacings.s64};
+
+  padding-left: ${({ theme }) => theme.pageMaxPaddingLeft};
+  padding-right: ${({ theme }) => theme.pageMaxPaddingRight};
   padding-top: ${({ theme }) => theme.spacings.s128};
   padding-bottom: ${({ theme }) => theme.spacings.s80};
 
   background-color: ${({ $bgColor }) => $bgColor};
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    padding-left: 5vw;
+    padding-left: ${({ theme }) => theme.spacings.s48};
   }
 
   ${({ theme }) => theme.mediaQueries.md} {
