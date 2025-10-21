@@ -124,7 +124,7 @@ export const SectionContextProvider: React.FC<React.PropsWithChildren> = ({
     }
 
     window.addEventListener('scroll', throttledOnScroll);
-    throttledOnScroll(); // Calculate initial background color
+    onScroll(); // Calculate initial background color
     return () => {
       window.removeEventListener('scroll', throttledOnScroll);
     };

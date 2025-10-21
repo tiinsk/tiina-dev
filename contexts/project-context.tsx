@@ -160,7 +160,7 @@ export const ProjectContextProvider: React.FC<React.PropsWithChildren> = ({
     }
 
     window.addEventListener('scroll', throttledOnScroll);
-    throttledOnScroll(); // Calculate initial state
+    onScroll(); // Calculate initial state
     return () => {
       window.removeEventListener('scroll', throttledOnScroll);
     };
