@@ -6,7 +6,6 @@ import poppinsBold from '../assets/fonts/Poppins/Poppins-Bold.ttf';
 import poppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
 import poppinsMedium from '../assets/fonts/Poppins/Poppins-Medium.ttf';
 import poppinsRegular from '../assets/fonts/Poppins/Poppins-Regular.ttf';
-import rubik from '../assets/fonts/Rubik/Rubik-VariableFont_wght.ttf';
 
 export default function HeadDefault() {
   return (
@@ -43,13 +42,6 @@ export default function HeadDefault() {
       <link
         rel="preload"
         href={poppinsRegular}
-        as="font"
-        type="font/ttf"
-        crossOrigin="anonymous"
-      ></link>
-      <link
-        rel="preload"
-        href={rubik}
         as="font"
         type="font/ttf"
         crossOrigin="anonymous"

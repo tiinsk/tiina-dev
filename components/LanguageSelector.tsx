@@ -15,16 +15,11 @@ const StyledLanguageSelector = styled.nav`
 `;
 
 const LanguageSelectorBox = styled(Flex)`
-  display: flex;
-
-  border: 2px solid ${({ theme }) => theme.colors.background.secondary};
-  border-radius: ${({ theme }) => theme.spacings.s12};
-  overflow: hidden;
+  align-items: center;
 `;
 
 const ActiveStyle = css`
-  color: ${({ theme }) => theme.colors.typography.active};
-  background-color: ${({ theme }) => theme.colors.background.secondary};
+  color: ${({ theme }) => theme.colors.typography.light};
 `;
 
 const StyledLink = styled(Link)<{ $isActive?: boolean }>`

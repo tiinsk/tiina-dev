@@ -12,7 +12,6 @@ import poppinsBold from '../assets/fonts/Poppins/Poppins-Bold.ttf';
 import poppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
 import poppinsMedium from '../assets/fonts/Poppins/Poppins-Medium.ttf';
 import poppinsRegular from '../assets/fonts/Poppins/Poppins-Regular.ttf';
-import rubik from '../assets/fonts/Rubik/Rubik-VariableFont_wght.ttf';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -87,14 +86,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: Poppins;
     src: url(${poppinsLight}) format('truetype');
     font-weight: 300;
-    font-style: normal;
-    font-display: fallback;
-  }
-
-  @font-face {
-    font-family: Rubik;
-    src: url(${rubik}) format('truetype');
-    font-weight: 900;
     font-style: normal;
     font-display: fallback;
   }

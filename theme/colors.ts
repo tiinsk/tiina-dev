@@ -19,6 +19,9 @@ const primitiveColors = {
     '50': '#F3FFBB',
     '20': '#F3FFBB80',
   },
+  green: {
+    '100': '#205757',
+  },
   tech: {
     '100': '#03890C',
     '20': '#CDE7CE',
@@ -96,7 +99,7 @@ export const colors = {
     core: primitiveColors.core['100'],
     design: primitiveColors.design['100'],
     yellow: primitiveColors.yellow['50'],
-    active: primitiveColors.neutral.filled['00'],
+    green: primitiveColors.green['100'],
   },
   posIts: {
     primary: primitiveColors.yellow['50'],

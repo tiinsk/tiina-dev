@@ -1,11 +1,16 @@
 import { css } from 'styled-components';
 
 export const H1Style = css`
-  font-family: ${({ theme }) => theme.fonts.fontHeader};
+  font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.black};
-  font-size: 4.8rem;
-  line-height: 7.2rem;
+  font-size: 8rem;
+  line-height: 12rem;
   letter-spacing: 0.1rem;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 6rem;
+    line-height: 8rem;
+  }
 `;
 
 export const H2Style = css`

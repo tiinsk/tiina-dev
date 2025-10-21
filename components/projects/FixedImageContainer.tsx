@@ -30,8 +30,11 @@ const FixedImage = styled.img`
 
 export const FixedImageContainer = () => {
   const { projects, visibleProject } = useProjectContext();
+
   return (
-    <StyledFixedImageContainer>
+    <StyledFixedImageContainer
+      style={{ display: visibleProject.name !== undefined ? 'flex' : 'none' }}
+    >
       {Object.values(projects)
         .sort((a, b) => ((a?.initialY1 || 0) > (b?.initialY1 || 0) ? 1 : -1))
         .map(

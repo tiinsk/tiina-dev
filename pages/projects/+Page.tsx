@@ -22,6 +22,11 @@ const StyledProjectPage = styled.div`
 `;
 
 const StyledNav = styled.nav`
+  position: fixed;
+  width: 100vw;
+  background-color: ${({ theme }) => theme.colors.background.sections.projects};
+  z-index: ${({ theme }) => theme.zIndex.menus};
+
   border-bottom: 1px solid ${({ theme }) => theme.colors.typography.primary};
   display: flex;
   padding: ${({ theme }) => theme.spacings.s16};
@@ -32,7 +37,7 @@ const Content = styled.div`
 
   padding-left: 10vw;
   padding-right: ${({ theme }) => theme.spacings.s64};
-  padding-top: ${({ theme }) => theme.spacings.s64};
+  padding-top: ${({ theme }) => theme.spacings.s128};
   padding-bottom: ${({ theme }) => theme.spacings.s80};
 
   ${({ theme }) => theme.mediaQueries.lg} {

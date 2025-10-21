@@ -136,7 +136,7 @@ export const ProjectListItem = ({
           <LinkButton
             variant="secondary"
             text={moreButtonText}
-            iconRight="mdiArrowTopRight"
+            iconRight="mdiArrowRight"
             href={`/projects/${itemData.slug}`}
           />
         </Flex>

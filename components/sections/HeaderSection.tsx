@@ -1,7 +1,7 @@
 import { FragmentOf, readFragment } from 'gql.tada';
 
 import { graphql } from '../../datocms/graphql';
-import { H1, Subtitle } from '../common/typography';
+import { H1, Info } from '../common/typography';
 import styled from 'styled-components';
 import { LanguageSelector } from '../LanguageSelector';
 import { Background } from '../../assets/images/aquarium/Background';
@@ -30,17 +30,19 @@ const ContentContainer = styled.div`
   height: 100vh;
 
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 
 const HeaderText = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacings.s16};
+  gap: ${({ theme }) => theme.spacings.s8};
   justify-content: center;
+  align-items: center;
+  text-align: center;
 
-  margin-left: ${({ theme }) => theme.spacings.s192};
-  margin-right: ${({ theme }) => theme.spacings.s192};
+  margin-left: ${({ theme }) => theme.spacings.s40};
+  margin-right: ${({ theme }) => theme.spacings.s40};
 
   ${({ theme }) => theme.mediaQueries.md} {
     margin-left: ${({ theme }) => theme.spacings.s40};
@@ -72,10 +74,10 @@ export const HeaderSection = ({
       <ContentContainer>
         <LanguageSelector />
         <HeaderText>
-          <H1 color="light">
+          <H1 color="green">
             {headerData.title} {headerData.name}
           </H1>
-          <Subtitle color="tertiary">{headerData.subtitle}</Subtitle>
+          <Info color="tertiary">{headerData.subtitle}</Info>
         </HeaderText>
       </ContentContainer>
     </StyledHeader>
