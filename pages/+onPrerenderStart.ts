@@ -1,6 +1,5 @@
 // https://vike.dev/onPrerenderStart
 import type { PageContext, PrerenderContext } from 'vike/types';
-import assert from 'assert';
 
 import { defaultLocale, locales } from '../locales';
 
