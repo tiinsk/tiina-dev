@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { Road, RoadVariant } from '../../assets/images/roads/Road';
 import { getFormattedDateMMMYYYY } from '../../utils/date';
 import { usePageContext } from 'vike-react/usePageContext';
+import { Cloud, CloudVariant } from '../../assets/images/roads/Cloud';
 
 interface WorkItemProps {
   data: FragmentOf<typeof WorkItemFragment>;
@@ -53,17 +54,54 @@ const TextContent = styled(Flex)`
   }
 `;
 
+const getCloudVariant = (
+  roadVariant: RoadVariant
+): { leftOffset: string; topOffset: string; variant: CloudVariant } => {
+  switch (roadVariant) {
+    case 1:
+      return {
+        leftOffset: '-5%',
+        topOffset: '-15%',
+        variant: 1,
+      };
+    case 2:
+      return {
+        leftOffset: '15%',
+        topOffset: '-15%',
+        variant: 2,
+      };
+    case 3:
+      return {
+        leftOffset: '5%',
+        topOffset: '5%',
+        variant: 3,
+      };
+    case 4:
+      return {
+        leftOffset: '0%',
+        topOffset: '0%',
+        variant: 1,
+      };
+  }
+};
+
 export const WorkListItem = ({ data, isFirst, isLast }: WorkItemProps) => {
   const itemData = readFragment(WorkItemFragment, data);
   const { locale } = usePageContext();
+  const cloud = getCloudVariant(itemData.roadIcon as RoadVariant);
   return (
     <li>
       <Flex flexDirection="row">
-        <div>
+        <div style={{ position: 'relative' }}>
           <Road
             variant={itemData.roadIcon as RoadVariant}
             isFirst={isFirst}
             isLast={isLast}
+          />
+          <Cloud
+            variant={cloud.variant}
+            leftOffset={cloud.leftOffset}
+            topOffset={cloud.topOffset}
           />
         </div>
         <TextContent>
