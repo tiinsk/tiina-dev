@@ -27,10 +27,18 @@ export const Background = () => {
     if (typeof window === 'undefined') return;
 
     const y = window.scrollY;
-    setScrollY(y);
-  }, [scrollY]);
+    const viewportHeight = window.innerHeight;
 
-  const throttledOnScroll = useCallback(throttle(onScroll, 100), [onScroll]);
+    setScrollY(y);
+
+    if (y < viewportHeight) {
+      setScrollY(y);
+    } else {
+      setScrollY(viewportHeight);
+    }
+  }, []);
+
+  const throttledOnScroll = useCallback(throttle(onScroll, 3), [onScroll]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
