@@ -24,7 +24,7 @@ const StyledImageGallery = styled.div`
     overflow: hidden;
 
     .image-gallery-image {
-      aspect-ratio: 3 / 2;
+      aspect-ratio: 10 / 7;
     }
     .nav-button {
       opacity: 0;
@@ -61,7 +61,7 @@ const StyledImageGallery = styled.div`
         }
 
         .image-gallery-thumbnail-image {
-          aspect-ratio: 3 / 2;
+          aspect-ratio: 10 / 7;
           position: relative;
         }
       }
@@ -83,6 +83,7 @@ const StyledImg = styled.img`
   left: 0;
 
   object-fit: cover;
+  object-position: top;
   width: 100%;
   height: 100%;
 `;

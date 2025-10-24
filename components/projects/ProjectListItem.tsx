@@ -6,10 +6,9 @@ import { Flex } from '../common/Flex';
 import { Body, H4, Small } from '../common/typography';
 import { Tag, TagVariant } from '../common/Tag';
 import { useProjectContext } from '../../contexts/project-context';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { ButtonIconType } from '../common/Button';
 import { LinkButton } from '../common/LinkButton';
-import { ProjectDialog, ProjectDialogFragment } from './ProjectDialog';
 
 interface ProjectItemProps {
   data: FragmentOf<typeof ProjectItemFragment>;
@@ -17,30 +16,25 @@ interface ProjectItemProps {
   activeTitle: string;
 }
 
-export const ProjectItemFragment = graphql(
-  `
-    fragment ProjectItemFragment on ProjectRecord {
-      title
-      body
-      activeYearList
-      slug
-      image {
-        url
-      }
-      skills {
-        name
-        skillType
-      }
-      links {
-        title
-        icon
-        url
-      }
-      ...ProjectDialogFragment
+export const ProjectItemFragment = graphql(`
+  fragment ProjectItemFragment on ProjectRecord {
+    title
+    body
+    activeYearList
+    slug
+    image {
+      url
     }
-  `,
-  [ProjectDialogFragment]
-);
+    skills {
+      name
+      skillType
+    }
+    links {
+      icon
+      url
+    }
+  }
+`);
 
 export const getTagVariant = (skillType: string): TagVariant => {
   if (['tech', 'core', 'design'].includes(skillType))
@@ -78,7 +72,6 @@ export const ProjectListItem = ({
   activeTitle,
 }: ProjectItemProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const itemData = readFragment(ProjectItemFragment, data);
 
@@ -125,7 +118,7 @@ export const ProjectListItem = ({
           <Flex flexDirection="row" gap="s8" flexWrap="wrap">
             {itemData.links.map(link => (
               <LinkButton
-                key={link.title}
+                key={link.icon}
                 iconLeft={(link.icon as ButtonIconType) || undefined}
                 href={link.url}
                 isExternal={true}
@@ -141,12 +134,6 @@ export const ProjectListItem = ({
           />
         </Flex>
       </TextContent>
-      <ProjectDialog
-        isOpen={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-        data={data}
-        activeTitle={activeTitle}
-      />
     </StyledProjectItem>
   );
 };

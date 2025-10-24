@@ -72,8 +72,8 @@ export const BodyStyle = css`
 export const SmallStyle = css`
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
-  font-size: 1.2rem;
-  line-height: 1.6rem;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
   letter-spacing: 0.04rem;
 `;
 

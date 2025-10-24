@@ -14,6 +14,15 @@ const query = graphql(
       }
       allProjects(locale: $locale, filter: { slug: { eq: $slug } }) {
         ...ProjectItemFragment
+        galleryImages {
+          blurhash
+          thumbnail: responsiveImage(imgixParams: { fm: jpg, w: 200 }) {
+            src
+          }
+          original: responsiveImage(imgixParams: { fm: jpg, w: 1400 }) {
+            src
+          }
+        }
       }
     }
   `,

@@ -28,7 +28,6 @@ export const ContactFragment = graphql(`
       target
     }
     buttonLinks {
-      title
       url
       icon
       target
@@ -172,7 +171,7 @@ export const ContactSection = ({
             >
               {contactData.buttonLinks.map(link => (
                 <LinkButton
-                  key={link.title}
+                  key={link.icon}
                   iconLeft={(link.icon as ButtonIconType) || undefined}
                   href={link.url}
                   target={link.target || undefined}

@@ -12,7 +12,6 @@ import { LinkButton } from '../../components/common/LinkButton';
 import { Button, ButtonIconType } from '../../components/common/Button';
 import { Flex } from '../../components/common/Flex';
 import { ImageGallery } from '../../components/common/ImageGallery';
-import { ProjectDialogFragment } from '../../components/projects/ProjectDialog';
 import { Tag } from '../../components/common/Tag';
 import styled from 'styled-components';
 
@@ -60,7 +59,6 @@ export default function Page() {
   }
 
   const itemData = readFragment(ProjectItemFragment, project);
-  const dialogData = readFragment(ProjectDialogFragment, itemData);
 
   return (
     <StyledProjectPage>
@@ -76,14 +74,14 @@ export default function Page() {
         <Flex flexDirection="row" gap="s8" flexWrap="wrap" mb="s24">
           {itemData.links.map(link => (
             <LinkButton
-              key={link.title}
+              key={link.icon}
               iconLeft={(link.icon as ButtonIconType) || undefined}
               href={link.url}
               target="_blank"
             />
           ))}
         </Flex>
-        <ImageGallery images={dialogData.galleryImages} />
+        <ImageGallery images={project.galleryImages} />
         <Flex flexDirection="column" gap="s12" mt="s24">
           {itemData.activeYearList && (
             <Small>{`${data.projectSection?.activeTitle}: ${itemData.activeYearList}`}</Small>
