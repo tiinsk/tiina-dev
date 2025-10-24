@@ -1,5 +1,9 @@
 ## Tiina.dev
 
+### About
+
+This project has a long history. This repo contains only the latest version of the site. Older versons are stored in different repo: [Github (This is Me)](https://github.com/tiinsk/ThisIsMe).
+
 ### Development
 
 Install dependencies and run the development server:
