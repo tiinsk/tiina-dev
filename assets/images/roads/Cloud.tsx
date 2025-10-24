@@ -14,8 +14,10 @@ export type CloudVariant = 1 | 2 | 3;
 export interface CloudProps {
   variant: CloudVariant;
   size?: Space;
-  leftOffset?: string;
-  topOffset?: string;
+  initOffsetX?: string;
+  initOffsetY?: string;
+  direction?: 'left' | 'right';
+  speedMultiplier?: number;
 }
 
 const getCloudVariant = (variant: CloudVariant) => {
@@ -39,8 +41,10 @@ const CloudBox = styled.div`
 export const Cloud = ({
   variant,
   size = 's192',
-  leftOffset = '0px',
-  topOffset = '0px',
+  initOffsetX = '0px',
+  initOffsetY = '0px',
+  direction = 'left',
+  speedMultiplier = TRANSFORM_MULTIPLIER,
 }: CloudProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [offsetY, setOffsetY] = useState(0);
@@ -80,8 +84,15 @@ export const Cloud = ({
     <CloudBox
       ref={ref}
       style={{
-        left: `calc(${leftOffset} - ${offsetY * TRANSFORM_MULTIPLIER}px)`,
-        top: `calc(50% + ${topOffset})`,
+        left:
+          direction === 'left'
+            ? `calc(${initOffsetX} - ${offsetY * speedMultiplier}px)`
+            : 'auto',
+        right:
+          direction === 'right'
+            ? `calc(${initOffsetX} - ${offsetY * speedMultiplier}px)`
+            : 'auto',
+        top: `calc(50% + ${initOffsetY})`,
       }}
     >
       <CloudVariant size={spacings[size]} />

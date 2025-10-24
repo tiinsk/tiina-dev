@@ -56,31 +56,41 @@ const TextContent = styled(Flex)`
 
 const getCloudVariant = (
   roadVariant: RoadVariant
-): { leftOffset: string; topOffset: string; variant: CloudVariant } => {
+): {
+  initOffsetX: string;
+  initOffsetY: string;
+  variant: CloudVariant;
+  direction?: 'left' | 'right';
+  speedMultiplier?: number;
+} => {
   switch (roadVariant) {
     case 1:
       return {
-        leftOffset: '-5%',
-        topOffset: '-15%',
+        initOffsetX: '40%',
+        initOffsetY: '-15%',
         variant: 1,
+        direction: 'right',
+        speedMultiplier: 0.1,
       };
     case 2:
       return {
-        leftOffset: '15%',
-        topOffset: '-15%',
+        initOffsetX: '15%',
+        initOffsetY: '-15%',
         variant: 2,
       };
     case 3:
       return {
-        leftOffset: '5%',
-        topOffset: '5%',
+        initOffsetX: '5%',
+        initOffsetY: '5%',
         variant: 3,
       };
     case 4:
       return {
-        leftOffset: '0%',
-        topOffset: '0%',
+        initOffsetX: '30%',
+        initOffsetY: '0%',
         variant: 1,
+        direction: 'right',
+        speedMultiplier: 0.1,
       };
   }
 };
@@ -100,8 +110,10 @@ export const WorkListItem = ({ data, isFirst, isLast }: WorkItemProps) => {
           />
           <Cloud
             variant={cloud.variant}
-            leftOffset={cloud.leftOffset}
-            topOffset={cloud.topOffset}
+            initOffsetX={cloud.initOffsetX}
+            initOffsetY={cloud.initOffsetY}
+            direction={cloud.direction}
+            speedMultiplier={cloud.speedMultiplier}
           />
         </div>
         <TextContent>
@@ -113,8 +125,8 @@ export const WorkListItem = ({ data, isFirst, isLast }: WorkItemProps) => {
                   : ''
               }`}
             </Label>
-            <H4>{itemData.title}</H4>
-            <SmallBold>{itemData.company}</SmallBold>
+            <H4>{itemData.company}</H4>
+            <SmallBold>{itemData.title}</SmallBold>
           </Flex>
           <Flex flexDirection="row" gap="s12" flexWrap="wrap">
             {itemData.skills.map(skill => (
