@@ -3,9 +3,14 @@ import { css } from 'styled-components';
 export const H1Style = css`
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.black};
-  font-size: 8rem;
-  line-height: 12rem;
+  font-size: 10rem;
+  line-height: 15rem;
   letter-spacing: 0.1rem;
+
+  ${({ theme }) => theme.mediaQueries.max} {
+    font-size: 8rem;
+    line-height: 12rem;
+  }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     font-size: 6rem;

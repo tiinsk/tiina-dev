@@ -43,6 +43,7 @@ const HeaderText = styled.div`
 
   margin-left: ${({ theme }) => theme.spacings.s40};
   margin-right: ${({ theme }) => theme.spacings.s40};
+  margin-bottom: ${({ theme }) => theme.spacings.s128};
 
   ${({ theme }) => theme.mediaQueries.md} {
     margin-left: ${({ theme }) => theme.spacings.s40};
