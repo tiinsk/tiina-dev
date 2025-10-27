@@ -4,6 +4,23 @@
 
 This project has a long history. This repo contains only the latest version of the site. Older versons are stored in different repo: [Github (This is Me)](https://github.com/tiinsk/ThisIsMe).
 
+### Environment variables
+
+Create a `.env.local` file in the root of the project and add the following variables:
+```
+DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN=example-published-dato-cms-token
+
+-- optional --
+
+DATOCMS_DRAFT_CONTENT_CDA_TOKEN=example-draft-dato-cms-token
+DATOCMS_SHOW_DRAFT_CONTENT=true|false
+```
+
+Dato has a published/draft content system. `DATOCMS_DRAFT_CONTENT_CDA_TOKEN` can be used to show draft content on the site. `DATOCMS_DRAFT_CONTENT_CDA_TOKEN` will be used if `DATOCMS_SHOW_DRAFT_CONTENT` is set to `true`.
+
+`DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN` is used in production, so unfinished drafts are not visible there.
+
+
 ### Development
 
 Install dependencies and run the development server:
