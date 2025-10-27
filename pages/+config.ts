@@ -11,8 +11,6 @@ export default {
 
   // https://vike.dev/head-tags
   title: 'tiina.dev',
-
-  description: 'Demo showcasing Vike',
   extends: vikeReact,
   prerender: true,
 } satisfies Config;
