@@ -4,11 +4,11 @@
  */
 const config = {
   tabWidth: 2,
-  arrowParens: "avoid",
-  trailingComma: "es5",
+  arrowParens: 'avoid',
+  trailingComma: 'es5',
   semi: true,
   singleQuote: true,
-  bracketSpacing: true
+  bracketSpacing: true,
 };
 
 export default config;

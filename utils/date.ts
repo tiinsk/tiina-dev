@@ -1,4 +1,4 @@
-import { Locale } from '../locales';
+import { Locale } from '@/locales';
 
 export const getFormattedDateMMMYYYY = (
   dateStr: string | null,

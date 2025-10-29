@@ -13,10 +13,10 @@ export async function executeQuery<Result, Variables>(
   return libExecuteQuery(query, {
     variables: options?.variables,
     excludeInvalid: true,
-    includeDrafts: import.meta.env.DATOCMS_SHOW_DRAFT_CONTENT === 'true',
+    includeDrafts: process.env.DATOCMS_SHOW_DRAFT_CONTENT === 'true',
     token:
-      import.meta.env.DATOCMS_SHOW_DRAFT_CONTENT === 'true'
-        ? import.meta.env.DATOCMS_DRAFT_CONTENT_CDA_TOKEN!
-        : import.meta.env.DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN!,
+      process.env.DATOCMS_SHOW_DRAFT_CONTENT === 'true'
+        ? process.env.DATOCMS_DRAFT_CONTENT_CDA_TOKEN!
+        : process.env.DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN!,
   });
 }
