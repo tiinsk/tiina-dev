@@ -1,36 +1,39 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
     "skipLibCheck": true,
-    "sourceMap": true,
-    "module": "ESNext",
+    "strict": true,
     "noEmit": true,
-    "moduleResolution": "Bundler",
-    "target": "ES2022",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "types": [
-      "node",
-      "vite/client",
-      "vike-react",
-    ],
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "react",
+    "incremental": true,
+    "paths": {
+      "@/*": ["./*"]
+    },
     "plugins": [
       {
         "name": "gql.tada/ts-plugin",
         "schema": "./schema.graphql",
         "tadaOutputLocation": "./datocms/graphql-env.d.ts"
+      },
+      {
+        "name": "next"
       }
     ]
   },
-  "exclude": [
-    "dist"
-  ]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "styled.d.ts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
 }

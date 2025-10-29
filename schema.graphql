@@ -48,7 +48,6 @@ type AboutMeSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  backgroundColor: ColorField
   body(
     """Process content as markdown"""
     markdown: Boolean
@@ -152,7 +151,6 @@ type ContactSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  backgroundColor: ColorField
   buttonLinks: [LinkRecord!]!
   createdAt: DateTime!
   id: ItemId!
@@ -246,168 +244,6 @@ input DateFilter {
 
 """A ISO 8601 compliant datetime value"""
 scalar DateTime
-
-input EducationModelFilter {
-  _createdAt: CreatedAtFilter
-  createdAt: CreatedAtFilter
-  id: ItemIdFilter
-  _firstPublishedAt: PublishedAtFilter
-  _publicationScheduledAt: PublishedAtFilter
-  _unpublishingScheduledAt: PublishedAtFilter
-  _publishedAt: PublishedAtFilter
-  _status: StatusFilter
-  _updatedAt: UpdatedAtFilter
-  updatedAt: UpdatedAtFilter
-  _isValid: BooleanFilter
-  startDate: DateFilter
-  endDate: DateFilter
-  school: StringFilter
-  title: StringFilter
-  program: StringFilter
-  body: TextFilter
-  OR: [EducationModelFilter]
-  AND: [EducationModelFilter]
-}
-
-enum EducationModelOrderBy {
-  _createdAt_ASC
-  _createdAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-  id_ASC
-  id_DESC
-  _firstPublishedAt_ASC
-  _firstPublishedAt_DESC
-  _publicationScheduledAt_ASC
-  _publicationScheduledAt_DESC
-  _unpublishingScheduledAt_ASC
-  _unpublishingScheduledAt_DESC
-  _publishedAt_ASC
-  _publishedAt_DESC
-  _status_ASC
-  _status_DESC
-  _updatedAt_ASC
-  _updatedAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  _isValid_ASC
-  _isValid_DESC
-  startDate_ASC
-  startDate_DESC
-  endDate_ASC
-  endDate_DESC
-  school_ASC
-  school_DESC
-  title_ASC
-  title_DESC
-  program_ASC
-  program_DESC
-}
-
-"""Record of type Education (education)"""
-type EducationRecord implements RecordInterface {
-  _allBodyLocales(
-    """Process content as markdown"""
-    markdown: Boolean
-
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allProgramLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allSchoolLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allTitleLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _createdAt: DateTime!
-
-  """Editing URL"""
-  _editingUrl: String
-  _firstPublishedAt: DateTime!
-  _isValid: BooleanType!
-  _modelApiKey: String!
-  _publicationScheduledAt: DateTime
-  _publishedAt: DateTime!
-
-  """Generates SEO and Social card meta tags to be used in your frontend"""
-  _seoMetaTags(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-  ): [Tag!]!
-  _status: ItemStatus!
-  _unpublishingScheduledAt: DateTime
-  _updatedAt: DateTime!
-  body(
-    """Process content as markdown"""
-    markdown: Boolean
-
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  createdAt: DateTime!
-  endDate: Date
-  id: ItemId!
-  program(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  school(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  startDate: Date
-  title(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  updatedAt: DateTime!
-}
 
 input FactModelFilter {
   _createdAt: CreatedAtFilter
@@ -570,7 +406,6 @@ type FactsSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  backgroundColor: ColorField
   createdAt: DateTime!
   factList: [FactRecord!]!
   id: ItemId!
@@ -904,7 +739,6 @@ type HeaderSectionRecord implements RecordInterface {
   _updatedAt: DateTime!
   createdAt: DateTime!
   id: ItemId!
-  image: FileField
   name(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -2993,139 +2827,6 @@ enum ItemStatus {
   published
 }
 
-input LanguageSkillModelFilter {
-  _createdAt: CreatedAtFilter
-  createdAt: CreatedAtFilter
-  id: ItemIdFilter
-  _firstPublishedAt: PublishedAtFilter
-  _publicationScheduledAt: PublishedAtFilter
-  _unpublishingScheduledAt: PublishedAtFilter
-  _publishedAt: PublishedAtFilter
-  _status: StatusFilter
-  _updatedAt: UpdatedAtFilter
-  updatedAt: UpdatedAtFilter
-  _isValid: BooleanFilter
-  title: StringFilter
-  level: StringFilter
-  body: TextFilter
-  OR: [LanguageSkillModelFilter]
-  AND: [LanguageSkillModelFilter]
-}
-
-enum LanguageSkillModelOrderBy {
-  _createdAt_ASC
-  _createdAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-  id_ASC
-  id_DESC
-  _firstPublishedAt_ASC
-  _firstPublishedAt_DESC
-  _publicationScheduledAt_ASC
-  _publicationScheduledAt_DESC
-  _unpublishingScheduledAt_ASC
-  _unpublishingScheduledAt_DESC
-  _publishedAt_ASC
-  _publishedAt_DESC
-  _status_ASC
-  _status_DESC
-  _updatedAt_ASC
-  _updatedAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  _isValid_ASC
-  _isValid_DESC
-  title_ASC
-  title_DESC
-  level_ASC
-  level_DESC
-}
-
-"""Record of type Language Skill (language_skill)"""
-type LanguageSkillRecord implements RecordInterface {
-  _allBodyLocales(
-    """Process content as markdown"""
-    markdown: Boolean
-
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allLevelLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _allTitleLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [StringMultiLocaleField!]
-  _createdAt: DateTime!
-
-  """Editing URL"""
-  _editingUrl: String
-  _firstPublishedAt: DateTime!
-  _isValid: BooleanType!
-  _modelApiKey: String!
-  _publicationScheduledAt: DateTime
-  _publishedAt: DateTime!
-
-  """Generates SEO and Social card meta tags to be used in your frontend"""
-  _seoMetaTags(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-  ): [Tag!]!
-  _status: ItemStatus!
-  _unpublishingScheduledAt: DateTime
-  _updatedAt: DateTime!
-  body(
-    """Process content as markdown"""
-    markdown: Boolean
-
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  createdAt: DateTime!
-  id: ItemId!
-  level(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  title(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): String
-  updatedAt: DateTime!
-}
-
 """Block of type Link (link)"""
 type LinkRecord implements RecordInterface {
   _createdAt: DateTime!
@@ -3150,14 +2851,9 @@ type LinkRecord implements RecordInterface {
   icon: String
   id: ItemId!
   target: String
-  title: String!
+  title: String
   updatedAt: DateTime!
   url: String!
-}
-
-type LinkRecordListListNonNullMultiLocaleField {
-  locale: SiteLocale
-  value: [LinkRecord!]!
 }
 
 """Specifies how to filter Multiple-links fields"""
@@ -3301,15 +2997,6 @@ type ProjectRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [StringNonNullMultiLocaleField!]
-  _allLinksLocales(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [LinkRecordListListNonNullMultiLocaleField!]
   _allSlugLocales(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3363,15 +3050,7 @@ type ProjectRecord implements RecordInterface {
   galleryImages: [FileField!]!
   id: ItemId!
   image: FileField!
-  links(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): [LinkRecord!]!
+  links: [LinkRecord!]!
   position: IntType
   skills: [SkillRecord!]!
   slug(
@@ -3451,7 +3130,6 @@ type ProjectSectionRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
-  backgroundColor: ColorField
   createdAt: DateTime!
   id: ItemId!
   moreButtonText(
@@ -3517,34 +3195,10 @@ input PublishedAtFilter {
 """The query root for this schema"""
 type Query {
   """Returns meta information regarding a record collection"""
-  _allEducationsMeta(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-    filter: EducationModelFilter
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): CollectionMetadata!
-
-  """Returns meta information regarding a record collection"""
   _allFactsMeta(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
     filter: FactModelFilter
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): CollectionMetadata!
-
-  """Returns meta information regarding a record collection"""
-  _allLanguageSkillsMeta(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-    filter: LanguageSkillModelFilter
 
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -3569,18 +3223,6 @@ type Query {
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
     filter: SkillModelFilter
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-  ): CollectionMetadata!
-
-  """Returns meta information regarding a record collection"""
-  _allTestsMeta(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-    filter: TestModelFilter
 
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -3630,25 +3272,6 @@ type Query {
   ): AboutMeSectionRecord
 
   """Returns a collection of records"""
-  allEducations(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-
-    """Skip the first results"""
-    skip: IntType
-
-    """Limit the number of results"""
-    first: IntType = 20
-    filter: EducationModelFilter
-    orderBy: [EducationModelOrderBy] = [_updatedAt_DESC]
-  ): [EducationRecord!]!
-
-  """Returns a collection of records"""
   allFacts(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3666,25 +3289,6 @@ type Query {
     filter: FactModelFilter
     orderBy: [FactModelOrderBy] = [_updatedAt_DESC]
   ): [FactRecord!]!
-
-  """Returns a collection of records"""
-  allLanguageSkills(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-
-    """Skip the first results"""
-    skip: IntType
-
-    """Limit the number of results"""
-    first: IntType = 20
-    filter: LanguageSkillModelFilter
-    orderBy: [LanguageSkillModelOrderBy] = [_updatedAt_DESC]
-  ): [LanguageSkillRecord!]!
 
   """Returns a collection of records"""
   allProjects(
@@ -3723,25 +3327,6 @@ type Query {
     filter: SkillModelFilter
     orderBy: [SkillModelOrderBy] = [_updatedAt_DESC]
   ): [SkillRecord!]!
-
-  """Returns a collection of records"""
-  allTests(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-
-    """Skip the first results"""
-    skip: IntType
-
-    """Limit the number of results"""
-    first: IntType = 20
-    filter: TestModelFilter
-    orderBy: [TestModelOrderBy] = [_updatedAt_DESC]
-  ): [TestRecord!]!
 
   """Returns a collection of assets"""
   allUploads(
@@ -3793,19 +3378,6 @@ type Query {
   ): ContactSectionRecord
 
   """Returns a specific record"""
-  education(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-    filter: EducationModelFilter
-    orderBy: [EducationModelOrderBy] = [_updatedAt_DESC]
-  ): EducationRecord
-
-  """Returns a specific record"""
   fact(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3839,19 +3411,6 @@ type Query {
     """
     fallbackLocales: [SiteLocale!]
   ): HeaderSectionRecord
-
-  """Returns a specific record"""
-  languageSkill(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-    filter: LanguageSkillModelFilter
-    orderBy: [LanguageSkillModelOrderBy] = [_updatedAt_DESC]
-  ): LanguageSkillRecord
 
   """Returns a specific record"""
   project(
@@ -3900,19 +3459,6 @@ type Query {
     """
     fallbackLocales: [SiteLocale!]
   ): SkillSectionRecord
-
-  """Returns a specific record"""
-  test(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-
-    """
-    If you want to fallback to a default translation when a translation has not been found
-    """
-    fallbackLocales: [SiteLocale!]
-    filter: TestModelFilter
-    orderBy: [TestModelOrderBy] = [_updatedAt_DESC]
-  ): TestRecord
 
   """Returns a specific asset"""
   upload(
@@ -4166,6 +3712,9 @@ type SkillRecord implements RecordInterface {
 """Record of type Skill Section (skill_section)"""
 type SkillSectionRecord implements RecordInterface {
   _allCoreSkillBodyLocales(
+    """Process content as markdown"""
+    markdown: Boolean
+
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4184,6 +3733,9 @@ type SkillSectionRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): [StringNonNullMultiLocaleField!]
   _allDesignSkillBodyLocales(
+    """Process content as markdown"""
+    markdown: Boolean
+
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4211,6 +3763,9 @@ type SkillSectionRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): [StringNonNullMultiLocaleField!]
   _allTechSkillBodyLocales(
+    """Process content as markdown"""
+    markdown: Boolean
+
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4255,8 +3810,10 @@ type SkillSectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  backgroundColor: ColorField
   coreSkillBody(
+    """Process content as markdown"""
+    markdown: Boolean
+
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4277,6 +3834,9 @@ type SkillSectionRecord implements RecordInterface {
   coreSkills: [SkillRecord!]!
   createdAt: DateTime!
   designSkillBody(
+    """Process content as markdown"""
+    markdown: Boolean
+
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4306,6 +3866,9 @@ type SkillSectionRecord implements RecordInterface {
     fallbackLocales: [SiteLocale!]
   ): String!
   techSkillBody(
+    """Process content as markdown"""
+    markdown: Boolean
+
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -4422,78 +3985,6 @@ type Tag {
   attributes: MetaTagAttributes
   content: String
   tag: String!
-}
-
-input TestModelFilter {
-  _createdAt: CreatedAtFilter
-  createdAt: CreatedAtFilter
-  id: ItemIdFilter
-  _firstPublishedAt: PublishedAtFilter
-  _publicationScheduledAt: PublishedAtFilter
-  _unpublishingScheduledAt: PublishedAtFilter
-  _publishedAt: PublishedAtFilter
-  _status: StatusFilter
-  _updatedAt: UpdatedAtFilter
-  updatedAt: UpdatedAtFilter
-  _isValid: BooleanFilter
-  testText: TextFilter
-  OR: [TestModelFilter]
-  AND: [TestModelFilter]
-}
-
-enum TestModelOrderBy {
-  _createdAt_ASC
-  _createdAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-  id_ASC
-  id_DESC
-  _firstPublishedAt_ASC
-  _firstPublishedAt_DESC
-  _publicationScheduledAt_ASC
-  _publicationScheduledAt_DESC
-  _unpublishingScheduledAt_ASC
-  _unpublishingScheduledAt_DESC
-  _publishedAt_ASC
-  _publishedAt_DESC
-  _status_ASC
-  _status_DESC
-  _updatedAt_ASC
-  _updatedAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  _isValid_ASC
-  _isValid_DESC
-}
-
-"""Record of type test (test)"""
-type TestRecord implements RecordInterface {
-  _createdAt: DateTime!
-
-  """Editing URL"""
-  _editingUrl: String
-  _firstPublishedAt: DateTime!
-  _isValid: BooleanType!
-  _modelApiKey: String!
-  _publicationScheduledAt: DateTime
-  _publishedAt: DateTime!
-
-  """Generates SEO and Social card meta tags to be used in your frontend"""
-  _seoMetaTags(
-    """The locale to use to fetch the field's content"""
-    locale: SiteLocale
-  ): [Tag!]!
-  _status: ItemStatus!
-  _unpublishingScheduledAt: DateTime
-  _updatedAt: DateTime!
-  createdAt: DateTime!
-  id: ItemId!
-  testField: [String!]!
-  testText(
-    """Process content as markdown"""
-    markdown: Boolean
-  ): String
-  updatedAt: DateTime!
 }
 
 """Specifies how to filter text fields"""
@@ -5048,14 +4539,13 @@ input WorkHistoryModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  skills: LinksFilter
   roadIcon: IntegerFilter
   startDate: DateFilter
   endDate: DateFilter
   company: StringFilter
   title: StringFilter
   body: TextFilter
-  peakSkills: LinksFilter
-  skills: LinksFilter
   OR: [WorkHistoryModelFilter]
   AND: [WorkHistoryModelFilter]
 }
@@ -5169,7 +4659,6 @@ type WorkHistoryRecord implements RecordInterface {
   createdAt: DateTime!
   endDate: Date
   id: ItemId!
-  peakSkills: [SkillRecord!]!
   roadIcon: IntType
   skills: [SkillRecord!]!
   startDate: Date
@@ -5214,7 +4703,6 @@ type WorkHistorySectionRecord implements RecordInterface {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
-  backgroundColor: ColorField
   createdAt: DateTime!
   id: ItemId!
   title(
