@@ -9,6 +9,7 @@ import { WorkHistorySection } from '@/app/_components/sections/WorkHistorySectio
 import { SectionContextProvider } from '@/app/_contexts/section-context';
 import { useRef } from 'react';
 import { Data } from '@/app/[lang]/page';
+import { LanguageSelector } from '@/app/_components/LanguageSelector';
 
 export const HomePage = ({ data }: { data: Data }) => {
   const contactRef = useRef<HTMLElementTagNameMap['section'] | null>(null);
@@ -23,6 +24,7 @@ export const HomePage = ({ data }: { data: Data }) => {
 
   return (
     <>
+      <LanguageSelector />
       <HeaderSection data={data.header} />
       <AboutMeSection
         data={data.aboutMe}

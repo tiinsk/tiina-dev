@@ -2,8 +2,7 @@ import { Poppins } from 'next/font/google';
 
 import StyledComponentsRegistry from '@/lib/styled-components-registry';
 import ClientLayout from '@/lib/client-layout';
-import { languagesArray, Locale } from '@/locales';
-import { LanguageSelector } from '@/app/_components/LanguageSelector';
+import { languagesArray } from '@/locales';
 import { Metadata } from 'next';
 
 const poppins = Poppins({
@@ -33,7 +32,6 @@ export default async function RootLayout({
       <body>
         <StyledComponentsRegistry>
           <ClientLayout>
-            <LanguageSelector />
             {children}
           </ClientLayout>
         </StyledComponentsRegistry>

@@ -207,6 +207,656 @@ input CreatedAtFilter {
 
 scalar CustomData
 
+input CvEducationModelFilter {
+  _createdAt: CreatedAtFilter
+  createdAt: CreatedAtFilter
+  id: ItemIdFilter
+  _firstPublishedAt: PublishedAtFilter
+  _publicationScheduledAt: PublishedAtFilter
+  _unpublishingScheduledAt: PublishedAtFilter
+  _publishedAt: PublishedAtFilter
+  _status: StatusFilter
+  _updatedAt: UpdatedAtFilter
+  updatedAt: UpdatedAtFilter
+  _isValid: BooleanFilter
+  body: TextFilter
+  date: DateFilter
+  subtitle: StringFilter
+  title: StringFilter
+  OR: [CvEducationModelFilter]
+  AND: [CvEducationModelFilter]
+}
+
+enum CvEducationModelOrderBy {
+  _createdAt_ASC
+  _createdAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  _firstPublishedAt_ASC
+  _firstPublishedAt_DESC
+  _publicationScheduledAt_ASC
+  _publicationScheduledAt_DESC
+  _unpublishingScheduledAt_ASC
+  _unpublishingScheduledAt_DESC
+  _publishedAt_ASC
+  _publishedAt_DESC
+  _status_ASC
+  _status_DESC
+  _updatedAt_ASC
+  _updatedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  _isValid_ASC
+  _isValid_DESC
+  date_ASC
+  date_DESC
+  subtitle_ASC
+  subtitle_DESC
+  title_ASC
+  title_DESC
+}
+
+"""Record of type CV Education (cv_education)"""
+type CvEducationRecord implements RecordInterface {
+  _allBodyLocales(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allSubtitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringNonNullMultiLocaleField!]
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  body(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  createdAt: DateTime!
+  date: Date
+  id: ItemId!
+  subtitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  title(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
+  updatedAt: DateTime!
+}
+
+input CvModelFilter {
+  _createdAt: CreatedAtFilter
+  createdAt: CreatedAtFilter
+  id: ItemIdFilter
+  _firstPublishedAt: PublishedAtFilter
+  _publicationScheduledAt: PublishedAtFilter
+  _unpublishingScheduledAt: PublishedAtFilter
+  _publishedAt: PublishedAtFilter
+  _status: StatusFilter
+  _updatedAt: UpdatedAtFilter
+  updatedAt: UpdatedAtFilter
+  _isValid: BooleanFilter
+  _locales: LocalesFilter
+  techSkills: LinksFilter
+  slug: StringFilter
+  education: LinksFilter
+  certificates: LinksFilter
+  intro: TextFilter
+  languageSkills: LinksFilter
+  coreSkills: LinksFilter
+  title: StringFilter
+  designSkills: LinksFilter
+  workHistory: LinksFilter
+  image: FileFilter
+  name: StringFilter
+  topSkills: LinksFilter
+  OR: [CvModelFilter]
+  AND: [CvModelFilter]
+}
+
+enum CvModelOrderBy {
+  _createdAt_ASC
+  _createdAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  _firstPublishedAt_ASC
+  _firstPublishedAt_DESC
+  _publicationScheduledAt_ASC
+  _publicationScheduledAt_DESC
+  _unpublishingScheduledAt_ASC
+  _unpublishingScheduledAt_DESC
+  _publishedAt_ASC
+  _publishedAt_DESC
+  _status_ASC
+  _status_DESC
+  _updatedAt_ASC
+  _updatedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  _isValid_ASC
+  _isValid_DESC
+  slug_ASC
+  slug_DESC
+  title_ASC
+  title_DESC
+  name_ASC
+  name_DESC
+}
+
+"""Record of type CV (cv)"""
+type CvRecord implements RecordInterface {
+  _allIntroLocales(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _locales: [SiteLocale!]!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  certificates: [CvEducationRecord!]!
+  coreSkills: [SkillRecord!]!
+  createdAt: DateTime!
+  designSkills: [SkillRecord!]!
+  education: [CvEducationRecord!]!
+  id: ItemId!
+  image: FileField
+  intro(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  languageSkills: [SkillRecord!]!
+  links: [LinkRecord!]!
+  name: String!
+  slug: String!
+  techSkills: [SkillRecord!]!
+  title: String!
+  topSkills: [SkillRecord!]!
+  updatedAt: DateTime!
+  workHistory: [CvWorkHistoryRecord!]!
+}
+
+"""Record of type CV Text (cv_text)"""
+type CvTextRecord implements RecordInterface {
+  _allCertificateTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allCoreSkillsTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allDesignSkillsTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allEducationTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allLanguageLevel1TextLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allLanguageLevel2TextLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allLanguageLevel3TextLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allLanguageSkillsTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allTechSkillsTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allTopSkillsTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allWorkExperienceTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  certificateTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  coreSkillsTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  createdAt: DateTime!
+  designSkillsTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  educationTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  id: ItemId!
+  languageLevel1Text(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  languageLevel2Text(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  languageLevel3Text(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  languageSkillsTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  techSkillsTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  topSkillsTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  updatedAt: DateTime!
+  workExperienceTitle(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+}
+
+input CvWorkHistoryModelFilter {
+  _createdAt: CreatedAtFilter
+  createdAt: CreatedAtFilter
+  id: ItemIdFilter
+  _firstPublishedAt: PublishedAtFilter
+  _publicationScheduledAt: PublishedAtFilter
+  _unpublishingScheduledAt: PublishedAtFilter
+  _publishedAt: PublishedAtFilter
+  _status: StatusFilter
+  _updatedAt: UpdatedAtFilter
+  updatedAt: UpdatedAtFilter
+  _isValid: BooleanFilter
+  startDate: DateFilter
+  body: TextFilter
+  endDate: DateFilter
+  title: StringFilter
+  note: StringFilter
+  company: StringFilter
+  customDate: StringFilter
+  OR: [CvWorkHistoryModelFilter]
+  AND: [CvWorkHistoryModelFilter]
+}
+
+enum CvWorkHistoryModelOrderBy {
+  _createdAt_ASC
+  _createdAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  _firstPublishedAt_ASC
+  _firstPublishedAt_DESC
+  _publicationScheduledAt_ASC
+  _publicationScheduledAt_DESC
+  _unpublishingScheduledAt_ASC
+  _unpublishingScheduledAt_DESC
+  _publishedAt_ASC
+  _publishedAt_DESC
+  _status_ASC
+  _status_DESC
+  _updatedAt_ASC
+  _updatedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  _isValid_ASC
+  _isValid_DESC
+  startDate_ASC
+  startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  title_ASC
+  title_DESC
+  note_ASC
+  note_DESC
+  company_ASC
+  company_DESC
+  customDate_ASC
+  customDate_DESC
+}
+
+"""Record of type CV Work History (cv_work_history)"""
+type CvWorkHistoryRecord implements RecordInterface {
+  _allBodyLocales(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allCompanyLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringNonNullMultiLocaleField!]
+  _allCustomDateLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
+  _allTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringNonNullMultiLocaleField!]
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  body(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  company(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
+  createdAt: DateTime!
+  customDate(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
+  endDate: Date
+  id: ItemId!
+  note: String
+  startDate: Date
+  title(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
+  updatedAt: DateTime!
+}
+
 """A ISO 8601 compliant date value"""
 scalar Date
 
@@ -2884,6 +3534,20 @@ input LinksFilter {
   exists: BooleanType
 }
 
+"""Specifies how to filter by locale"""
+input LocalesFilter {
+  """Filter records that are localized in all the specified locales"""
+  allIn: [SiteLocale!]
+
+  """
+  Filter records that are localized in at least one of the specified locales
+  """
+  anyIn: [SiteLocale!]
+
+  """Filter records that are not localized in any of the specified locales"""
+  notIn: [SiteLocale!]
+}
+
 scalar MetaTagAttributes
 
 enum MuxThumbnailFormatType {
@@ -3195,6 +3859,42 @@ input PublishedAtFilter {
 """The query root for this schema"""
 type Query {
   """Returns meta information regarding a record collection"""
+  _allCvEducationsMeta(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+    filter: CvEducationModelFilter
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): CollectionMetadata!
+
+  """Returns meta information regarding a record collection"""
+  _allCvWorkHistoriesMeta(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+    filter: CvWorkHistoryModelFilter
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): CollectionMetadata!
+
+  """Returns meta information regarding a record collection"""
+  _allCvsMeta(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+    filter: CvModelFilter
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): CollectionMetadata!
+
+  """Returns meta information regarding a record collection"""
   _allFactsMeta(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -3270,6 +3970,63 @@ type Query {
     """
     fallbackLocales: [SiteLocale!]
   ): AboutMeSectionRecord
+
+  """Returns a collection of records"""
+  allCvEducations(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+
+    """Skip the first results"""
+    skip: IntType
+
+    """Limit the number of results"""
+    first: IntType = 20
+    filter: CvEducationModelFilter
+    orderBy: [CvEducationModelOrderBy] = [_updatedAt_DESC]
+  ): [CvEducationRecord!]!
+
+  """Returns a collection of records"""
+  allCvWorkHistories(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+
+    """Skip the first results"""
+    skip: IntType
+
+    """Limit the number of results"""
+    first: IntType = 20
+    filter: CvWorkHistoryModelFilter
+    orderBy: [CvWorkHistoryModelOrderBy] = [_updatedAt_DESC]
+  ): [CvWorkHistoryRecord!]!
+
+  """Returns a collection of records"""
+  allCvs(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+
+    """Skip the first results"""
+    skip: IntType
+
+    """Limit the number of results"""
+    first: IntType = 20
+    filter: CvModelFilter
+    orderBy: [CvModelOrderBy] = [_updatedAt_DESC]
+  ): [CvRecord!]!
 
   """Returns a collection of records"""
   allFacts(
@@ -3376,6 +4133,56 @@ type Query {
     """
     fallbackLocales: [SiteLocale!]
   ): ContactSectionRecord
+
+  """Returns a specific record"""
+  cv(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+    filter: CvModelFilter
+    orderBy: [CvModelOrderBy] = [_updatedAt_DESC]
+  ): CvRecord
+
+  """Returns a specific record"""
+  cvEducation(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+    filter: CvEducationModelFilter
+    orderBy: [CvEducationModelOrderBy] = [_updatedAt_DESC]
+  ): CvEducationRecord
+
+  """Returns the single instance record"""
+  cvText(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): CvTextRecord
+
+  """Returns a specific record"""
+  cvWorkHistory(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+    filter: CvWorkHistoryModelFilter
+    orderBy: [CvWorkHistoryModelOrderBy] = [_updatedAt_DESC]
+  ): CvWorkHistoryRecord
 
   """Returns a specific record"""
   fact(
@@ -3631,6 +4438,7 @@ input SkillModelFilter {
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   skillType: StringFilter
+  level: StringFilter
   name: StringFilter
   OR: [SkillModelFilter]
   AND: [SkillModelFilter]
@@ -3661,6 +4469,8 @@ enum SkillModelOrderBy {
   _isValid_DESC
   skillType_ASC
   skillType_DESC
+  level_ASC
+  level_DESC
   name_ASC
   name_DESC
 }
@@ -3696,6 +4506,7 @@ type SkillRecord implements RecordInterface {
   _updatedAt: DateTime!
   createdAt: DateTime!
   id: ItemId!
+  level: String
   name(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale

@@ -182,6 +182,10 @@ export const colors = {
   success: {
     typography: primitiveColors.tech['100'],
   },
+  spinner: {
+    primary: primitiveColors.blue['50'],
+    background: primitiveColors.neutral.filled['08'],
+  }
 };
 
 export type ColorTheme = typeof colors;

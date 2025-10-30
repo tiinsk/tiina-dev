@@ -84,7 +84,7 @@ const getCloudVariant = (
 };
 
 export const WorkListItem = ({ data, isFirst, isLast }: WorkItemProps) => {
-  const { lang } = useParams<{lang: Locale}>();
+  const { lang } = useParams<{ lang: Locale }>();
   const itemData = readFragment(WorkItemFragment, data);
   const cloud = getCloudVariant(itemData.roadIcon as RoadVariant);
   return (
