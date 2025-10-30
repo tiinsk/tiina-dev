@@ -1,12 +1,12 @@
 import { graphql } from '@/datocms/graphql';
 import { executeQuery } from '@/datocms/executeQuery';
-import { Locale } from '@/locales';
+import { Locale, locales } from '@/locales';
 import { HomePage } from '@/app/[lang]/home-page';
 import {
   AboutMeFragment,
   ContactFragment,
-  ProjectsFragment,
   Fragments,
+  ProjectsFragment,
   SkillFragment,
   WorkHistoryFragment,
 } from '@/app/_components/sections/fragments';
@@ -57,7 +57,6 @@ export default async function Home({
   params: Promise<{ lang: string }>; //TODO change to use only available languages
 }>) {
   const { lang } = await params;
-
   const data = await getData(lang as Locale);
 
   return <HomePage data={data} />;

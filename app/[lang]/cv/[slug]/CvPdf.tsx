@@ -1,45 +1,46 @@
-'use client';
-
 import {
+  Document,
   Font,
+  Image,
+  Line,
+  Link,
   Page,
   StyleSheet,
-  Text,
-  Document,
-  View,
   Svg,
-  Line,
-  Image,
-  Link,
+  Text,
+  View,
 } from '@react-pdf/renderer';
 import { FragmentOf, readFragment } from 'gql.tada';
 import { getFormattedDateMMMYYYY } from '@/utils/date';
-import { useParams } from 'next/navigation';
-import { Locale } from '@/locales';
 import { CVFragment, CVTextFragment } from '@/app/[lang]/cv/[slug]/fragments';
 import { LinkedIn } from '@/app/[lang]/cv/[slug]/icons/linkedIn';
 import { Web } from '@/app/[lang]/cv/[slug]/icons/web';
 import { Phone } from '@/app/[lang]/cv/[slug]/icons/phone';
 import { At } from '@/app/[lang]/cv/[slug]/icons/at';
+import { Locale } from '@/locales';
 
 export interface CvPdfProps {
   data: FragmentOf<typeof CVFragment>;
   textData: FragmentOf<typeof CVTextFragment> | null;
+  lang: Locale;
+  slug: string;
 }
+
+const fontDomain = process.env.STATIC_FONT_URL;
 
 Font.register({
   family: 'Work Sans',
   fonts: [
     {
-      src: '/fonts/WorkSans/WorkSans-Light.ttf',
+      src: `${fontDomain}/WorkSans/WorkSans-Light.ttf`,
       fontWeight: 300,
     },
     {
-      src: '/fonts/WorkSans/WorkSans-Regular.ttf',
+      src: `${fontDomain}/WorkSans/WorkSans-Regular.ttf`,
       fontWeight: 400,
     },
     {
-      src: '/fonts/WorkSans/WorkSans-SemiBold.ttf',
+      src: `${fontDomain}/WorkSans/WorkSans-SemiBold.ttf`,
       fontWeight: 600,
     },
   ],
@@ -49,23 +50,23 @@ Font.register({
   family: 'Poppins',
   fonts: [
     {
-      src: '/fonts/Poppins/Poppins-Light.ttf',
+      src: `${fontDomain}/Poppins/Poppins-Light.ttf`,
       fontWeight: 300,
     },
     {
-      src: '/fonts/Poppins/Poppins-Regular.ttf',
+      src: `${fontDomain}/Poppins/Poppins-Regular.ttf`,
       fontWeight: 400,
     },
     {
-      src: '/fonts/Poppins/Poppins-Medium.ttf',
+      src: `${fontDomain}/Poppins/Poppins-Medium.ttf`,
       fontWeight: 500,
     },
     {
-      src: '/fonts/Poppins/Poppins-SemiBold.ttf',
+      src: `${fontDomain}/Poppins/Poppins-SemiBold.ttf`,
       fontWeight: 600,
     },
     {
-      src: '/fonts/Poppins/Poppins-Bold.ttf',
+      src: `${fontDomain}/Poppins/Poppins-Bold.ttf`,
       fontWeight: 700,
     },
   ],
@@ -238,8 +239,7 @@ const getLanguageSkillLevel = (
   return levelTitles[level] || '';
 };
 
-export const CvPdf = ({ data, textData }: CvPdfProps) => {
-  const { lang, slug } = useParams<{ lang: Locale, slug: string }>();
+export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
   const cvData = readFragment(CVFragment, data);
   const texts = readFragment(CVTextFragment, textData);
   const languageSkillLevelTitles = {
