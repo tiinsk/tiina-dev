@@ -274,13 +274,15 @@ export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
 
   const content = (
     <>
-      <Text style={styles.subtitle}>{texts?.topSkillsTitle}</Text>
-      <View style={{ ...styles.tagWrapper, ...styles.topSkills }}>
-        {cvData.topSkills.map(skill => (
-          <View style={styles.tag} key={skill.name}>
-            <Text style={styles.tagText}>{skill.name}</Text>
-          </View>
-        ))}
+      <View wrap={false}>
+        <Text style={styles.subtitle}>{texts?.topSkillsTitle}</Text>
+        <View style={{ ...styles.tagWrapper, ...styles.topSkills }}>
+          {cvData.topSkills.map(skill => (
+            <View style={styles.tag} key={skill.name}>
+              <Text style={styles.tagText}>{skill.name}</Text>
+            </View>
+          ))}
+        </View>
       </View>
       <SvgLine />
       <Text style={styles.subtitle}>{texts?.workExperienceTitle}</Text>
@@ -304,43 +306,49 @@ export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
         </View>
       ))}
       <SvgLine />
-      <Text style={styles.subtitle}>{texts?.educationTitle}</Text>
-      {cvData.education.map(eduItem => (
-        <View wrap={false} style={styles.item} key={eduItem.title}>
-          {eduItem.date && (
-            <Text style={styles.itemDate}>
-              {getFormattedDateMMMYYYY(eduItem.date, lang)}
+      <View wrap={false}>
+        <Text style={styles.subtitle}>{texts?.educationTitle}</Text>
+        {cvData.education.map(eduItem => (
+          <View wrap={false} style={styles.item} key={eduItem.title}>
+            {eduItem.date && (
+              <Text style={styles.itemDate}>
+                {getFormattedDateMMMYYYY(eduItem.date, lang)}
+              </Text>
+            )}
+            <Text style={styles.itemTitle}>
+              {eduItem.title} — {eduItem.subtitle}
             </Text>
-          )}
-          <Text style={styles.itemTitle}>
-            {eduItem.title} — {eduItem.subtitle}
-          </Text>
-          <Text style={styles.itemBody}>{eduItem.body}</Text>
-        </View>
-      ))}
+            <Text style={styles.itemBody}>{eduItem.body}</Text>
+          </View>
+        ))}
+      </View>
       <SvgLine />
-      <Text style={styles.subtitle}>{texts?.certificateTitle}</Text>
-      {cvData.certificates.map(certItem => (
-        <View wrap={false} style={styles.item} key={certItem.title}>
-          {certItem.date && (
-            <Text style={styles.itemDate}>
-              {getFormattedDateMMMYYYY(certItem.date, lang)}
+      <View wrap={false}>
+        <Text style={styles.subtitle}>{texts?.certificateTitle}</Text>
+        {cvData.certificates.map(certItem => (
+          <View wrap={false} style={styles.item} key={certItem.title}>
+            {certItem.date && (
+              <Text style={styles.itemDate}>
+                {getFormattedDateMMMYYYY(certItem.date, lang)}
+              </Text>
+            )}
+            <Text style={styles.itemTitle}>{certItem.title}</Text>
+            <Text style={styles.itemBody}>{certItem.body}</Text>
+          </View>
+        ))}
+      </View>
+      <SvgLine />
+      <View wrap={false}>
+        <Text style={styles.subtitle}>{texts?.languageSkillsTitle}</Text>
+        {cvData.languageSkills.map(skill => (
+          <View wrap={false} style={styles.flexItem} key={skill.name}>
+            <Text style={styles.flexItemTitle}>{skill.name}</Text>
+            <Text style={styles.flexItemBody}>
+              {getLanguageSkillLevel(skill.level, languageSkillLevelTitles)}
             </Text>
-          )}
-          <Text style={styles.itemTitle}>{certItem.title}</Text>
-          <Text style={styles.itemBody}>{certItem.body}</Text>
-        </View>
-      ))}
-      <SvgLine />
-      <Text style={styles.subtitle}>{texts?.languageSkillsTitle}</Text>
-      {cvData.languageSkills.map(skill => (
-        <View wrap={false} style={styles.flexItem} key={skill.name}>
-          <Text style={styles.flexItemTitle}>{skill.name}</Text>
-          <Text style={styles.flexItemBody}>
-            {getLanguageSkillLevel(skill.level, languageSkillLevelTitles)}
-          </Text>
-        </View>
-      ))}
+          </View>
+        ))}
+      </View>
       <SvgLine />
       <View wrap={false}>
         <Text style={styles.subtitle}>{texts?.techSkillsTitle}</Text>
