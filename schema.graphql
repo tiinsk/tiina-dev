@@ -357,19 +357,21 @@ input CvModelFilter {
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   _locales: LocalesFilter
-  techSkills: LinksFilter
-  slug: StringFilter
-  education: LinksFilter
-  certificates: LinksFilter
-  intro: TextFilter
-  languageSkills: LinksFilter
-  coreSkills: LinksFilter
-  title: StringFilter
-  designSkills: LinksFilter
-  workHistory: LinksFilter
   image: FileFilter
   name: StringFilter
+  showSeparateIntro: BooleanFilter
+  certificates: LinksFilter
+  coreSkills: LinksFilter
+  designSkills: LinksFilter
+  education: LinksFilter
+  intro: TextFilter
+  languageSkills: LinksFilter
+  techSkills: LinksFilter
   topSkills: LinksFilter
+  workHistory: LinksFilter
+  note: TextFilter
+  slug: StringFilter
+  title: StringFilter
   OR: [CvModelFilter]
   AND: [CvModelFilter]
 }
@@ -397,12 +399,14 @@ enum CvModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  name_ASC
+  name_DESC
+  showSeparateIntro_ASC
+  showSeparateIntro_DESC
   slug_ASC
   slug_DESC
   title_ASC
   title_DESC
-  name_ASC
-  name_DESC
 }
 
 """Record of type CV (cv)"""
@@ -419,6 +423,15 @@ type CvRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [StringMultiLocaleField!]
+  _allTitleLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringNonNullMultiLocaleField!]
   _createdAt: DateTime!
 
   """Editing URL"""
@@ -460,9 +473,22 @@ type CvRecord implements RecordInterface {
   languageSkills: [SkillRecord!]!
   links: [LinkRecord!]!
   name: String!
+  note(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String
+  showSeparateIntro: BooleanType
   slug: String!
   techSkills: [SkillRecord!]!
-  title: String!
+  title(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
   topSkills: [SkillRecord!]!
   updatedAt: DateTime!
   workHistory: [CvWorkHistoryRecord!]!

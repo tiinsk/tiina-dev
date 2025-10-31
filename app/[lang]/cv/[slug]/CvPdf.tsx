@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   content: {
-    paddingTop: 16,
+    paddingTop: 24,
     paddingHorizontal: 40,
   },
   image: {
@@ -190,8 +190,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Work Sans',
   },
   tag: {
-    paddingVertical: 4,
-    paddingHorizontal: 10,
+    paddingVertical: 2,
+    paddingHorizontal: 8,
     backgroundColor: '#F8F8F8',
     borderRadius: 20,
     border: '1px solid #F1F1F1',
@@ -248,131 +248,169 @@ export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
     '3': texts?.languageLevel3Text || '',
   };
 
+  const header = (
+    <View style={styles.header}>
+      {cvData.image?.responsiveImage?.src && (
+        <Image style={styles.image} src={cvData.image.responsiveImage.src} />
+      )}
+      <View style={styles.headerTexts}>
+        <Text style={styles.name}>{cvData.name}</Text>
+        <Text style={styles.title}>{cvData.title}</Text>
+        <View style={styles.links}>
+          {cvData.links.map(link => (
+            <View key={link.url} style={styles.linkWrapper}>
+              {getSvgIcon(link.icon)}
+              <Link style={styles.link} src={link.url}>
+                {link.title}
+              </Link>
+            </View>
+          ))}
+        </View>
+      </View>
+    </View>
+  );
+
+  const intro = <Text style={styles.intro}>{cvData.intro}</Text>;
+
+  const content = (
+    <>
+      <Text style={styles.subtitle}>{texts?.topSkillsTitle}</Text>
+      <View style={{ ...styles.tagWrapper, ...styles.topSkills }}>
+        {cvData.topSkills.map(skill => (
+          <View style={styles.tag} key={skill.name}>
+            <Text style={styles.tagText}>{skill.name}</Text>
+          </View>
+        ))}
+      </View>
+      <SvgLine />
+      <Text style={styles.subtitle}>{texts?.workExperienceTitle}</Text>
+      {cvData.workHistory.map(workItem => (
+        <View wrap={false} style={styles.item} key={workItem.company}>
+          <Text style={styles.itemDate}>
+            {workItem.startDate &&
+              `${getFormattedDateMMMYYYY(workItem.startDate, lang)} - ${
+                workItem.endDate
+                  ? getFormattedDateMMMYYYY(workItem.endDate, lang)
+                  : ''
+              }`}
+          </Text>
+          {workItem.customDate && (
+            <Text style={styles.itemDate}>{workItem.customDate}</Text>
+          )}
+          <Text style={styles.itemTitle}>
+            {workItem.company} — {workItem.title}
+          </Text>
+          <Text style={styles.itemBody}>{workItem.body}</Text>
+        </View>
+      ))}
+      <SvgLine />
+      <Text style={styles.subtitle}>{texts?.educationTitle}</Text>
+      {cvData.education.map(eduItem => (
+        <View wrap={false} style={styles.item} key={eduItem.title}>
+          {eduItem.date && (
+            <Text style={styles.itemDate}>
+              {getFormattedDateMMMYYYY(eduItem.date, lang)}
+            </Text>
+          )}
+          <Text style={styles.itemTitle}>
+            {eduItem.title} — {eduItem.subtitle}
+          </Text>
+          <Text style={styles.itemBody}>{eduItem.body}</Text>
+        </View>
+      ))}
+      <SvgLine />
+      <Text style={styles.subtitle}>{texts?.certificateTitle}</Text>
+      {cvData.certificates.map(certItem => (
+        <View wrap={false} style={styles.item} key={certItem.title}>
+          {certItem.date && (
+            <Text style={styles.itemDate}>
+              {getFormattedDateMMMYYYY(certItem.date, lang)}
+            </Text>
+          )}
+          <Text style={styles.itemTitle}>{certItem.title}</Text>
+          <Text style={styles.itemBody}>{certItem.body}</Text>
+        </View>
+      ))}
+      <SvgLine />
+      <Text style={styles.subtitle}>{texts?.languageSkillsTitle}</Text>
+      {cvData.languageSkills.map(skill => (
+        <View wrap={false} style={styles.flexItem} key={skill.name}>
+          <Text style={styles.flexItemTitle}>{skill.name}</Text>
+          <Text style={styles.flexItemBody}>
+            {getLanguageSkillLevel(skill.level, languageSkillLevelTitles)}
+          </Text>
+        </View>
+      ))}
+      <SvgLine />
+      <View wrap={false}>
+        <Text style={styles.subtitle}>{texts?.techSkillsTitle}</Text>
+        <View style={styles.tagWrapper}>
+          {cvData.techSkills.map(skill => (
+            <View style={styles.tag} key={skill.name}>
+              <Text style={styles.tagText}>{skill.name}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+      <View wrap={false}>
+        <Text style={styles.subtitle}>{texts?.designSkillsTitle}</Text>
+        <View style={styles.tagWrapper}>
+          {cvData.designSkills.map(skill => (
+            <View style={styles.tag} key={skill.name}>
+              <Text style={styles.tagText}>{skill.name}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+      <View wrap={false}>
+        <Text style={styles.subtitle}>{texts?.coreSkillsTitle}</Text>
+        <View style={styles.tagWrapper}>
+          {cvData.coreSkills.map(skill => (
+            <View style={styles.tag} key={skill.name}>
+              <Text style={styles.tagText}>{skill.name}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+    </>
+  );
+
+  if (cvData.showSeparateIntro) {
+    return (
+      <Document title={slug}>
+        <Page style={styles.page} size="A4">
+          {header}
+          <View style={styles.content}>{intro}</View>
+          <Text
+            style={styles.pageNumber}
+            render={({ pageNumber, totalPages }) =>
+              `${pageNumber} / ${totalPages}`
+            }
+            fixed
+          />
+        </Page>
+        <Page style={styles.page} size="A4">
+          {header}
+          <View style={styles.content}>{content}</View>
+          <Text
+            style={styles.pageNumber}
+            render={({ pageNumber, totalPages }) =>
+              `${pageNumber} / ${totalPages}`
+            }
+            fixed
+          />
+        </Page>
+      </Document>
+    );
+  }
+
   return (
     <Document title={slug}>
       <Page style={styles.page} size="A4">
-        <View style={styles.header}>
-          {cvData.image?.responsiveImage?.src && (
-            <Image
-              style={styles.image}
-              src={cvData.image.responsiveImage.src}
-            />
-          )}
-          <View style={styles.headerTexts}>
-            <Text style={styles.name}>{cvData.name}</Text>
-            <Text style={styles.title}>{cvData.title}</Text>
-            <View style={styles.links}>
-              {cvData.links.map(link => (
-                <View key={link.url} style={styles.linkWrapper}>
-                  {getSvgIcon(link.icon)}
-                  <Link style={styles.link} src={link.url}>
-                    {link.title}
-                  </Link>
-                </View>
-              ))}
-            </View>
-          </View>
-        </View>
+        {header}
         <View style={styles.content}>
-          <Text style={styles.intro}>{cvData.intro}</Text>
-          <Text style={styles.subtitle}>{texts?.topSkillsTitle}</Text>
-          <View style={{ ...styles.tagWrapper, ...styles.topSkills }}>
-            {cvData.topSkills.map(skill => (
-              <View style={styles.tag} key={skill.name}>
-                <Text style={styles.tagText}>{skill.name}</Text>
-              </View>
-            ))}
-          </View>
-          <SvgLine />
-          <Text style={styles.subtitle}>{texts?.workExperienceTitle}</Text>
-          {cvData.workHistory.map(workItem => (
-            <View wrap={false} style={styles.item} key={workItem.company}>
-              <Text style={styles.itemDate}>
-                {workItem.startDate &&
-                  `${getFormattedDateMMMYYYY(workItem.startDate, lang)} - ${
-                    workItem.endDate
-                      ? getFormattedDateMMMYYYY(workItem.endDate, lang)
-                      : ''
-                  }`}
-              </Text>
-              {workItem.customDate && (
-                <Text style={styles.itemDate}>{workItem.customDate}</Text>
-              )}
-              <Text style={styles.itemTitle}>
-                {workItem.company} — {workItem.title}
-              </Text>
-              <Text style={styles.itemBody}>{workItem.body}</Text>
-            </View>
-          ))}
-          <SvgLine />
-          <Text style={styles.subtitle}>{texts?.educationTitle}</Text>
-          {cvData.education.map(eduItem => (
-            <View wrap={false} style={styles.item} key={eduItem.title}>
-              {eduItem.date && (
-                <Text style={styles.itemDate}>
-                  {getFormattedDateMMMYYYY(eduItem.date, lang)}
-                </Text>
-              )}
-              <Text style={styles.itemTitle}>
-                {eduItem.title} — {eduItem.subtitle}
-              </Text>
-              <Text style={styles.itemBody}>{eduItem.body}</Text>
-            </View>
-          ))}
-          <SvgLine />
-          <Text style={styles.subtitle}>{texts?.certificateTitle}</Text>
-          {cvData.certificates.map(certItem => (
-            <View wrap={false} style={styles.item} key={certItem.title}>
-              {certItem.date && (
-                <Text style={styles.itemDate}>
-                  {getFormattedDateMMMYYYY(certItem.date, lang)}
-                </Text>
-              )}
-              <Text style={styles.itemTitle}>{certItem.title}</Text>
-              <Text style={styles.itemBody}>{certItem.body}</Text>
-            </View>
-          ))}
-          <SvgLine />
-          <Text style={styles.subtitle}>{texts?.languageSkillsTitle}</Text>
-          {cvData.languageSkills.map(skill => (
-            <View wrap={false} style={styles.flexItem} key={skill.name}>
-              <Text style={styles.flexItemTitle}>{skill.name}</Text>
-              <Text style={styles.flexItemBody}>
-                {getLanguageSkillLevel(skill.level, languageSkillLevelTitles)}
-              </Text>
-            </View>
-          ))}
-          <SvgLine />
-          <View wrap={false}>
-            <Text style={styles.subtitle}>{texts?.techSkillsTitle}</Text>
-            <View style={styles.tagWrapper}>
-              {cvData.techSkills.map(skill => (
-                <View style={styles.tag} key={skill.name}>
-                  <Text style={styles.tagText}>{skill.name}</Text>
-                </View>
-              ))}
-            </View>
-          </View>
-          <View wrap={false}>
-            <Text style={styles.subtitle}>{texts?.designSkillsTitle}</Text>
-            <View style={styles.tagWrapper}>
-              {cvData.designSkills.map(skill => (
-                <View style={styles.tag} key={skill.name}>
-                  <Text style={styles.tagText}>{skill.name}</Text>
-                </View>
-              ))}
-            </View>
-          </View>
-          <View wrap={false}>
-            <Text style={styles.subtitle}>{texts?.coreSkillsTitle}</Text>
-            <View style={styles.tagWrapper}>
-              {cvData.coreSkills.map(skill => (
-                <View style={styles.tag} key={skill.name}>
-                  <Text style={styles.tagText}>{skill.name}</Text>
-                </View>
-              ))}
-            </View>
-          </View>
+          {intro}
+          {content}
         </View>
         <Text
           style={styles.pageNumber}

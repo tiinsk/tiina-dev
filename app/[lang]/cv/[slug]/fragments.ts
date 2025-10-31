@@ -21,6 +21,7 @@ export const CVFragment = graphql(`
     name
     title
     intro
+    showSeparateIntro
     image {
       responsiveImage(imgixParams: { fm: png, w: 300 }) {
         src
