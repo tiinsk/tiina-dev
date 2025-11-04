@@ -10,9 +10,8 @@ import WorkHistory from './WorkHistory';
 import {
   commandArray,
   Commands,
-  helpCommand,
   utilCommands,
-} from '@/app/console/_utils/commands';
+} from '@/app/console/commands';
 import { Data } from '@/app/console/page';
 import { Locale } from '@/locales';
 import { readFragment } from 'gql.tada';
@@ -88,7 +87,7 @@ const getCommand = (command: Command, data: Data) => {
       return {
         commandBody: (
           <div style={{ margin: '1rem' }}>
-            command not recognized, try typing "{helpCommand}"
+            command not recognized, try typing "{Commands.Help}"
           </div>
         ),
       };

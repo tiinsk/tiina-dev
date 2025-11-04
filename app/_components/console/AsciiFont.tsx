@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getAsciiFont } from '@/app/console/_utils/asciifonts';
+import { getAsciiFont } from '@/utils/asciifonts';
 
 const StyledAsciiFont = styled.div`
   font-size: 1.2rem;

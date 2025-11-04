@@ -5,7 +5,7 @@ import {
   commandArray,
   Commands,
   utilCommands,
-} from '@/app/console/_utils/commands';
+} from '@/app/console/commands';
 
 const StyledConsoleHelp = styled.div`
   table {

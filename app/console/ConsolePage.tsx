@@ -1,17 +1,16 @@
 'use client';
 
 import { Data } from '@/app/console/page';
-import { CommandLine } from '@/app/console/_components/CommandLine';
+import { CommandLine } from '@/app/_components/console/CommandLine';
 import { useEffect, useRef, useState } from 'react';
 import GlobalStyle from '@/app/console/globalStyles';
-import { Typewriter } from '@/app/console/_components/Typewriter';
+import { Typewriter } from '@/app/_components/console/Typewriter';
 import styled from 'styled-components';
 import {
   commandArray,
   Commands,
-  helpCommand,
-} from '@/app/console/_utils/commands';
-import { Command, PrintCommand } from '@/app/console/_components/PrintCommand';
+} from '@/app/console/commands';
+import { Command, PrintCommand } from '@/app/_components/console/PrintCommand';
 import { Locale, locales } from '@/locales';
 
 const StyledConsoleSite = styled.div`
@@ -117,7 +116,7 @@ export const ConsolePage = ({ data }: { data: Data }) => {
     <StyledConsoleSite>
       <GlobalStyle />
       <Typewriter
-        text={`Hi there and welcome. You should try typing "${helpCommand}".`}
+        text={`Hi there and welcome. You should try typing "${Commands.Help}".`}
       />
       {commands.map((cmd, i) => {
         return <PrintCommand key={i} command={cmd} data={data} />;

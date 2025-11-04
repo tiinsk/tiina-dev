@@ -1,6 +1,3 @@
-export const helpCommand = 'help';
-export const allCommand = 'all';
-
 export enum Commands {
   Help = 'help',
   All = 'all',
