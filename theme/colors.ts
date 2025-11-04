@@ -78,6 +78,14 @@ const primitiveColors = {
       },
     },
   },
+  console: {
+    background: '#222223',
+    magenta: '#ff2086',
+    green: '#10ffd4',
+    yellow: '#f4f700',
+    grey: '#7d7d7d',
+    white: '#ffffff',
+  }
 };
 
 export const colors = {
@@ -185,6 +193,9 @@ export const colors = {
   spinner: {
     primary: primitiveColors.blue['50'],
     background: primitiveColors.neutral.filled['08'],
+  },
+  console: {
+    ...primitiveColors.console,
   }
 };
 

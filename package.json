@@ -13,6 +13,7 @@
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@react-pdf/renderer": "^4.3.1",
+    "figlet": "^1.9.3",
     "gql.tada": "^1.8.13",
     "lodash": "^4.17.21",
     "next": "^16.0.0",

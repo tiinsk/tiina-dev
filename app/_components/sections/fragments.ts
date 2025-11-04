@@ -13,6 +13,7 @@ export const HeaderFragment = graphql(`
 
 export const AboutMeFragment = graphql(`
   fragment AboutMeFragment on AboutMeSectionRecord {
+    title
     body
     contactButtonIcon
     contactButtonText

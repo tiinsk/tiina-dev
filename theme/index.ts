@@ -14,7 +14,7 @@ const variables = {
   smallPageWidth: '900px',
   fonts: {
     fontBody: 'Poppins, sans-serif',
-    fontHeader: 'Rubik, sans-serif',
+    fontConsole: 'Source Code Pro, monospace',
   },
   fontWeights: {
     light: '300',
