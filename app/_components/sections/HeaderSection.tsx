@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { LanguageSelector } from '../LanguageSelector';
 import { Background } from '@/app/_images/aquarium/Background';
 import { Fish } from '@/app/_images/aquarium/fishes/Fish';
-import { Fragments } from '@/app/_components/sections/fragments';
+import { HeaderFragment } from '@/app/_components/sections/fragments';
 
 const StyledHeader = styled.div`
   position: relative;
@@ -47,9 +47,9 @@ const HeaderText = styled.div`
 export const HeaderSection = ({
   data,
 }: {
-  data: FragmentOf<typeof Fragments> | null;
+  data: FragmentOf<typeof HeaderFragment> | null;
 }) => {
-  const headerData = readFragment(Fragments, data);
+  const headerData = readFragment(HeaderFragment, data);
 
   if (!headerData) {
     return null;

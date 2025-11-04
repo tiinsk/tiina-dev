@@ -4,6 +4,8 @@ import { executeQuery } from '@/datocms/executeQuery';
 import { CVFragment, CVTextFragment } from '@/app/[lang]/cv/[slug]/fragments';
 import { PdfBuffer } from '@/app/[lang]/cv/[slug]/PdfBuffer';
 
+export const dynamic = 'force-static';
+
 const query = graphql(
   `
     query CVQuery($locale: SiteLocale!, $slug: String!) {

@@ -3,7 +3,7 @@ import { WorkItemFragment } from '@/app/_components/work-history/fragments';
 import { ProjectItemFragment } from '@/app/_components/projects/fragments';
 import { FactFragment } from '@/app/_components/facts/fragments';
 
-export const Fragments = graphql(`
+export const HeaderFragment = graphql(`
   fragment HeaderFragment on HeaderSectionRecord {
     title
     name

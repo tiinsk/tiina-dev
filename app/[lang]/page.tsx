@@ -1,11 +1,11 @@
 import { graphql } from '@/datocms/graphql';
 import { executeQuery } from '@/datocms/executeQuery';
-import { Locale, locales } from '@/locales';
+import { Locale } from '@/locales';
 import { HomePage } from '@/app/[lang]/home-page';
 import {
   AboutMeFragment,
   ContactFragment,
-  Fragments,
+  HeaderFragment,
   ProjectsFragment,
   SkillFragment,
   WorkHistoryFragment,
@@ -35,7 +35,7 @@ const query = graphql(
     }
   `,
   [
-    Fragments,
+    HeaderFragment,
     AboutMeFragment,
     WorkHistoryFragment,
     SkillFragment,
