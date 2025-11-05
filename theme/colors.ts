@@ -194,6 +194,9 @@ export const colors = {
     primary: primitiveColors.blue['50'],
     background: primitiveColors.neutral.filled['08'],
   },
+  separator: {
+    primary: primitiveColors.neutral.opaque.dark['10'],
+  },
   console: {
     ...primitiveColors.console,
   }

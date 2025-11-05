@@ -1,6 +1,6 @@
 export enum Locale {
-  FI = 'fi',
   EN = 'en',
+  FI = 'fi',
 }
 
 export type LocaleStr = 'fi' | 'en';
