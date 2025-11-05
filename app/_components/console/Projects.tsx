@@ -3,6 +3,7 @@ import React from 'react';
 import Project from './Project';
 import { FragmentOf, readFragment } from 'gql.tada';
 import { ProjectsFragment } from '@/app/_components/sections/fragments';
+import { Box } from '../common/Box';
 
 export interface ProjectsProps {
   data: FragmentOf<typeof ProjectsFragment> | null;
@@ -11,7 +12,7 @@ export interface ProjectsProps {
 const Projects = ({ data }: ProjectsProps) => {
   const projectsData = readFragment(ProjectsFragment, data);
   return (
-    <div>
+    <Box mt="s24">
       {projectsData?.projects.map((project, i) => {
         return (
           <Project
@@ -21,7 +22,7 @@ const Projects = ({ data }: ProjectsProps) => {
           />
         );
       })}
-    </div>
+    </Box>
   );
 };
 

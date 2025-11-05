@@ -1,4 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+
+const StyledTypewriter = styled.div`
+  margin-left: ${({ theme }) => theme.spacings.s8};
+  margin-top: ${({ theme }) => theme.spacings.s8};
+  min-height: ${({ theme }) => theme.spacings.s24};
+`;
 
 export const Typewriter = ({ text }: { text: string }) => {
   const [index, setIndex] = useState(0);
@@ -22,5 +29,5 @@ export const Typewriter = ({ text }: { text: string }) => {
     }, 100);
   };
 
-  return <div>{text.slice(0, index)}</div>;
+  return <StyledTypewriter>{text.slice(0, index)}</StyledTypewriter>;
 };

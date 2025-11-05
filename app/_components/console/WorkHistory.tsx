@@ -3,6 +3,7 @@ import React from 'react';
 import WorkItem from './WorkItem';
 import { FragmentOf } from 'gql.tada';
 import { WorkItemFragment } from '@/app/_components/work-history/fragments';
+import { Box } from '../common/Box';
 
 export interface WorkHistoryProps {
   data: FragmentOf<typeof WorkItemFragment>[];
@@ -10,11 +11,11 @@ export interface WorkHistoryProps {
 
 const WorkHistory = ({ data }: WorkHistoryProps) => {
   return (
-    <div>
+    <Box mt="s24">
       {data.map((workitem, i) => {
         return <WorkItem key={i} data={workitem} />;
       })}
-    </div>
+    </Box>
   );
 };
 

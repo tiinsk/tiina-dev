@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const StyledConsoleIntroduction = styled.div`
   color: ${({ theme }) => theme.colors.console.grey};
-  .title {
-    color: ${({ theme }) => theme.colors.console.white};
+  p {
+    margin-bottom: ${({ theme }) => theme.spacings.s16};
   }
 `;
 

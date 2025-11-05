@@ -1,85 +1,74 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+
 import { MdiIcon } from '@/app/_components/common/MdiIcon';
-import { RefObject, useState } from 'react';
 
 const StyledConsoleCommandLine = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: ${({ theme }) => theme.spacings.s8};
+`;
 
-  .line-icon {
-    padding: 0 ${({ theme }) => theme.spacings.s8};
-    /*font-size: ;*/
+const StyledHiddenInput = styled.input`
+  background: transparent;
+  outline: none;
+  position: fixed;
+  bottom: 200vh;
+  z-index: 0;
+  color: transparent;
+  pointer-events: none;
+`;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+const StyledInput = styled.div`
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  white-space: pre;
+  z-index: 1;
+  height: ${({ theme }) => theme.spacings.s16};
+`;
 
-  .input-line {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    position: relative;
-    white-space: pre;
-    z-index: 1;
-    height: 22px;
+const StyledCursor = styled.div`
+  height: ${({ theme }) => theme.spacings.s16};
+  width: ${({ theme }) => theme.spacings.s8};
+  background-color: ${({ theme }) => theme.colors.console.green};
+  display: inline-block;
+  margin: 0 ${({ theme }) => theme.spacings.s2};
+  animation: blinker 1.5s steps(1, start) infinite;
 
-    .cursor {
-      height: 100%;
-      width: 1rem;
-      background-color: ${({ theme }) => theme.colors.console.green};
-      display: inline-block;
-      margin: 0 0.2rem;
-      animation: blinker 1.5s steps(1, start) infinite;
-
-      @keyframes blinker {
-        0% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
+  @keyframes blinker {
+    0% {
+      opacity: 1;
     }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-      height: 14px;
-      line-height: 14px;
-      .cursor {
-        width: 7px;
-      }
+    50% {
+      opacity: 1;
     }
-  }
-  .command-input {
-    background: transparent;
-    outline: none;
-    position: fixed;
-    bottom: 200vh;
-    z-index: 0;
-    color: transparent;
-    pointer-events: none;
+    100% {
+      opacity: 0;
+    }
   }
 `;
 
 export const CommandLine = ({
-  inputRef,
   addCommand,
+  inputRef,
 }: {
-  inputRef: RefObject<HTMLInputElement>;
   addCommand: (command: string) => void;
+  inputRef: React.RefObject<HTMLInputElement>;
 }) => {
   const [input, setInput] = useState('');
   const [cursorPosition, setCursorPosition] = useState(0);
 
+  useEffect(() => {
+    if (inputRef.current && window !== undefined) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   const keyDownHandler = (code: string) => {
     if (code === 'Enter') {
-      //parseCommand(input);
-      console.log('enter', input);
       addCommand(input);
       setInput('');
     }
@@ -100,10 +89,10 @@ export const CommandLine = ({
   return (
     <StyledConsoleCommandLine>
       <MdiIcon type="mdiChevronRight" />
-      <input
-        className="command-input"
+      <StyledHiddenInput
         id="command-input"
         ref={inputRef}
+        autoFocus={true}
         onKeyDown={({ code }) => keyDownHandler(code)}
         value={input}
         onChange={({ target }) => {
@@ -111,11 +100,11 @@ export const CommandLine = ({
           setCursorPosition(cursorPosition + 1);
         }}
       />
-      <div className="input-line">
-        <div>{input.slice(0, cursorPosition)}</div>
-        <div className="cursor" />
-        <div>{input.slice(cursorPosition)}</div>
-      </div>
+      <StyledInput>
+        <span>{input.slice(0, cursorPosition)}</span>
+        <StyledCursor />
+        <span>{input.slice(cursorPosition)}</span>
+      </StyledInput>
     </StyledConsoleCommandLine>
   );
 };

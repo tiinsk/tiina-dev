@@ -1,59 +1,55 @@
 import React from 'react';
-import { DashedLine } from './DashedLine';
+import { DashedLineX } from './DashedLine';
 import styled from 'styled-components';
 import { FragmentOf, readFragment } from 'gql.tada';
 import { WorkItemFragment } from '@/app/_components/work-history/fragments';
 import { getFormattedDateMMYYYY } from '@/utils/date';
+import { Flex } from '@/app/_components/common/Flex';
+import { Skill } from '@/app/_components/console/Skill';
 
 export interface WorkItemProps {
   data: FragmentOf<typeof WorkItemFragment>;
 }
 
-const StyledConsoleWorkItem = styled.div`
-  .dates {
-    margin: 0.5rem 0;
-  }
-  .company {
-    text-transform: uppercase;
-    color: white;
-  }
-  .work-title {
-    margin: 1rem 0;
-    color: ${({ theme }) => theme.colors.console.magenta};
-  }
-  .work-description {
-    color: ${({ theme }) => theme.colors.console.grey};
-  }
+const Dates = styled.div`
+  margin: ${({ theme }) => theme.spacings.s8} 0;
+  margin-top: ${({ theme }) => theme.spacings.s16};
+`;
+
+const Company = styled.div`
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.console.white};
+`;
+
+const WorkTitle = styled.div`
+  margin: ${({ theme }) => theme.spacings.s16} 0;
+  color: ${({ theme }) => theme.colors.console.magenta};
+`;
+
+const WorkDescription = styled.div`
+  color: ${({ theme }) => theme.colors.console.grey};
 `;
 
 const WorkItem = ({ data }: WorkItemProps) => {
   const itemData = readFragment(WorkItemFragment, data);
   return (
-    <StyledConsoleWorkItem>
-      <DashedLine />
-      <div className="dates">
+    <div>
+      <Dates>
         <span>{getFormattedDateMMYYYY(itemData.startDate)} - </span>
-        {itemData.endDate ? <span>{getFormattedDateMMYYYY(itemData.endDate)}</span> : null}
-      </div>
-      <div className="company">{itemData.company}</div>
-      <div className="work-title">{itemData.title}</div>
-      <div className="work-description">
-        {itemData.body}
-        <div className="rateless-skills">
-          {itemData.skills
-            ? itemData.skills.map((skill, i) => {
-                return (
-                  <div key={i} className="rateless-skill">
-                    <span className="line">/</span>
-                    {skill.name}
-                    <span className="line">/</span>
-                  </div>
-                );
-              })
-            : null}
-        </div>
-      </div>
-    </StyledConsoleWorkItem>
+        {itemData.endDate ? (
+          <span>{getFormattedDateMMYYYY(itemData.endDate)}</span>
+        ) : null}
+      </Dates>
+      <Company>{itemData.company}</Company>
+      <WorkTitle>{itemData.title}</WorkTitle>
+      <WorkDescription>{itemData.body}</WorkDescription>
+      <Flex mt="s12" mb="s16" flexWrap="wrap">
+        {itemData?.skills.map(skill => (
+          <Skill text={skill.name} key={skill.name} />
+        ))}
+      </Flex>
+      <DashedLineX />
+    </div>
   );
 };
 

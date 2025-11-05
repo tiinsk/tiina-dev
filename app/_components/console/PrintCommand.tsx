@@ -1,4 +1,6 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
+import { readFragment } from 'gql.tada';
+import styled from 'styled-components';
 
 import AsciiFont from './AsciiFont';
 import Contacts from './Contacts';
@@ -7,14 +9,9 @@ import Introduction from './Introduction';
 import Projects from './Projects';
 import Skills from './Skills';
 import WorkHistory from './WorkHistory';
-import {
-  commandArray,
-  Commands,
-  utilCommands,
-} from '@/app/console/commands';
+import { Commands, printableCommands } from '@/app/console/commands';
 import { Data } from '@/app/console/page';
 import { Locale } from '@/locales';
-import { readFragment } from 'gql.tada';
 import {
   AboutMeFragment,
   ContactFragment,
@@ -22,8 +19,11 @@ import {
   SkillFragment,
   WorkHistoryFragment,
 } from '@/app/_components/sections/fragments';
+import { MdiIcon } from '@/app/_components/common/MdiIcon';
+import { Flex } from '@/app/_components/common/Flex';
 
 export interface Command {
+  initialCommand?: string;
   command: Commands;
   language?: Locale;
 }
@@ -33,11 +33,21 @@ interface PrintCommandProps {
   data: Data;
 }
 
-const renderCommand = (CommandBody: ReactElement, title: string) => {
+const StyledCommandTitle = styled.div`
+  margin-top: ${({ theme }) => theme.spacings.s40};
+`;
+
+const renderCommand = (CommandBody: ReactElement, title?: string) => {
   return (
     <div>
-      <AsciiFont text={title} />
-      <div style={{ marginLeft: '1rem' }}>{CommandBody}</div>
+      <div>
+        {title && (
+          <StyledCommandTitle>
+            <AsciiFont text={title} />
+          </StyledCommandTitle>
+        )}
+      </div>
+      <div>{CommandBody}</div>
     </div>
   );
 };
@@ -46,7 +56,10 @@ const getCommand = (command: Command, data: Data) => {
   const translatedData = data[command.language || Locale.EN];
   switch (command.command) {
     case Commands.Help:
-      return { commandBody: <Help /> };
+      return {
+        title: 'Help',
+        commandBody: <Help />,
+      };
     case Commands.AboutMe:
       const aboutData = readFragment(AboutMeFragment, translatedData.aboutMe);
       return {
@@ -95,12 +108,10 @@ const getCommand = (command: Command, data: Data) => {
 };
 
 export const PrintCommand = ({ command, data }: PrintCommandProps) => {
+  let render;
   if (command.command === Commands.All) {
-    const printableCommands = commandArray.filter(
-      cmd => !utilCommands.some(u => u === cmd)
-    );
-    return (
-      <div>
+    render = (
+      <>
         {printableCommands.map((cmd, i) => {
           const { title, commandBody } = getCommand(
             { command: cmd, language: command.language },
@@ -108,11 +119,23 @@ export const PrintCommand = ({ command, data }: PrintCommandProps) => {
           );
           return <div key={i}>{renderCommand(commandBody, title || '')}</div>;
         })}
-      </div>
+      </>
     );
+  } else {
+    const { title, commandBody } = getCommand(command, data);
+
+    render = renderCommand(commandBody, title || undefined);
   }
 
-  const { title, commandBody } = getCommand(command, data);
-
-  return renderCommand(commandBody, title || '');
+  return (
+    <>
+      {command.initialCommand && (
+        <Flex alignItems="center" mt="s8">
+          <MdiIcon type="mdiChevronRight" />
+          {command.initialCommand}
+        </Flex>
+      )}
+      {render}
+    </>
+  );
 };

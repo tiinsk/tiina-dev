@@ -1,31 +1,23 @@
 import styled from 'styled-components';
 
-import AsciiFont from './AsciiFont';
-import {
-  commandArray,
-  Commands,
-  utilCommands,
-} from '@/app/console/commands';
+import { Commands, printableCommands } from '@/app/console/commands';
 
-const StyledConsoleHelp = styled.div`
-  table {
-    padding: 0 2rem;
-    width: 100%;
-  }
-  .command-col {
-    width: 24rem;
-  }
+const StyledTable = styled.table`
+  padding: ${({ theme }) => theme.spacings.s24};
+  width: 100%;
+`;
+
+const StyledCmdCol = styled.td`
+  width: ${({ theme }) => theme.spacings.s256};
 `;
 
 const Help = () => {
-  const printableCommands = commandArray.filter(cmd => !utilCommands.some(u => u === cmd));
   return (
-    <StyledConsoleHelp>
-      <AsciiFont text="Help" />
-      <table>
+    <div>
+      <StyledTable>
         <tbody>
           <tr>
-            <td className="command-col">Usage:</td>
+            <StyledCmdCol>Usage:</StyledCmdCol>
             <td>&lt;cmd&gt;</td>
           </tr>
           <tr>
@@ -34,10 +26,11 @@ const Help = () => {
             </td>
           </tr>
           <tr>
-            <td className="command-col">where &lt;cmd&gt; is one of:</td>
+            <StyledCmdCol>where &lt;cmd&gt; is one of:</StyledCmdCol>
             <td>
               {printableCommands.map(
-                (cmd, i) => `${cmd}${i < printableCommands.length - 1 ? ', ' : ''}`
+                (cmd, i) =>
+                  `${cmd}${i < printableCommands.length - 1 ? ', ' : ''}`
               )}
             </td>
           </tr>
@@ -47,20 +40,20 @@ const Help = () => {
             </td>
           </tr>
           <tr>
-            <td className="command-col">{Commands.All}</td>
+            <StyledCmdCol>{Commands.All}</StyledCmdCol>
             <td>Prints all commands listed above</td>
           </tr>
           <tr>
-            <td className="command-col">{Commands.Help}</td>
+            <StyledCmdCol>{Commands.Help}</StyledCmdCol>
             <td>Prints help</td>
           </tr>
           <tr>
-            <td className="command-col">&lt;cmd&gt; -l fi|en</td>
+            <StyledCmdCol>&lt;cmd&gt; -l fi|en</StyledCmdCol>
             <td>Chooses language for command</td>
           </tr>
         </tbody>
-      </table>
-    </StyledConsoleHelp>
+      </StyledTable>
+    </div>
   );
 };
 

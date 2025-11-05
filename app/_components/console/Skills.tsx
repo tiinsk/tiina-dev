@@ -2,67 +2,56 @@ import React from 'react';
 import styled from 'styled-components';
 import { FragmentOf, readFragment } from 'gql.tada';
 import { SkillFragment } from '@/app/_components/sections/fragments';
+import { Skill } from './Skill';
+import { Box } from '../common/Box';
+import { Flex } from '../common/Flex';
 
 export interface SkillsProps {
   data: FragmentOf<typeof SkillFragment> | null;
 }
 
-const StyledConsoleSkills = styled.div`
-  color: ${({ theme }) => theme.colors.console.grey};
+const SkillGroupTitle = styled.div`
+  color: ${({ theme }) => theme.colors.console.magenta};
+  margin-bottom: ${({ theme }) => theme.spacings.s8};
+`;
 
-  .title {
-    color: ${({ theme }) => theme.colors.console.magenta};
-    margin-bottom: 0.5rem;
-  }
-  .body {
-    margin-bottom: 0.5rem;
-  }
+const SkillGroupBody = styled.div`
+  color: ${({ theme }) => theme.colors.console.grey};
+  margin-bottom: ${({ theme }) => theme.spacings.s8};
 `;
 
 const Skills = ({ data }: SkillsProps) => {
   const skillData = readFragment(SkillFragment, data);
   return (
-    <StyledConsoleSkills>
-      <div className="rateless-skills">
-        <div className="title">{skillData?.techSkillTitle}</div>
-        <div className="body">{skillData?.techSkillBody}</div>
-        {skillData?.techSkills.map((skill, i) => {
-          return (
-            <div key={i} className="rateless-skill">
-              <span className="line">/</span>
-              {skill.name}
-              <span className="line">/</span>
-            </div>
-          );
-        })}
-      </div>
-      <div className="rateless-skills">
-        <div className="title">{skillData?.designSkillTitle}</div>
-        <div className="body">{skillData?.designSkillBody}</div>
-        {skillData?.designSkills.map((skill, i) => {
-          return (
-            <div key={i} className="rateless-skill">
-              <span className="line">/</span>
-              {skill.name}
-              <span className="line">/</span>
-            </div>
-          );
-        })}
-      </div>
-      <div className="rateless-skills">
-        <div className="title">{skillData?.coreSkillTitle}</div>
-        <div className="body">{skillData?.coreSkillBody}</div>
-        {skillData?.coreSkills.map((skill, i) => {
-          return (
-            <div key={i} className="rateless-skill">
-              <span className="line">/</span>
-              {skill.name}
-              <span className="line">/</span>
-            </div>
-          );
-        })}
-      </div>
-    </StyledConsoleSkills>
+    <div>
+      <Box mt="s24">
+        <SkillGroupTitle>{skillData?.techSkillTitle}</SkillGroupTitle>
+        <SkillGroupBody>{skillData?.techSkillBody}</SkillGroupBody>
+        <Flex mt="s12" mb="s32" flexWrap="wrap">
+          {skillData?.techSkills.map(skill => (
+            <Skill text={skill.name} key={skill.name} />
+          ))}
+        </Flex>
+      </Box>
+      <Box>
+        <SkillGroupTitle>{skillData?.designSkillTitle}</SkillGroupTitle>
+        <SkillGroupBody>{skillData?.designSkillBody}</SkillGroupBody>
+        <Flex my="s12" mb="s32" flexWrap="wrap">
+          {skillData?.designSkills.map(skill => (
+            <Skill text={skill.name} key={skill.name} />
+          ))}
+        </Flex>
+      </Box>
+      <Box>
+        <SkillGroupTitle>{skillData?.coreSkillTitle}</SkillGroupTitle>
+        <SkillGroupBody>{skillData?.coreSkillBody}</SkillGroupBody>
+        <Flex my="s12" mb="s32" flexWrap="wrap">
+          {skillData?.coreSkills.map(skill => (
+            <Skill text={skill.name} key={skill.name} />
+          ))}
+        </Flex>
+      </Box>
+    </div>
   );
 };
 
