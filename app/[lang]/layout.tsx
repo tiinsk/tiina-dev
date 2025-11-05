@@ -3,7 +3,7 @@ import { Poppins } from 'next/font/google';
 import StyledComponentsRegistry from '@/lib/styled-components-registry';
 import ClientLayout from '@/lib/client-layout';
 import { languagesArray } from '@/locales';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -17,6 +17,12 @@ export async function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: 'tiina.dev',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default async function RootLayout({

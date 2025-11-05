@@ -3,7 +3,6 @@
 import { Data } from '@/app/console/page';
 import { CommandLine } from '@/app/_components/console/CommandLine';
 import { useEffect, useRef, useState } from 'react';
-import GlobalStyle from '@/app/console/globalStyles';
 import { Typewriter } from '@/app/_components/console/Typewriter';
 import styled from 'styled-components';
 import {
@@ -114,7 +113,6 @@ export const ConsolePage = ({ data }: { data: Data }) => {
 
   return (
     <StyledConsoleSite>
-      <GlobalStyle />
       <Typewriter
         text={`Hi there and welcome. You should try typing "${Commands.Help}".`}
       />
