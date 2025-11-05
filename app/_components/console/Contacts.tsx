@@ -19,16 +19,13 @@ const StyledConsoleContacts = styled.div`
   margin-top: ${({ theme }) => theme.spacings.s16};
 `;
 
-const Detail = styled.div`
-  max-width: 100%;
-  display: flex;
-  justify-content: space-between;
-  color: ${({ theme }) => theme.colors.console.green};
-`;
-
 const StyledLink = styled(Link)`
   padding-left: ${({ theme }) => theme.spacings.s16};
   padding-right: ${({ theme }) => theme.spacings.s16};
+`;
+
+const StyledWhiteLink = styled(StyledLink)`
+  color: ${({ theme }) => theme.colors.console.white};
 `;
 
 const Text = styled.span`
@@ -44,28 +41,32 @@ const Contacts = ({ data }: ContactsProps) => {
       <Flex flexDirection="column" alignItems="center" gap="s4" mt="s2">
         +<DashedLineY />+
       </Flex>
-      <Flex flexDirection="column" gap="s16" flexWrap="wrap" justifyContent="space-between">
+      <Flex
+        flexDirection="column"
+        gap="s16"
+        flexWrap="wrap"
+        justifyContent="space-between"
+      >
         <Flex mt="s12" mx="s8">
           <DashedLineX />
         </Flex>
         {contactsData?.links.map(link => {
           return (
-            <Detail key={link.url}>
-              <Text>{link.title}</Text>
-            </Detail>
+            <StyledWhiteLink key={link.url} href={link.url}>
+              {link.title}
+            </StyledWhiteLink>
           );
         })}
         {contactsData?.buttonLinks.map(link => {
           return (
-            <Detail key={link.url}>
-              <StyledLink
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.url}
-              </StyledLink>
-            </Detail>
+            <StyledLink
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.url}
+            </StyledLink>
           );
         })}
         <Flex mb="s8" mx="s8">
