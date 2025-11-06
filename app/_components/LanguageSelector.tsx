@@ -8,6 +8,7 @@ import { InfoStyle } from '@/theme/typography';
 import { Flex } from '@/app/_components/common/Flex';
 import { useParams } from 'next/navigation';
 import { CommandLine } from '@/app/_images/console/CommandLine';
+import { Fragment } from 'react';
 
 const StyledLanguageSelector = styled.nav`
   position: absolute;
@@ -61,12 +62,12 @@ export const LanguageSelector = () => {
     <StyledLanguageSelector>
       <LanguageSelectorBox>
         {locales.map(locale => (
-          <>
-            <StyledLink $isActive={lang === locale} href={locale} key={locale}>
+          <Fragment key={locale}>
+            <StyledLink $isActive={lang === locale} href={locale}>
               {languages[locale]}
             </StyledLink>
             <Line />
-          </>
+          </Fragment>
         ))}
         <StyledConsoleLink href="/console">
           <CommandLine />
