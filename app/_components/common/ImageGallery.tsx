@@ -1,21 +1,27 @@
-import ReactImageGallery, { ReactImageGalleryItem } from 'react-image-gallery';
+import ReactImageGallery from 'react-image-gallery';
+import Image from 'next/image';
+import styled, { useTheme } from 'styled-components';
 import 'react-image-gallery/styles/css/image-gallery.css';
-import styled from 'styled-components';
-import { Button } from './Button';
-import { Blurhash } from 'react-blurhash';
 
-interface GalleryImage {
-  original: { src: string } | null;
-  thumbnail: { src: string } | null;
-  blurhash: string | null;
-}
+import { Button } from './Button';
+import { FragmentOf, readFragment } from 'gql.tada';
+import { ResponsiveImageFragment } from '@/app/[lang]/projects/[slug]/fragments';
+
+type ResponsiveImage = FragmentOf<typeof ResponsiveImageFragment>;
 
 interface ImageGalleryProps {
-  images: GalleryImage[];
+  images: {
+    responsiveImage: ResponsiveImage | null;
+  }[];
 }
 
-interface GalleryItem extends ReactImageGalleryItem {
-  blurhash: string;
+interface GalleryItem {
+  src: string;
+  alt: string | null;
+  base64: string | null;
+  original: string;
+  thumbnail: string;
+  isFirst: boolean;
 }
 
 const StyledImageGallery = styled.div`
@@ -69,15 +75,7 @@ const StyledImageGallery = styled.div`
   }
 `;
 
-const StyledBlurHash = styled(Blurhash)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-`;
-
-const StyledImg = styled.img`
+const StyledImg = styled(Image)`
   position: absolute;
   top: 0;
   left: 0;
@@ -99,16 +97,25 @@ const NavButton = styled(Button)`
 `;
 
 export const ImageGallery = ({ images }: ImageGalleryProps) => {
-  const items = images.reduce<GalleryItem[]>((acc, curr) => {
-    if (curr.thumbnail?.src && curr.original?.src && curr.blurhash) {
+  const { smallPageWidth } = useTheme();
+  const items = images.reduce<GalleryItem[]>((acc, curr, i) => {
+    const responsiveImage = readFragment(
+      ResponsiveImageFragment,
+      curr.responsiveImage
+    );
+    if (responsiveImage) {
       acc.push({
-        original: curr.original.src,
-        thumbnail: curr.thumbnail.src,
-        blurhash: curr.blurhash,
+        ...responsiveImage,
+        original: responsiveImage?.src,
+        thumbnail: responsiveImage?.src,
+        isFirst: i === 0,
       });
     }
     return acc;
   }, []);
+
+  const imageSizes = `(max-width: ${smallPageWidth}) 100vw, ${smallPageWidth}`;
+  const thumbSizes = `(max-width: 100px) 100vw, 100px`;
 
   return (
     <StyledImageGallery>
@@ -117,23 +124,28 @@ export const ImageGallery = ({ images }: ImageGalleryProps) => {
         showPlayButton={false}
         items={items}
         renderItem={item => (
-          <div className="image-gallery-image">
-            <StyledBlurHash
-              hash={(item as GalleryItem).blurhash}
-              width="100%"
-              height="100%"
+          <div className="image-gallery-image" style={{ position: 'relative' }}>
+            <StyledImg
+              src={item.original}
+              fill={true}
+              alt={(item as GalleryItem).alt || ''}
+              blurDataURL={(item as GalleryItem).base64 || undefined}
+              placeholder="blur"
+              preload={(item as GalleryItem).isFirst}
+              sizes={imageSizes}
             />
-            <StyledImg src={item.original} />
           </div>
         )}
         renderThumbInner={item => (
           <div className="image-gallery-thumbnail-image">
-            <StyledBlurHash
-              hash={(item as GalleryItem).blurhash}
-              width="100%"
-              height="100%"
+            <StyledImg
+              src={(item as GalleryItem).thumbnail}
+              fill={true}
+              alt={(item as GalleryItem).alt || ''}
+              blurDataURL={(item as GalleryItem).base64 || undefined}
+              placeholder="blur"
+              sizes={thumbSizes}
             />
-            <StyledImg src={item.thumbnail} />
           </div>
         )}
         renderRightNav={(onClick, disabled) => (

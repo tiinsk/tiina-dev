@@ -4,6 +4,14 @@ import { executeQuery } from '@/datocms/executeQuery';
 import { ProjectPage } from '@/app/[lang]/projects/[slug]/project-page';
 import { ProjectPageFragment } from '@/app/[lang]/projects/[slug]/fragments';
 
+const allQuery = graphql(`
+  query AllProjectsQuery($locale: SiteLocale!) {
+    allProjects(locale: $locale) {
+      slug
+    }
+  }
+`);
+
 const query = graphql(
   `
     query ProjectQuery($locale: SiteLocale!, $slug: String!) {
@@ -22,6 +30,21 @@ const getData = (lang: Locale, slug: string) =>
   executeQuery(query, {
     variables: { locale: lang, slug },
   });
+
+const getAllData = (lang: Locale) =>
+  executeQuery(allQuery, {
+    variables: { locale: lang },
+  });
+
+export const generateStaticParams = async ({
+  params,
+}: {
+  params: { lang: string };
+}) => {
+  const lang = params.lang;
+  const allData = await getAllData(lang as Locale);
+  return allData.allProjects.map(project => project.slug);
+};
 
 export default async function Page({
   params,

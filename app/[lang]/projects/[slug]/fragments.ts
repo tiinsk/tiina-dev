@@ -1,5 +1,14 @@
 import { graphql } from '@/datocms/graphql';
 
+export const ResponsiveImageFragment = graphql(`
+  fragment ResponsiveImageFragment on ResponsiveImage {
+    src
+    alt
+    title
+    base64
+  }
+`);
+
 export const ProjectPageFragment = graphql(
   `
     fragment ProjectPageFragment on ProjectRecord {
@@ -7,9 +16,6 @@ export const ProjectPageFragment = graphql(
       body
       activeYearList
       slug
-      image {
-        url
-      }
       skills {
         name
         skillType
@@ -19,13 +25,11 @@ export const ProjectPageFragment = graphql(
         url
       }
       galleryImages {
-        blurhash
-        thumbnail: responsiveImage(imgixParams: { fm: jpg, w: 200 }) {
-          src
-        }
-        original: responsiveImage(imgixParams: { fm: jpg, w: 1400 }) {
-          src
+        responsiveImage {
+          ...ResponsiveImageFragment
         }
       }
     }
-  `,);
+  `,
+  [ResponsiveImageFragment]
+);

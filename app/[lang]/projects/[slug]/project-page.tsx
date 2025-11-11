@@ -29,10 +29,10 @@ const StyledNav = styled.nav`
 `;
 
 const Content = styled.div`
-  max-width: ${({ theme }) => theme.pageWidth};
+  max-width: ${({ theme }) => theme.smallPageWidth};
 
-  padding-left: 10vw;
-  padding-right: ${({ theme }) => theme.spacings.s64};
+  margin-left: ${({ theme }) => theme.pageMaxPaddingLeft};
+  margin-right: ${({ theme }) => theme.pageMaxPaddingRight};
   padding-top: ${({ theme }) => theme.spacings.s128};
   padding-bottom: ${({ theme }) => theme.spacings.s80};
 
