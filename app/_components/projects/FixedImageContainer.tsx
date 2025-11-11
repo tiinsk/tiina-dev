@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Image from 'next/image';
+
 import { useProjectContext } from '@/app/_contexts/project-context';
 
 const StyledFixedImageContainer = styled.div`
@@ -23,9 +25,11 @@ const StyledFixedImageContainer = styled.div`
   }
 `;
 
-const FixedImage = styled.img`
+const ImageContainer = styled.div`
   position: absolute;
+  aspect-ratio: 1 / 1;
   width: 100%;
+  height: auto;
 `;
 
 export const FixedImageContainer = () => {
@@ -40,16 +44,20 @@ export const FixedImageContainer = () => {
         .map(
           project =>
             project && (
-              <FixedImage
-                key={project.name}
-                src={project.image}
-                style={{
-                  opacity:
-                    visibleProject.name === project.name
-                      ? visibleProject.opacity
-                      : 0,
-                }}
-              />
+              <ImageContainer key={project.name}>
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill={true}
+                  sizes="50vw"
+                  style={{
+                    opacity:
+                      visibleProject.name === project.name
+                        ? visibleProject.opacity
+                        : 0,
+                  }}
+                />
+              </ImageContainer>
             )
         )}
     </StyledFixedImageContainer>

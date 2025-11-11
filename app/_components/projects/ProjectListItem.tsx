@@ -1,7 +1,8 @@
 'use client';
 
 import { FragmentOf, readFragment } from 'gql.tada';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
+import Image from 'next/image';
 
 import { Flex } from '../common/Flex';
 import { Body, H4, Small } from '../common/typography';
@@ -13,6 +14,7 @@ import { LinkButton } from '../common/LinkButton';
 import { ProjectItemFragment } from '@/app/_components/projects/fragments';
 import { Locale } from '@/locales';
 import { useParams } from 'next/navigation';
+import { ResponsiveImageFragment } from '@/app/_components/common/image-fragments';
 
 interface ProjectItemProps {
   data: FragmentOf<typeof ProjectItemFragment>;
@@ -33,9 +35,12 @@ const StyledProjectItem = styled.li`
   flex-direction: column;
 `;
 
-const MobileImg = styled.img`
+const MobileImgContainer = styled.div`
   position: relative;
-  width: calc(100% + ${({ theme }) => theme.spacings.s48});
+
+  width: 100vw;
+  height: auto;
+  aspect-ratio: 1/1;
   left: -${({ theme }) => theme.spacings.s24};
 
   display: none;
@@ -57,8 +62,13 @@ export const ProjectListItem = ({
 }: ProjectItemProps) => {
   const { lang } = useParams();
   const ref = useRef<HTMLDivElement | null>(null);
+  const { breakpoints } = useTheme();
 
   const itemData = readFragment(ProjectItemFragment, data);
+  const imageData = readFragment(
+    ResponsiveImageFragment,
+    itemData.image.responsiveImage
+  );
 
   const { addProject } = useProjectContext();
 
@@ -75,7 +85,7 @@ export const ProjectListItem = ({
     const totalHeight = Math.max(1, rect.height);
     addProject(itemData.title, {
       name: itemData.title,
-      image: itemData.image.url,
+      image: imageData?.src || '',
       initialY1: rect.top,
       height: totalHeight,
     });
@@ -83,7 +93,14 @@ export const ProjectListItem = ({
 
   return (
     <StyledProjectItem>
-      <MobileImg src={itemData.image.url} alt={itemData.title} />
+      <MobileImgContainer>
+        <Image
+          src={imageData?.src || ''}
+          alt={itemData.title}
+          fill={true}
+          sizes={`(max-width: ${breakpoints.sm}px) 100vw, 0px`}
+        />
+      </MobileImgContainer>
       <TextContent ref={ref}>
         <H4>{itemData.title}</H4>
         {itemData.activeYearList && (

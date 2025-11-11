@@ -5,7 +5,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 
 import { Button } from './Button';
 import { FragmentOf, readFragment } from 'gql.tada';
-import { ResponsiveImageFragment } from '@/app/[lang]/projects/[slug]/fragments';
+import { ResponsiveImageFragment } from '@/app/_components/common/image-fragments';
 
 type ResponsiveImage = FragmentOf<typeof ResponsiveImageFragment>;
 
