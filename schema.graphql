@@ -733,6 +733,7 @@ input CvWorkHistoryModelFilter {
   body: TextFilter
   endDate: DateFilter
   title: StringFilter
+  skills: LinksFilter
   note: StringFilter
   company: StringFilter
   customDate: StringFilter
@@ -870,6 +871,7 @@ type CvWorkHistoryRecord implements RecordInterface {
   endDate: Date
   id: ItemId!
   note: String
+  skills: [SkillRecord!]!
   startDate: Date
   title(
     """The locale to use to fetch the field's content"""
@@ -5036,6 +5038,7 @@ input UploadFilter {
   title: UploadTitleFilter
   notes: UploadNotesFilter
   md5: UploadMd5Filter
+  path: UploadPathFilter
   author: UploadAuthorFilter
   copyright: UploadCopyrightFilter
   basename: UploadBasenameFilter
@@ -5174,6 +5177,21 @@ enum UploadOrientation {
   landscape
   portrait
   square
+}
+
+"""Specifies how to filter by path"""
+input UploadPathFilter {
+  """Search the asset with the specified path"""
+  eq: String
+
+  """Exclude the asset with the specified path"""
+  neq: String
+
+  """Search assets with the specified paths"""
+  in: [String]
+
+  """Search assets that do not have the specified paths"""
+  notIn: [String]
 }
 
 """Specifies how to filter by size"""

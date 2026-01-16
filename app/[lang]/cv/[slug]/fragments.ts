@@ -42,6 +42,9 @@ export const CVFragment = graphql(`
       startDate
       endDate
       body
+      skills {
+        name
+      }
     }
     education {
       title

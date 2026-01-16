@@ -11,7 +11,7 @@ import {
   View,
 } from '@react-pdf/renderer';
 import { FragmentOf, readFragment } from 'gql.tada';
-import { getFormattedDateMMMYYYY } from '@/utils/date';
+import { getFormattedDateMMYYYY } from '@/utils/date';
 import { CVFragment, CVTextFragment } from '@/app/[lang]/cv/[slug]/fragments';
 import { LinkedIn } from '@/app/[lang]/cv/[slug]/icons/linkedIn';
 import { Web } from '@/app/[lang]/cv/[slug]/icons/web';
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Poppins',
     fontWeight: 'semibold',
-    marginVertical: 16,
+    marginVertical: 12,
   },
   topSkills: {
     marginBottom: 16,
@@ -145,17 +145,20 @@ const styles = StyleSheet.create({
   item: {
     marginBottom: 24,
   },
+  itemCondensed: {
+    marginBottom: 8,
+  },
   flexItem: {
     display: 'flex',
     flexDirection: 'row',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   itemDate: {
-    fontSize: 12,
-    fontFamily: 'Poppins',
-    fontWeight: 'light',
+    fontSize: 10,
+    fontFamily: 'Work Sans',
+    fontWeight: 'semibold',
     textTransform: 'uppercase',
-    marginBottom: 2,
+    marginBottom: 4,
   },
   itemTitle: {
     fontSize: 12,
@@ -185,6 +188,13 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 8,
   },
+  tagWrapperCondensed: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 4,
+    marginTop: 4,
+  },
   tagText: {
     fontSize: 12,
     fontFamily: 'Work Sans',
@@ -192,6 +202,17 @@ const styles = StyleSheet.create({
   tag: {
     paddingVertical: 2,
     paddingHorizontal: 8,
+    backgroundColor: '#F8F8F8',
+    borderRadius: 20,
+    border: '1px solid #F1F1F1',
+  },
+  tagTextCondensed: {
+    fontSize: 10,
+    fontFamily: 'Work Sans',
+  },
+  tagCondensed: {
+    paddingVertical: 1,
+    paddingHorizontal: 4,
     backgroundColor: '#F8F8F8',
     borderRadius: 20,
     border: '1px solid #F1F1F1',
@@ -210,8 +231,8 @@ const styles = StyleSheet.create({
 
 const SvgLine = () => {
   return (
-    <Svg height="16" width="515">
-      <Line x1="0" y1="8" x2="515" y2="8" strokeWidth={1} stroke="#E5E5E5" />
+    <Svg height="8" width="515">
+      <Line x1="0" y1="4" x2="515" y2="4" strokeWidth={1} stroke="#E5E5E5" />
     </Svg>
   );
 };
@@ -290,10 +311,8 @@ export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
         <View wrap={false} style={styles.item} key={workItem.company}>
           <Text style={styles.itemDate}>
             {workItem.startDate &&
-              `${getFormattedDateMMMYYYY(workItem.startDate, lang)} - ${
-                workItem.endDate
-                  ? getFormattedDateMMMYYYY(workItem.endDate, lang)
-                  : ''
+              `${getFormattedDateMMYYYY(workItem.startDate)} - ${
+                workItem.endDate ? getFormattedDateMMYYYY(workItem.endDate) : ''
               }`}
           </Text>
           {workItem.customDate && (
@@ -303,16 +322,23 @@ export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
             {workItem.company} — {workItem.title}
           </Text>
           <Text style={styles.itemBody}>{workItem.body}</Text>
+          <View style={styles.tagWrapperCondensed}>
+            {workItem.skills.map(skill => (
+              <View style={styles.tagCondensed} key={skill.name}>
+                <Text style={styles.tagTextCondensed}>{skill.name}</Text>
+              </View>
+            ))}
+          </View>
         </View>
       ))}
       <SvgLine />
       <View wrap={false}>
         <Text style={styles.subtitle}>{texts?.educationTitle}</Text>
         {cvData.education.map(eduItem => (
-          <View wrap={false} style={styles.item} key={eduItem.title}>
+          <View wrap={false} style={styles.itemCondensed} key={eduItem.title}>
             {eduItem.date && (
               <Text style={styles.itemDate}>
-                {getFormattedDateMMMYYYY(eduItem.date, lang)}
+                {getFormattedDateMMYYYY(eduItem.date)}
               </Text>
             )}
             <Text style={styles.itemTitle}>
@@ -326,14 +352,14 @@ export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
       <View wrap={false}>
         <Text style={styles.subtitle}>{texts?.certificateTitle}</Text>
         {cvData.certificates.map(certItem => (
-          <View wrap={false} style={styles.item} key={certItem.title}>
+          <View wrap={false} style={styles.itemCondensed} key={certItem.title}>
             {certItem.date && (
               <Text style={styles.itemDate}>
-                {getFormattedDateMMMYYYY(certItem.date, lang)}
+                {getFormattedDateMMYYYY(certItem.date)}
               </Text>
             )}
             <Text style={styles.itemTitle}>{certItem.title}</Text>
-            <Text style={styles.itemBody}>{certItem.body}</Text>
+            <Text style={styles.itemBody}>{certItem.subtitle}</Text>
           </View>
         ))}
       </View>
