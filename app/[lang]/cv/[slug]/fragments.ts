@@ -22,6 +22,8 @@ export const CVFragment = graphql(`
     title
     intro
     showSeparateIntro
+    showPageNumbers
+    showCvPages
     image {
       responsiveImage(imgixParams: { fm: png, w: 300 }) {
         src

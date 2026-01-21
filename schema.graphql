@@ -360,6 +360,8 @@ input CvModelFilter {
   image: FileFilter
   name: StringFilter
   showSeparateIntro: BooleanFilter
+  showCvPages: BooleanFilter
+  showPageNumbers: BooleanFilter
   certificates: LinksFilter
   coreSkills: LinksFilter
   designSkills: LinksFilter
@@ -403,6 +405,10 @@ enum CvModelOrderBy {
   name_DESC
   showSeparateIntro_ASC
   showSeparateIntro_DESC
+  showCvPages_ASC
+  showCvPages_DESC
+  showPageNumbers_ASC
+  showPageNumbers_DESC
   slug_ASC
   slug_DESC
   title_ASC
@@ -477,6 +483,8 @@ type CvRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String
+  showCvPages: BooleanType
+  showPageNumbers: BooleanType
   showSeparateIntro: BooleanType
   slug: String!
   techSkills: [SkillRecord!]!

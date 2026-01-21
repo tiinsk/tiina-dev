@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   page: {
     paddingTop: 40,
-    paddingBottom: 30,
+    paddingBottom: 40,
   },
   name: {
     fontSize: 16,
@@ -415,25 +415,31 @@ export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
         <Page style={styles.page} size="A4">
           {header}
           <View style={styles.content}>{intro}</View>
-          <Text
-            style={styles.pageNumber}
-            render={({ pageNumber, totalPages }) =>
-              `${pageNumber} / ${totalPages}`
-            }
-            fixed
-          />
+          {cvData.showPageNumbers && (
+            <Text
+              style={styles.pageNumber}
+              render={({ pageNumber, totalPages }) =>
+                `${pageNumber} / ${totalPages}`
+              }
+              fixed
+            />
+          )}
         </Page>
-        <Page style={styles.page} size="A4">
-          {header}
-          <View style={styles.content}>{content}</View>
-          <Text
-            style={styles.pageNumber}
-            render={({ pageNumber, totalPages }) =>
-              `${pageNumber} / ${totalPages}`
-            }
-            fixed
-          />
-        </Page>
+        {cvData.showCvPages && (
+          <Page style={styles.page} size="A4">
+            {header}
+            <View style={styles.content}>{content}</View>
+            {cvData.showPageNumbers && (
+              <Text
+                style={styles.pageNumber}
+                render={({ pageNumber, totalPages }) =>
+                  `${pageNumber} / ${totalPages}`
+                }
+                fixed
+              />
+            )}
+          </Page>
+        )}
       </Document>
     );
   }
@@ -444,15 +450,17 @@ export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
         {header}
         <View style={styles.content}>
           {intro}
-          {content}
+          {cvData.showCvPages && content}
         </View>
-        <Text
-          style={styles.pageNumber}
-          render={({ pageNumber, totalPages }) =>
-            `${pageNumber} / ${totalPages}`
-          }
-          fixed
-        />
+        {cvData.showPageNumbers && (
+          <Text
+            style={styles.pageNumber}
+            render={({ pageNumber, totalPages }) =>
+              `${pageNumber} / ${totalPages}`
+            }
+            fixed
+          />
+        )}
       </Page>
     </Document>
   );
