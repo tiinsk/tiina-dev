@@ -5,7 +5,7 @@ import prettier from 'eslint-plugin-prettier/recommended';
 import tseslint from 'typescript-eslint';
 
 const eslintConfig = defineConfig([
-  tseslint.config.recommended,
+  ...tseslint.configs.recommended,
   ...nextVitals,
   ...nextTs,
   // Override default ignores of eslint-config-next.

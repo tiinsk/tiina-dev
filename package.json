@@ -15,8 +15,8 @@
     "@react-pdf/renderer": "^4.3.1",
     "figlet": "^1.9.3",
     "gql.tada": "^1.8.13",
-    "lodash": "^4.17.21",
-    "next": "^16.1.1",
+    "lodash": "^4.17.23",
+    "next": "^16.1.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-image-gallery": "^1.4.0",
@@ -30,12 +30,12 @@
     "@types/react-image-gallery": "^1.2.4",
     "concurrently": "^9.2.1",
     "dotenv-cli": "^11.0.0",
-    "eslint": "^9.38.0",
-    "eslint-config-next": "^16.0.0",
+    "eslint": "^9.39.3",
+    "eslint-config-next": "^16.1.6",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "prettier": "^3.6.2",
-    "typescript": "^5.6.2",
-    "typescript-eslint": "^8.46.2"
+    "eslint-plugin-prettier": "^5.5.5",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
   }
 }
