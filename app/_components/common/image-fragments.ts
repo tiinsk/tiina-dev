@@ -6,5 +6,6 @@ export const ResponsiveImageFragment = graphql(`
     alt
     title
     base64
+    aspectRatio
   }
 `);

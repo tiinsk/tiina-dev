@@ -11,6 +11,7 @@ import {
   H4Style,
   InfoStyle,
   LabelStyle,
+  MultiParagraphTextStyle,
   SmallBoldStyle,
   SmallStyle,
   SubtitleStyle,
@@ -119,6 +120,24 @@ export const Body = ({ children, color, ...props }: TypographyProps) => {
     <StyledBody {...props} color={color} component="p">
       {children}
     </StyledBody>
+  );
+};
+
+const StyledMultiParagraphText = styled(
+  StyledTypography
+)<StyledTypographyProps>`
+  ${MultiParagraphTextStyle};
+`;
+
+export const MultiParagraphText = ({
+  children,
+  color,
+  ...props
+}: TypographyProps) => {
+  return (
+    <StyledMultiParagraphText {...props} color={color} component="div">
+      {children}
+    </StyledMultiParagraphText>
   );
 };
 

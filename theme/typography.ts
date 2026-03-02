@@ -35,10 +35,16 @@ export const H2Style = css`
 export const H3Style = css`
   font-family: ${({ theme }) => theme.fonts.fontBody};
   font-weight: ${({ theme }) => theme.fontWeights.black};
-  font-size: 7rem;
-  line-height: 10.5rem;
+  font-size: 4rem;
+  line-height: 6rem;
   letter-spacing: -0.15rem;
   margin-bottom: ${({ theme }) => theme.spacings.s24};
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    font-size: 3.2rem;
+    line-height: 4.8rem;
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  }
 `;
 
 export const H4Style = css`
@@ -46,6 +52,22 @@ export const H4Style = css`
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: 2.8rem;
   line-height: 4.2rem;
+`;
+
+export const H5Style = css`
+  font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  font-size: 1.8rem;
+  line-height: 4.2rem;
+  margin: 0;
+  margin-top: ${({ theme }) => theme.spacings.s16};
+`;
+
+export const H6Style = css`
+  font-family: ${({ theme }) => theme.fonts.fontBody};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  font-size: 1.4rem;
+  margin: 0;
 `;
 
 export const SubtitleStyle = css`
@@ -67,6 +89,39 @@ export const BodyStyle = css`
   font-weight: ${({ theme }) => theme.fontWeights.light};
   font-size: 1.6rem;
   line-height: 2.4rem;
+`;
+
+export const MultiParagraphTextStyle = css`
+  max-width: ${({ theme }) => theme.smallPageWidth};
+
+  ${BodyStyle};
+
+  h2 {
+    ${H4Style};
+  }
+
+  h3 {
+    ${H5Style};
+  }
+
+  h4 {
+    ${H6Style};
+  }
+
+  p {
+    margin: ${({ theme }) => theme.spacings.s12} 0;
+  }
+
+  strong {
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
+  }
+
+  ul {
+    padding-left: ${({ theme }) => theme.spacings.s16};
+    li {
+      list-style-type: disc;
+    }
+  }
 `;
 
 export const SmallStyle = css`

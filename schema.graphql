@@ -85,6 +85,88 @@ type AboutMeSectionRecord implements RecordInterface {
   updatedAt: DateTime!
 }
 
+"""Block of type Body Image (body_image)"""
+type BodyImageRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  createdAt: DateTime!
+  id: ItemId!
+  image: FileField!
+  updatedAt: DateTime!
+}
+
+"""Block of type Body Side By Side Image (body_side_by_side_image)"""
+type BodySideBySideImageRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  createdAt: DateTime!
+  id: ItemId!
+  imageLeft: FileField!
+  imageRight: FileField!
+  updatedAt: DateTime!
+}
+
+"""Block of type Body Text (body_text)"""
+type BodyTextRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime!
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime!
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  createdAt: DateTime!
+  id: ItemId!
+  text(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String!
+  updatedAt: DateTime!
+}
+
 """Specifies how to filter Boolean fields"""
 input BooleanFilter {
   """Search for records with an exact match"""
@@ -3628,6 +3710,13 @@ input PositionFilter {
   neq: IntType
 }
 
+union ProjectModelBodyField = BodyImageRecord | BodySideBySideImageRecord | BodyTextRecord
+
+type ProjectModelBodyFieldListListNonNullMultiLocaleField {
+  locale: SiteLocale
+  value: [ProjectModelBodyField!]!
+}
+
 input ProjectModelFilter {
   _createdAt: CreatedAtFilter
   createdAt: CreatedAtFilter
@@ -3642,9 +3731,9 @@ input ProjectModelFilter {
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
   activeYearList: StringFilter
-  body: TextFilter
   slug: SlugFilter
   image: FileFilter
+  shortDescription: TextFilter
   skills: LinksFilter
   title: StringFilter
   galleryImages: GalleryFilter
@@ -3686,6 +3775,15 @@ enum ProjectModelOrderBy {
 """Record of type Project (project)"""
 type ProjectRecord implements RecordInterface {
   _allBodyLocales(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [ProjectModelBodyFieldListListNonNullMultiLocaleField!]
+  _allShortDescriptionLocales(
     """Process content as markdown"""
     markdown: Boolean
 
@@ -3735,6 +3833,21 @@ type ProjectRecord implements RecordInterface {
   _updatedAt: DateTime!
   activeYearList: String
   body(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [ProjectModelBodyField!]!
+  createdAt: DateTime!
+  galleryImages: [FileField!]!
+  id: ItemId!
+  image: FileField!
+  links: [LinkRecord!]!
+  position: IntType
+  shortDescription(
     """Process content as markdown"""
     markdown: Boolean
 
@@ -3746,12 +3859,6 @@ type ProjectRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String!
-  createdAt: DateTime!
-  galleryImages: [FileField!]!
-  id: ItemId!
-  image: FileField!
-  links: [LinkRecord!]!
-  position: IntType
   skills: [SkillRecord!]!
   slug(
     """The locale to use to fetch the field's content"""

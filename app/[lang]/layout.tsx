@@ -37,9 +37,7 @@ export default async function RootLayout({
     <html lang={lang} className={`${poppins.variable}`}>
       <body>
         <StyledComponentsRegistry>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
+          <ClientLayout>{children}</ClientLayout>
         </StyledComponentsRegistry>
       </body>
     </html>

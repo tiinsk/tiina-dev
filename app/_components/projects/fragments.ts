@@ -5,7 +5,7 @@ export const ProjectItemFragment = graphql(
   `
     fragment ProjectItemFragment on ProjectRecord {
       title
-      body
+      shortDescription
       activeYearList
       slug
       image {
