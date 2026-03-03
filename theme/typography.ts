@@ -108,6 +108,19 @@ export const MultiParagraphTextStyle = css`
     ${H6Style};
   }
 
+  pre {
+    font-family: ${({ theme }) => theme.fonts.fontBody};
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
+    font-size: 1.2rem;
+    width: fit-content;
+
+    margin-top: ${({ theme }) => theme.spacings.s32};
+    padding: ${({ theme }) => theme.spacings.s4}
+      ${({ theme }) => theme.spacings.s8};
+    background-color: ${({ theme }) => theme.colors.background.tertiary};
+    border-radius: ${({ theme }) => theme.spacings.s8};
+  }
+
   p {
     margin: ${({ theme }) => theme.spacings.s12} 0;
   }
