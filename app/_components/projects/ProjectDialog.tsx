@@ -66,7 +66,7 @@ export const ProjectDialog = ({
             />
           ))}
         </Flex>
-        <Body dangerouslySetInnerHTML={{ __html: itemData.body }} />
+        <Body dangerouslySetInnerHTML={{ __html: itemData.shortDescription }} />
       </Flex>
     </Dialog>
   );

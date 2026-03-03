@@ -35,7 +35,7 @@ const Project = ({ data, activeTitle }: ProjectItemProps) => {
       <ProjectName dangerouslySetInnerHTML={{ __html: itemData.title }} />
       <StyledContent>
         <ActiveTitle>{`${activeTitle}: ${itemData.activeYearList}`}</ActiveTitle>
-        {itemData.body}
+        {itemData.shortDescription}
         <Flex my="s12" flexWrap="wrap">
           {itemData.skills.map((skill, i) => (
             <Skill key={i} text={skill.name} />
