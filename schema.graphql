@@ -135,6 +135,10 @@ type BodySideBySideImageRecord implements RecordInterface {
   id: ItemId!
   imageLeft: FileField!
   imageRight: FileField!
+  title(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String
   updatedAt: DateTime!
 }
 

@@ -7,6 +7,7 @@ export type BodyImageBlock = {
 };
 
 export type BodySideBySideImageBlock = {
+  title?: string;
   imageLeft: { responsiveImage: FragmentOf<typeof ResponsiveImageFragment> };
   imageRight: { responsiveImage: FragmentOf<typeof ResponsiveImageFragment> };
 };
@@ -40,6 +41,7 @@ export const ProjectPageFragment = graphql(
       slug
       body {
         ... on BodySideBySideImageRecord {
+          title
           imageLeft {
             responsiveImage {
               ...ResponsiveImageFragment

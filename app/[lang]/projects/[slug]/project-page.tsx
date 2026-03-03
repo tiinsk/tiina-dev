@@ -20,7 +20,7 @@ import {
   ProjectPageFragment,
   type ProjectPageData,
 } from '@/app/[lang]/projects/[slug]/fragments';
-import { H3Style } from '@/theme/typography';
+import { H3Style, SmallStyle } from '@/theme/typography';
 
 const ProjectPageGlobalStyle = createGlobalStyle`
   body {
@@ -120,8 +120,35 @@ const ShortDescription = styled(Body)<{ $hasLongDescription: boolean }>`
     $hasLongDescription ? theme.smallPageWidth : undefined};
 `;
 
-const BodyImage = styled(Image)`
+const SideBySideBodyImageWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+
   border-radius: ${({ theme }) => theme.spacings.s12};
+`;
+
+const SideBySideImageFlex = styled.div`
+  display: flex;
+  position: relative;
+  width: 50%;
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    width: 100%;
+  }
+`;
+
+const ImageTitle = styled.div`
+  ${SmallStyle};
+  font-style: italic;
+  font-weight: ${({ theme }) => theme.fontWeights.light};
+  margin: ${({ theme }) => theme.spacings.s16} 0;
+
+  max-width: ${({ theme }) => theme.smallPageWidth};
+
+  strong {
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
+  }
 `;
 
 export const ProjectPage = ({
@@ -190,7 +217,7 @@ export const ProjectPage = ({
           </Flex>
         </Flex>
         <ImageGallery images={itemData.galleryImages} />
-        <Flex flexDirection="column" gap="s24" alignItems="center" mt="s40">
+        <Flex flexDirection="column" alignItems="center" mt="s40">
           <ShortDescription
             dangerouslySetInnerHTML={{ __html: itemData.shortDescription }}
             $hasLongDescription={itemData.body.length > 0}
@@ -211,7 +238,7 @@ export const ProjectPage = ({
                       aspectRatio: img.aspectRatio,
                     }}
                   >
-                    <BodyImage
+                    <Image
                       src={img.src}
                       alt={img.alt || ''}
                       fill={true}
@@ -220,6 +247,62 @@ export const ProjectPage = ({
                       sizes={imageSizes}
                       style={{ objectFit: 'cover' }}
                     />
+                  </Flex>
+                ) : null;
+              }
+              if ('imageLeft' in item) {
+                const imgLeft = readFragment(
+                  ResponsiveImageFragment,
+                  item.imageLeft.responsiveImage
+                );
+                const imgRight = readFragment(
+                  ResponsiveImageFragment,
+                  item.imageRight.responsiveImage
+                );
+                return imgLeft && imgRight ? (
+                  <Flex
+                    key={index}
+                    flexDirection="column"
+                    style={{ width: '100%' }}
+                    alignItems="center"
+                  >
+                    <SideBySideBodyImageWrapper>
+                      <SideBySideImageFlex
+                        style={{
+                          aspectRatio: imgLeft.aspectRatio,
+                        }}
+                      >
+                        <Image
+                          src={imgLeft.src}
+                          alt={imgLeft.alt || ''}
+                          fill={true}
+                          placeholder="blur"
+                          blurDataURL={imgLeft.base64 || undefined}
+                          sizes={imageSizes}
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </SideBySideImageFlex>
+                      <SideBySideImageFlex
+                        style={{
+                          aspectRatio: imgRight.aspectRatio,
+                        }}
+                      >
+                        <Image
+                          src={imgRight.src}
+                          alt={imgRight.alt || ''}
+                          fill={true}
+                          placeholder="blur"
+                          blurDataURL={imgRight.base64 || undefined}
+                          sizes={imageSizes}
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </SideBySideImageFlex>
+                    </SideBySideBodyImageWrapper>
+                    {item.title && (
+                      <ImageTitle
+                        dangerouslySetInnerHTML={{ __html: item.title }}
+                      />
+                    )}
                   </Flex>
                 ) : null;
               }

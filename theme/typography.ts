@@ -118,6 +118,8 @@ export const MultiParagraphTextStyle = css`
 
   ul {
     padding-left: ${({ theme }) => theme.spacings.s16};
+    margin-bottom: ${({ theme }) => theme.spacings.s12};
+
     li {
       list-style-type: disc;
     }
