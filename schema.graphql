@@ -448,6 +448,7 @@ input CvModelFilter {
   showSeparateIntro: BooleanFilter
   showCvPages: BooleanFilter
   showPageNumbers: BooleanFilter
+  isCondensed: BooleanFilter
   certificates: LinksFilter
   coreSkills: LinksFilter
   designSkills: LinksFilter
@@ -495,6 +496,8 @@ enum CvModelOrderBy {
   showCvPages_DESC
   showPageNumbers_ASC
   showPageNumbers_DESC
+  isCondensed_ASC
+  isCondensed_DESC
   slug_ASC
   slug_DESC
   title_ASC
@@ -562,6 +565,7 @@ type CvRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): String
+  isCondensed: BooleanType
   languageSkills: [SkillRecord!]!
   links: [LinkRecord!]!
   name: String!

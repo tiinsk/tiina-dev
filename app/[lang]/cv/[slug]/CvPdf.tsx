@@ -17,12 +17,11 @@ import { LinkedIn } from '@/app/[lang]/cv/[slug]/icons/linkedIn';
 import { Web } from '@/app/[lang]/cv/[slug]/icons/web';
 import { Phone } from '@/app/[lang]/cv/[slug]/icons/phone';
 import { At } from '@/app/[lang]/cv/[slug]/icons/at';
-import { Locale } from '@/locales';
+import { CondensedCvPdf } from '@/app/[lang]/cv/[slug]/CondensedCvPdf';
 
 export interface CvPdfProps {
   data: FragmentOf<typeof CVFragment>;
   textData: FragmentOf<typeof CVTextFragment> | null;
-  lang: Locale;
   slug: string;
 }
 
@@ -229,7 +228,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const SvgLine = () => {
+export const SvgLine = () => {
   return (
     <Svg height="8" width="515">
       <Line x1="0" y1="4" x2="515" y2="4" strokeWidth={1} stroke="#E5E5E5" />
@@ -237,7 +236,7 @@ const SvgLine = () => {
   );
 };
 
-const getSvgIcon = (icon: string | null) => {
+export const getSvgIcon = (icon: string | null) => {
   switch (icon) {
     case 'linkedIn':
       return <LinkedIn />;
@@ -252,7 +251,7 @@ const getSvgIcon = (icon: string | null) => {
   }
 };
 
-const getLanguageSkillLevel = (
+export const getLanguageSkillLevel = (
   level: string | null,
   levelTitles: Record<string, string | undefined>
 ) => {
@@ -260,8 +259,12 @@ const getLanguageSkillLevel = (
   return levelTitles[level] || '';
 };
 
-export const CvPdf = ({ data, textData, lang, slug }: CvPdfProps) => {
+export const CvPdf = ({ data, textData, slug }: CvPdfProps) => {
   const cvData = readFragment(CVFragment, data);
+
+  if (cvData.isCondensed)
+    return <CondensedCvPdf data={data} textData={textData} slug={slug} />;
+
   const texts = readFragment(CVTextFragment, textData);
   const languageSkillLevelTitles = {
     '1': texts?.languageLevel1Text || '',

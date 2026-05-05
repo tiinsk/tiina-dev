@@ -18,3 +18,9 @@ export const getFormattedDateMMYYYY = (dateStr: string | null) => {
   const year = date.getFullYear();
   return `${month}/${year}`;
 };
+
+export const getFormattedDateYYYY = (dateStr: string | null) => {
+  if (!dateStr) return null;
+  const date = new Date(dateStr);
+  return date.getFullYear();
+};
