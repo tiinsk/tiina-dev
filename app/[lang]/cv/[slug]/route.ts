@@ -44,7 +44,6 @@ export async function GET(
   const buffer = await PdfBuffer({
     data: cv,
     textData: data.cvText,
-    lang: lang as Locale,
     slug,
   });
 
